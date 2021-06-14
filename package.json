@@ -5,6 +5,7 @@
   "scripts": {
     "commit": "npx git-cz",
     "ng": "nx",
+    "prepare": "husky install",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && yarn build:version",
     "nx": "nx",
     "start": "ng serve",
@@ -71,10 +72,11 @@
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "git-describe": "^4.0.4",
+    "husky": "^6.0.0",
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
-    "standard-version": "^9.3.0",
     "prettier": "2.2.1",
+    "standard-version": "^9.3.0",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
