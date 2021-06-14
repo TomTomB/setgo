@@ -15,7 +15,7 @@ env:
   NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
