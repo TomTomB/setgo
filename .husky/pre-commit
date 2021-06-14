@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn format:check && yarn affected:lint
+yarn format:check --base=master --head=HEAD && yarn affected:lint --base=master --head=HEAD
