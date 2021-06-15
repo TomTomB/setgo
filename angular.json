@@ -40,16 +40,23 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
-            "outputPath": "dist/apps/setgo",
+            "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
             "main": "apps/setgo/src/main.ts",
             "polyfills": "apps/setgo/src/polyfills.ts",
             "tsConfig": "apps/setgo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/setgo/src/favicon.ico", "apps/setgo/src/assets"],
-            "styles": ["apps/setgo/src/styles.scss"],
+            "assets": [
+              "apps/setgo/src/favicon.ico",
+              "apps/setgo/src/assets"
+            ],
+            "styles": [
+              "apps/setgo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -114,11 +121,72 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/setgo"],
+          "outputs": [
+            "coverage/apps/setgo"
+          ],
           "options": {
             "jestConfig": "apps/setgo/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/apps/setgo/server",
+            "main": "apps/setgo/server.ts",
+            "tsConfig": "apps/setgo/tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/setgo/src/environments/environment.ts",
+                  "with": "apps/setgo/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "setgo:build:development",
+              "serverTarget": "setgo:server:development"
+            },
+            "production": {
+              "browserTarget": "setgo:build:production",
+              "serverTarget": "setgo:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "setgo:build:production",
+              "serverTarget": "setgo:server:production"
+            },
+            "development": {
+              "browserTarget": "setgo:build:development",
+              "serverTarget": "setgo:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     },
@@ -143,7 +211,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/setgo-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
