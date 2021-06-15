@@ -9,8 +9,6 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
   SERVICE: setgo
   REGION: europe-west1
-  NX_BRANCH: ${{ github.event.number }}
-  NX_RUN_GROUP: ${{ github.run_id }}
 
 jobs:
   deploy:
