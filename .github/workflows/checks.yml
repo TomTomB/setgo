@@ -50,7 +50,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: git fetch --no-tags --prune --depth=5 origin main
       - run: yarn build:version
       - run: yarn format:check --base=origin/main
 
@@ -68,7 +67,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: git fetch --no-tags --prune --depth=5 origin main
       - run: yarn build:version
       - run: yarn affected:lint --base=origin/main
 
@@ -86,7 +84,6 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: git fetch --no-tags --prune --depth=5 origin main
       - run: yarn build:version
       - run: yarn affected:test --base=origin/main
 
@@ -104,6 +101,5 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: git fetch --no-tags --prune --depth=5 origin main
       - run: yarn build:version
       - run: yarn affected:build --base=origin/main
