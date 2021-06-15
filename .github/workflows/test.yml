@@ -55,6 +55,11 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn affected:lint
 
   test:
@@ -64,6 +69,11 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn affected:test
 
   build:
@@ -73,4 +83,9 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn affected:build
