@@ -1,6 +1,6 @@
 {
   "name": "setgo",
-  "version": "0.0.2",
+  "version": "0.0.0-development",
   "license": "MIT",
   "scripts": {
     "commit": "npx git-cz",
@@ -11,7 +11,6 @@
     "start": "ng serve",
     "build": "ng build",
     "build:version": "node tools/scripts/generate-version-file.js",
-    "release": "standard-version --no-verify",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -33,7 +32,8 @@
     "dev:ssr": "nx run setgo:serve-ssr",
     "serve:ssr": "node dist/apps/setgo/server/main.js",
     "build:ssr": "nx build && nx run setgo:server",
-    "prerender": "nx run setgo:prerender"
+    "prerender": "nx run setgo:prerender",
+    "semantic-release": "semantic-release"
   },
   "private": true,
   "dependencies": {
@@ -85,9 +85,15 @@
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
     "prettier": "2.2.1",
-    "standard-version": "^9.3.0",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TomTomB/setgo.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
