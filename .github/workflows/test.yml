@@ -37,23 +37,35 @@ jobs:
   format:
     needs: setup
     runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
     steps:
       - run: yarn format:check
 
   lint:
     needs: setup
     runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
     steps:
       - run: yarn affected:lint
 
   test:
     needs: setup
     runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
     steps:
       - run: yarn affected:test
 
   build:
     needs: setup
     runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
     steps:
       - run: yarn affected:build
