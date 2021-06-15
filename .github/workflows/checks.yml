@@ -23,6 +23,8 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
@@ -42,12 +44,14 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn build:version
-      - run: yarn format:check
+      - run: yarn format:check --base=origin/main
 
   lint:
     needs: setup
@@ -57,12 +61,14 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn build:version
-      - run: yarn affected:lint
+      - run: yarn affected:lint --base=origin/main
 
   test:
     needs: setup
@@ -72,12 +78,14 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn build:version
-      - run: yarn affected:test
+      - run: yarn affected:test --base=origin/main
 
   build:
     needs: [setup, format, lint, test]
@@ -87,9 +95,11 @@ jobs:
         operating-system: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn build:version
-      - run: yarn affected:build
+      - run: yarn affected:build --base=origin/main
