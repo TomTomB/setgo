@@ -11,7 +11,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:version": "node tools/scripts/generate-version-file.js",
-    "release": "standard-version",
+    "release": "standard-version --no-verify",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
