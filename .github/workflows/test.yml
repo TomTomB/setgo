@@ -41,6 +41,10 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
     steps:
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn format:check
 
   lint:
@@ -62,7 +66,7 @@ jobs:
       - run: yarn affected:test
 
   build:
-    needs: setup
+    needs: [setup, format, lint, test]
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
