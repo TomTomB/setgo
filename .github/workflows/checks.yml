@@ -25,9 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: |
-            '**/node_modules'
-            git-version.json
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -46,10 +44,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: |
-            '**/node_modules'
-            git-version.json
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn build:version
       - run: yarn format:check
 
   lint:
@@ -62,10 +59,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: |
-            '**/node_modules'
-            git-version.json
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn build:version
       - run: yarn affected:lint
 
   test:
@@ -78,10 +74,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: |
-            '**/node_modules'
-            git-version.json
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn build:version
       - run: yarn affected:test
 
   build:
@@ -94,8 +89,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
-          path: |
-            '**/node_modules'
-            git-version.json
+          path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn build:version
       - run: yarn affected:build
