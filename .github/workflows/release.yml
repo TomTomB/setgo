@@ -64,4 +64,4 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          version: v$RELEASE_VERSION
+          version: v${{ steps.semantic.outputs.release-version }}
