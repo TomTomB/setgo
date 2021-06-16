@@ -9,9 +9,9 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm run build:version
-
 COPY . .
+
+RUN npm run build:version
 
 RUN npm run build:ssr
 
