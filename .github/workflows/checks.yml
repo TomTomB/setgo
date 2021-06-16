@@ -4,11 +4,6 @@ on:
   pull_request:
     paths-ignore:
       - '**.md'
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -35,71 +30,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn --frozen-lockfile
       - run: yarn build:version
-
-  format:
-    needs: setup
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn build:version
       - run: yarn format:check --base=origin/main
-
-  lint:
-    needs: setup
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn build:version
       - run: yarn affected:lint --base=origin/main
-
-  test:
-    needs: setup
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn build:version
       - run: yarn affected:test --base=origin/main
-
-  build:
-    needs: [setup, format, lint, test]
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
+      - run: yarn build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          fetch-depth: 0
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn build:version
-      - run: yarn affected:build --base=origin/main
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          expires: 30d
+          projectId: set-go-backend

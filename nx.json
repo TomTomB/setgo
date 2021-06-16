@@ -28,6 +28,9 @@
     "setgo-e2e": {
       "tags": [],
       "implicitDependencies": ["setgo"]
+    },
+    "firebase": {
+      "tags": []
     }
   }
 }
