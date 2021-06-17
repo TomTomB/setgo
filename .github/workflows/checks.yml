@@ -38,6 +38,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Install firebase tools
+        run: npm i -g firebase-tools
+
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
@@ -54,11 +57,7 @@ jobs:
         run: yarn affected:build --all
 
       - name: Test
-        uses: w9jds/firebase-action@master
-        with:
-          args: emulators:exec 'yarn test --project firebase'
-        env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: firebase emulators:exec 'yarn test --project firebase'
 
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0
