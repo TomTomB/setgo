@@ -21,11 +21,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache firebase emulators
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/firebase/emulators
-          key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('~/.cache/firebase/emulators/**') }}
+      # - name: Cache firebase emulators
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ~/.cache/firebase/emulators
+      #     key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('~/.cache/firebase/emulators/**') }}
 
       - name: Cache node modules
         uses: actions/cache@v2
