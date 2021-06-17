@@ -54,13 +54,10 @@ jobs:
         run: yarn affected:lint --base=origin/main
 
       - name: Test
-        run: yarn affected:test --base=origin/main
+        run: firebase emulators:exec 'yarn affected:test --base=origin/main'
 
       - name: Build all apps
         run: yarn affected:build --all
-
-      - name: Run firebase tests
-        run: firebase emulators:exec 'yarn test --project firebase'
 
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0
