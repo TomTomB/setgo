@@ -21,6 +21,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - run: npm root -g
+
       - name: Cache global node modules
         uses: actions/cache@v2
         with:
