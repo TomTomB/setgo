@@ -21,6 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Cache global node modules
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/lib/node_modules
+          key: ${{ runner.os }}-global-modules-${{ hashFiles('/usr/local/lib/node_modules/**') }}
+
       - name: Cache firebase emulators
         uses: actions/cache@v2
         with:
