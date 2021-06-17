@@ -31,13 +31,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Firebase Tools
-        run: yarn global add firebase-tools
+      - name: Install firebase tools
+        run: npm i -g firebase-tools
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Build Version File
+      - name: Build version file
         run: yarn build:version
 
       - name: Check format
