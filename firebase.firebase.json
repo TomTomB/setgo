@@ -23,15 +23,33 @@
     "predeploy": ["npx nx build firebase --with-deps", "npx nx lint firebase"],
     "source": "dist/apps/firebase"
   },
+  "remoteconfig": {
+    "template": "apps/firebase/remoteconfig.template.json"
+  },
   "emulators": {
+    "auth": {
+      "port": 9099
+    },
     "functions": {
       "port": 5001
     },
     "firestore": {
       "port": 8080
     },
+    "database": {
+      "port": 9000
+    },
     "hosting": {
       "port": 5000
+    },
+    "pubsub": {
+      "port": 8085
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true
     }
   }
 }
