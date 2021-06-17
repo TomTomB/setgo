@@ -32,6 +32,58 @@
     }
   },
   "projects": {
+    "firebase": {
+      "root": "apps/firebase",
+      "sourceRoot": "apps/firebase/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@simondotm/nx-firebase:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/firebase",
+            "main": "apps/firebase/src/index.ts",
+            "tsConfig": "apps/firebase/tsconfig.app.json",
+            "packageJson": "apps/firebase/package.json",
+            "assets": ["apps/firebase/*.md"]
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run firebase:build --with-deps && nx run firebase:build --watch"
+              },
+              {
+                "command": "firebase emulators:start --config firebase.firebase.json"
+              }
+            ],
+            "parallel": true
+          }
+        },
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "firebase deploy --config firebase.firebase.json"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/firebase/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/firebase"],
+          "options": {
+            "jestConfig": "apps/firebase/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "setgo": {
       "projectType": "application",
       "root": "apps/setgo",
@@ -198,58 +250,6 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "firebase": {
-      "root": "apps/firebase",
-      "sourceRoot": "apps/firebase/src",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@simondotm/nx-firebase:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/firebase",
-            "main": "apps/firebase/src/index.ts",
-            "tsConfig": "apps/firebase/tsconfig.app.json",
-            "packageJson": "apps/firebase/package.json",
-            "assets": ["apps/firebase/*.md"]
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "commands": [
-              {
-                "command": "nx run firebase:build --with-deps && nx run firebase:build --watch"
-              },
-              {
-                "command": "firebase emulators:start --config firebase.firebase.json"
-              }
-            ],
-            "parallel": true
-          }
-        },
-        "deploy": {
-          "builder": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "firebase deploy --config firebase.firebase.json"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/firebase/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/firebase"],
-          "options": {
-            "jestConfig": "apps/firebase/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }

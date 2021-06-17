@@ -22,15 +22,15 @@
     }
   },
   "projects": {
+    "firebase": {
+      "tags": []
+    },
     "setgo": {
       "tags": []
     },
     "setgo-e2e": {
       "tags": [],
       "implicitDependencies": ["setgo"]
-    },
-    "firebase": {
-      "tags": []
     }
   }
 }
