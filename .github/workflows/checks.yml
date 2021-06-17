@@ -20,21 +20,43 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
       - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn --frozen-lockfile
-      - run: yarn build:version
-      - run: yarn format:check --base=origin/main
-      - run: yarn affected:lint --base=origin/main
-      - run: yarn affected:test --base=origin/main
-      - run: yarn build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Install Firebase Tools
+        run: yarn add --global firebase-tools
+
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build Version File
+        run: yarn build:version
+
+      - name: Check format
+        run: yarn format:check --base=origin/main
+
+      - name: Lint
+        run: yarn affected:lint --base=origin/main
+
+      - name: Test
+        run: yarn affected:test --base=origin/main
+
+      - name: Build all apps
+        run: yarn affected:build --all
+
+      - name: Run firebase tests
+        run: firebase emulators:exec 'yarn test --project firebase'
+
+      - name: Deploy preview
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
