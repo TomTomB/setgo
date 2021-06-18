@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/angular';
 import { AppModule } from './app/app.module';
 import { Integrations } from '@sentry/tracing';
 import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
+import { environment } from '@setgo/env';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 Sentry.init({

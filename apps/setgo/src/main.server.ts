@@ -7,7 +7,7 @@
  */
 import '@angular/platform-server/init';
 import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
+import { environment } from '@setgo/env';
 
 if (environment.production) {
   enableProdMode();

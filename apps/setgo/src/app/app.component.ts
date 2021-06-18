@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import versionFile from '../../../../git-version.json';
+import { environment } from '@setgo/env';
 
 @Component({
   selector: 'setgo-root',
@@ -8,5 +8,5 @@ import versionFile from '../../../../git-version.json';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  version = versionFile;
+  version = environment.version;
 }

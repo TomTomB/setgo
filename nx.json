@@ -22,6 +22,9 @@
     }
   },
   "projects": {
+    "env": {
+      "tags": []
+    },
     "firebase": {
       "tags": []
     },
