@@ -1,7 +1,7 @@
 {
   "name": "setgo",
   "version": "0.0.0-development",
-  "license": "MIT",
+  "license": "GPLV3",
   "repository": {
     "type": "git",
     "url": "https://github.com/TomTomB/setgo.git"
