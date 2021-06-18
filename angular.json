@@ -39,13 +39,17 @@
       "architect": {
         "build": {
           "builder": "@simondotm/nx-firebase:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/firebase",
             "main": "apps/firebase/src/index.ts",
             "tsConfig": "apps/firebase/tsconfig.app.json",
             "packageJson": "apps/firebase/package.json",
-            "assets": ["apps/firebase/*.md"]
+            "assets": [
+              "apps/firebase/*.md"
+            ]
           }
         },
         "serve": {
@@ -71,12 +75,16 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/firebase/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/firebase/**/*.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/firebase"],
+          "outputs": [
+            "coverage/apps/firebase"
+          ],
           "options": {
             "jestConfig": "apps/firebase/jest.config.js",
             "passWithNoTests": true
@@ -92,7 +100,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
@@ -100,8 +110,13 @@
             "polyfills": "apps/setgo/src/polyfills.ts",
             "tsConfig": "apps/setgo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/setgo/src/favicon.ico", "apps/setgo/src/assets"],
-            "styles": ["apps/setgo/src/styles.scss"],
+            "assets": [
+              "apps/setgo/src/favicon.ico",
+              "apps/setgo/src/assets"
+            ],
+            "styles": [
+              "apps/setgo/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -158,12 +173,17 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/setgo/src/**/*.ts", "apps/setgo/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/setgo/src/**/*.ts",
+              "apps/setgo/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/setgo"],
+          "outputs": [
+            "coverage/apps/setgo"
+          ],
           "options": {
             "jestConfig": "apps/setgo/jest.config.js",
             "passWithNoTests": true
@@ -212,7 +232,9 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": ["/"]
+            "routes": [
+              "/"
+            ]
           },
           "configurations": {
             "production": {
@@ -249,7 +271,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/setgo-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

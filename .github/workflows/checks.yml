@@ -48,16 +48,16 @@ jobs:
         run: yarn build:version
 
       - name: Check format
-        run: yarn format:check --base=origin/main
+        run: yarn format:check --base=origin/main --head=HEAD
 
       - name: Lint
-        run: yarn affected:lint --base=origin/main
+        run: yarn affected:lint --base=origin/main --head=HEAD
 
       - name: Build all apps
         run: yarn affected:build --all
 
       - name: Test
-        run: firebase emulators:exec 'yarn affected:test --base=origin/main'
+        run: firebase emulators:exec 'yarn affected:test --base=origin/main --head=HEAD'
 
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0
