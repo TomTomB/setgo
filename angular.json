@@ -32,6 +32,47 @@
     }
   },
   "projects": {
+    "env": {
+      "projectType": "library",
+      "root": "libs/env",
+      "sourceRoot": "libs/env/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/env"],
+          "options": {
+            "project": "libs/env/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/env/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/env/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/env"],
+          "options": {
+            "jestConfig": "libs/env/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/env/src/**/*.ts",
+              "libs/env/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "firebase": {
       "root": "apps/firebase",
       "sourceRoot": "apps/firebase/src",
@@ -39,17 +80,13 @@
       "architect": {
         "build": {
           "builder": "@simondotm/nx-firebase:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/firebase",
             "main": "apps/firebase/src/index.ts",
             "tsConfig": "apps/firebase/tsconfig.app.json",
             "packageJson": "apps/firebase/package.json",
-            "assets": [
-              "apps/firebase/*.md"
-            ]
+            "assets": ["apps/firebase/*.md"]
           }
         },
         "serve": {
@@ -75,16 +112,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/firebase/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/firebase/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/firebase"
-          ],
+          "outputs": ["coverage/apps/firebase"],
           "options": {
             "jestConfig": "apps/firebase/jest.config.js",
             "passWithNoTests": true
@@ -100,9 +133,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
@@ -110,13 +141,8 @@
             "polyfills": "apps/setgo/src/polyfills.ts",
             "tsConfig": "apps/setgo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/setgo/src/favicon.ico",
-              "apps/setgo/src/assets"
-            ],
-            "styles": [
-              "apps/setgo/src/styles.scss"
-            ],
+            "assets": ["apps/setgo/src/favicon.ico", "apps/setgo/src/assets"],
+            "styles": ["apps/setgo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -135,8 +161,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/setgo/src/environments/environment.ts",
-                  "with": "apps/setgo/src/environments/environment.prod.ts"
+                  "replace": "libs/env/src/lib/environment.ts",
+                  "with": "libs/env/src/lib/setgo/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -147,7 +173,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "libs/env/src/lib/environment.ts",
+                  "with": "libs/env/src/lib/setgo/environment.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -181,9 +213,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/setgo"
-          ],
+          "outputs": ["coverage/apps/setgo"],
           "options": {
             "jestConfig": "apps/setgo/jest.config.js",
             "passWithNoTests": true
@@ -202,15 +232,21 @@
               "outputHashing": "media",
               "fileReplacements": [
                 {
-                  "replace": "apps/setgo/src/environments/environment.ts",
-                  "with": "apps/setgo/src/environments/environment.prod.ts"
+                  "replace": "libs/env/src/lib/environment.ts",
+                  "with": "libs/env/src/lib/setgo/environment.prod.ts"
                 }
               ]
             },
             "development": {
               "optimization": false,
               "sourceMap": true,
-              "extractLicenses": false
+              "extractLicenses": false,
+              "fileReplacements": [
+                {
+                  "replace": "libs/env/src/lib/environment.ts",
+                  "with": "libs/env/src/lib/setgo/environment.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -232,9 +268,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -271,9 +305,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/setgo-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
           }
         }
       }
