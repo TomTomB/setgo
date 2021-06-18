@@ -1,9 +1,9 @@
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
-import { createErrorHandler, TraceService } from '@sentry/angular';
-import { AppComponent } from './app.component';
 import { TestComponent } from './test.component';
+import { TraceService, createErrorHandler } from '@sentry/angular';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
