@@ -17,7 +17,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@setgo/env": ["libs/env/src/index.ts"]
+      "@setgo/env": ["libs/env/src/index.ts"],
+      "@setgo/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

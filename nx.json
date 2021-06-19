@@ -34,6 +34,9 @@
     "setgo-e2e": {
       "tags": [],
       "implicitDependencies": ["setgo"]
+    },
+    "types": {
+      "tags": []
     }
   }
 }
