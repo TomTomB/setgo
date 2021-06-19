@@ -29,12 +29,16 @@ import {
 } from '@angular/fire/firestore';
 import { NgModule } from '@angular/core';
 import { environment } from '@setgo/env';
-import firebase from 'firebase';
 
-if (environment.production) {
-  const appCheck = firebase.appCheck();
-  appCheck.activate(environment.recaptcha);
-}
+// TODO(TRB): This is currently not supported by angular fire
+// See: https://github.com/angular/angularfire/issues/2858
+// if (environment.production) {
+//   const appCheck = firebase.appCheck();
+//   appCheck.activate(environment.recaptcha);
+// }
+
+// TODO(TRB): Use storage emulator once available
+// See: https://github.com/angular/angularfire/pull/2805
 
 @NgModule({
   imports: [
