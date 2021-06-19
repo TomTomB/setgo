@@ -4,7 +4,7 @@ import versionFile from '../../../../../git-version.json';
 export const environment: Environment = {
   production: true,
   version: versionFile,
-  useEmulators: true,
+  useEmulators: false,
   recaptcha: '6LeVNkQbAAAAAELZo6mWYyzWElm6ZodXbkjz5g_t',
   firebase: {
     apiKey: 'AIzaSyCxYbpq9pBPeVJHYnUEdrQBFrHjEo6sNlk',
