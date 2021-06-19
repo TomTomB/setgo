@@ -1,6 +1,7 @@
 import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { FirebaseModule } from './modules/firebase.module';
 import { Router, RouterModule } from '@angular/router';
 import { TestComponent } from './test.component';
 import { TraceService, createErrorHandler } from '@sentry/angular';
@@ -28,6 +29,7 @@ import { TraceService, createErrorHandler } from '@sentry/angular';
         scrollPositionRestoration: 'enabled',
       },
     ),
+    FirebaseModule,
   ],
   providers: [
     {

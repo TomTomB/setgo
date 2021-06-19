@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/setgo',
     '<rootDir>/apps/firebase',
     '<rootDir>/libs/env',
+    '<rootDir>/libs/types',
   ],
 };

@@ -135,6 +135,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
+            "allowedCommonJsDependencies": ["@firebase/app-check"],
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
             "main": "apps/setgo/src/main.ts",
@@ -150,8 +151,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -306,6 +307,47 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "types": {
+      "projectType": "library",
+      "root": "libs/types",
+      "sourceRoot": "libs/types/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/types"],
+          "options": {
+            "project": "libs/types/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/types/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/types/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/types"],
+          "options": {
+            "jestConfig": "libs/types/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/types/src/**/*.ts",
+              "libs/types/src/**/*.html"
+            ]
           }
         }
       }
