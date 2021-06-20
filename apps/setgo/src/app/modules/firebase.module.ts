@@ -1,4 +1,3 @@
-import 'firebase/app-check';
 import {
   APP_NAME,
   APP_VERSION,
@@ -17,17 +16,24 @@ import {
 } from '@angular/fire/database';
 import {
   AngularFireFunctionsModule,
+  ORIGIN as FUNCTIONS_ORIGIN,
+  NEW_ORIGIN_BEHAVIOR,
   REGION,
   USE_EMULATOR as USE_FUNCTIONS_EMULATOR,
 } from '@angular/fire/functions';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirePerformanceModule } from '@angular/fire/performance';
+import {
+  AngularFirePerformanceModule,
+  DATA_COLLECTION_ENABLED,
+  INSTRUMENTATION_ENABLED,
+  PerformanceMonitoringService,
+} from '@angular/fire/performance';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {
   AngularFirestoreModule,
   USE_EMULATOR as USE_FIRESTORE_EMULATOR,
 } from '@angular/fire/firestore';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { environment } from '@setgo/env';
 
 // TODO(TRB): This is currently not supported by angular fire
@@ -42,22 +48,30 @@ import { environment } from '@setgo/env';
 
 @NgModule({
   imports: [
-    AngularFireModule.initializeApp(environment.firebase, 'set-go-platform'),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirePerformanceModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireFunctionsModule,
-    environment.production
-      ? [AngularFirePerformanceModule, AngularFireAnalyticsModule]
-      : [],
+    AngularFireAnalyticsModule,
   ],
   providers: [
     ScreenTrackingService,
     UserTrackingService,
+    PerformanceMonitoringService,
     {
       provide: COLLECTION_ENABLED,
-      useValue: false,
+      useValue: environment.production,
+    },
+    {
+      provide: DATA_COLLECTION_ENABLED,
+      useValue: environment.production,
+    },
+    {
+      provide: INSTRUMENTATION_ENABLED,
+      useValue: environment.production,
     },
     {
       provide: APP_VERSION,
@@ -65,9 +79,14 @@ import { environment } from '@setgo/env';
     },
     {
       provide: APP_NAME,
-      useValue: 'SET.GO. PWA',
+      useValue: 'SET.GO. Web',
     },
     { provide: REGION, useValue: 'europe-west1' },
+    { provide: NEW_ORIGIN_BEHAVIOR, useValue: true },
+    {
+      provide: FUNCTIONS_ORIGIN,
+      useFactory: () => (isDevMode() ? undefined : location.origin),
+    },
     {
       provide: USE_AUTH_EMULATOR,
       useValue: environment.useEmulators ? ['localhost', 9099] : undefined,
