@@ -35,6 +35,9 @@
       "tags": [],
       "implicitDependencies": ["setgo"]
     },
+    "store-auth": {
+      "tags": []
+    },
     "types": {
       "tags": []
     }

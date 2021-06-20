@@ -311,6 +311,47 @@
         }
       }
     },
+    "store-auth": {
+      "projectType": "library",
+      "root": "libs/store/auth",
+      "sourceRoot": "libs/store/auth/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/store/auth"],
+          "options": {
+            "project": "libs/store/auth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/store/auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/store/auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/store/auth"],
+          "options": {
+            "jestConfig": "libs/store/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/store/auth/src/**/*.ts",
+              "libs/store/auth/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "types": {
       "projectType": "library",
       "root": "libs/types",
