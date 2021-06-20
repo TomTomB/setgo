@@ -30,6 +30,18 @@
       }
     },
     {
+      "files": ["*.component.ts"],
+      "rules": {
+        "@angular-eslint/prefer-on-push-component-change-detection": ["error"]
+      }
+    },
+    {
+      "files": ["*.module.ts"],
+      "rules": {
+        "@angular-eslint/sort-ngmodule-metadata-arrays": ["error"]
+      }
+    },
+    {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"]
     },

@@ -14,9 +14,9 @@ import { TestComponent } from './test.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'sgs' }),
     AppRoutingModule,
-    SentryModule,
-    NgRxModule,
     FirebaseModule,
+    NgRxModule,
+    SentryModule,
   ],
 
   bootstrap: [AppComponent],

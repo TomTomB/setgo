@@ -49,18 +49,18 @@ import { environment } from '@setgo/env';
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirePerformanceModule,
+    AngularFireAnalyticsModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
-    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireFunctionsModule,
-    AngularFireAnalyticsModule,
+    AngularFirePerformanceModule,
+    AngularFireStorageModule,
   ],
   providers: [
+    PerformanceMonitoringService,
     ScreenTrackingService,
     UserTrackingService,
-    PerformanceMonitoringService,
     {
       provide: COLLECTION_ENABLED,
       useValue: environment.production,
