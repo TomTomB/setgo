@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["firestore", "setgo"]
+  "cSpell.words": ["firestore", "setgo"],
+  "angular.view-engine": false
 }
