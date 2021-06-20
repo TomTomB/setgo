@@ -13,14 +13,16 @@ import { environment } from '@setgo/env';
       {},
       {
         metaReducers: !environment.production ? [] : [],
-        runtimeChecks: {
-          strictActionImmutability: true,
-          strictStateImmutability: true,
-          strictActionSerializability: true,
-          strictActionTypeUniqueness: true,
-          strictActionWithinNgZone: true,
-          strictStateSerializability: true,
-        },
+        runtimeChecks: !environment.production
+          ? {
+              strictActionImmutability: true,
+              strictStateImmutability: true,
+              strictActionSerializability: true,
+              strictActionTypeUniqueness: true,
+              strictActionWithinNgZone: true,
+              strictStateSerializability: true,
+            }
+          : undefined,
       },
     ),
     EffectsModule.forRoot([]),
