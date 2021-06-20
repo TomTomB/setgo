@@ -1,4 +1,3 @@
-
 const { gitDescribeSync } = require('git-describe');
 const { writeFileSync } = require('fs');
 
