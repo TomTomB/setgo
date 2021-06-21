@@ -1,7 +1,10 @@
 import * as AuthActions from './auth.actions';
+import * as Models from './auth.models';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
 import { AuthEffects } from './auth.effects';
 import { AuthService } from './auth.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { marbles } from 'rxjs-marbles/jest';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -13,16 +16,38 @@ describe('AuthEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [AngularFireModule.initializeApp({}), AngularFireAuthModule],
       providers: [
         {
           provide: AuthService,
           useValue: {
-            postSignIn() {
+            postSignIn(args: Models.PostSignInArgs) {
+              if (args.body.email === 'error') {
+                return throwError({
+                  error: null,
+                  message: 'test error',
+                  status: 'test',
+                });
+              }
+
               return of({
                 email: 'test@example.com',
                 emailVerified: false,
                 uid: 'abc123',
               });
+            },
+            postSignInMethodsForEmail(
+              args: Models.PostSignInMethodsForEmailArgs,
+            ) {
+              if (args.body.email === 'error') {
+                return throwError({
+                  error: null,
+                  message: 'test error',
+                  status: 'test',
+                });
+              }
+
+              return of(['google']);
             },
           },
         },
@@ -39,21 +64,85 @@ describe('AuthEffects', () => {
     it(
       'should work',
       marbles((m) => {
-        const callProps = {
+        const callAction = AuthActions.postSignIn.call({
           args: { body: { email: 'test@example.com', password: 'test1234' } },
-        };
-        const successProps = {
-          args: callProps.args,
+        });
+        const expectedAction = AuthActions.postSignIn.success({
+          args: callAction.args,
           response: {
             email: 'test@example.com',
             emailVerified: false,
             uid: 'abc123',
           },
-        };
+        });
 
-        actions = m.hot('-a-|', { a: AuthActions.postSignIn.call(callProps) });
+        actions = m.hot('-a-|', { a: callAction });
         m.expect(effects.postSignIn$).toBeObservable('-a-|', {
-          a: AuthActions.postSignIn.success(successProps),
+          a: expectedAction,
+        });
+      }),
+    );
+
+    it(
+      'should error',
+      marbles((m) => {
+        const callAction = AuthActions.postSignIn.call({
+          args: { body: { email: 'error', password: 'test1234' } },
+        });
+        const expectedAction = AuthActions.postSignIn.failure({
+          args: callAction.args,
+          error: {
+            data: null,
+            message: 'test error',
+            status: 'test',
+          },
+        });
+
+        actions = m.hot('-a-|', { a: callAction });
+        m.expect(effects.postSignIn$).toBeObservable('-a-|', {
+          a: expectedAction,
+        });
+      }),
+    );
+  });
+
+  describe('postSignInMethodsForEmail$', () => {
+    it(
+      'should work',
+      marbles((m) => {
+        const callAction = AuthActions.postSignInMethodsForEmail.call({
+          args: { body: { email: 'test@example.com' } },
+        });
+        const expectedAction = AuthActions.postSignInMethodsForEmail.success({
+          args: callAction.args,
+          response: ['google'],
+        });
+
+        actions = m.hot('-a-|', { a: callAction });
+        m.expect(effects.postSignInMethodsForEmail$).toBeObservable('-a-|', {
+          a: expectedAction,
+        });
+      }),
+    );
+
+    it(
+      'should error',
+      marbles((m) => {
+        const callAction = AuthActions.postSignInMethodsForEmail.call({
+          args: { body: { email: 'error' } },
+        });
+        const expectedAction = AuthActions.postSignInMethodsForEmail.failure({
+          args: callAction.args,
+          error: {
+            data: null,
+            message: 'test error',
+            status: 'test',
+          },
+        });
+
+        actions = m.hot('-a-|', { a: callAction });
+        m.expect(effects.postSignInMethodsForEmail$).toBeObservable('-a-|', {
+          a: expectedAction,
         });
       }),
     );
