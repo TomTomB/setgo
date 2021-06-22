@@ -97,7 +97,7 @@
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "git-describe": "^4.0.4",
     "husky": "^6.0.0",
-    "jest": "27.0.4",
+    "jest": "27.0.5",
     "jest-preset-angular": "9.0.4",
     "ng-packagr": "^12.0.0",
     "prettier": "2.3.1",
