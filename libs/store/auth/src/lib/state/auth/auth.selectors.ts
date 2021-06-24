@@ -1,17 +1,17 @@
-import { createEntitySelectors } from '@tomtomb/ngrx-toolkit';
-import { createFeatureSelector } from '@ngrx/store';
-
 import {
   AUTH_FEATURE_KEY,
   AuthPartialState,
   State,
   storeSlice,
 } from './auth.reducer';
+import { createEntitySelectors } from '@tomtomb/ngrx-toolkit';
+import { createFeatureSelector } from '@ngrx/store';
 
-export const getAuthState = createFeatureSelector<AuthPartialState, State>(
+const getState = createFeatureSelector<AuthPartialState, State>(
   AUTH_FEATURE_KEY,
 );
+
 export const entitySelectors = createEntitySelectors({
-  getState: getAuthState,
+  getState,
   storeSlice,
 });
