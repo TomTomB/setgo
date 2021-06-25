@@ -120,7 +120,7 @@ export class AuthService {
       throw error;
     }
 
-    if (!userCredential.user?.email) {
+    if (!userCredential.user.email) {
       const error: FirebaseError = {
         code: 'auth/user-email-missing',
         isError: true,
@@ -130,9 +130,9 @@ export class AuthService {
     }
 
     const user: FirebaseUser = {
-      email: userCredential.user?.email,
-      emailVerified: userCredential.user?.emailVerified,
-      uid: userCredential.user?.uid,
+      email: userCredential.user.email,
+      emailVerified: userCredential.user.emailVerified,
+      uid: userCredential.user.uid,
     };
 
     return user;
