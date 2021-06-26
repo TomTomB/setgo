@@ -1,108 +1,120 @@
 import * as Models from './auth.models';
 import { FirebaseUser } from '@setgo/types';
-import { createActionGroup } from '@tomtomb/ngrx-toolkit';
+import { createActionGroup, defineArgTypes } from '@tomtomb/ngrx-toolkit';
 
 export const AUTH_ACTION_PREFIX = 'Auth';
 
-export const fetchSignInMethodsForEmail = createActionGroup<
-  Models.FetchSignInMethodsForEmailArgs,
-  string[]
->({
-  method: 'POST',
+export const fetchSignInMethodsForEmail = createActionGroup({
   name: 'Fetch Sign In Methods For E-Mail',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.FetchSignInMethodsForEmailArgs;
+    response: string[];
+  }>(),
 });
 
-export const signInWithEmailAndPassword = createActionGroup<
-  Models.SignInWithEmailAndPasswordArgs,
-  FirebaseUser
->({
-  method: 'POST',
+export const signInWithEmailAndPassword = createActionGroup({
   name: 'Sign In With E-Mail And Password',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.SignInWithEmailAndPasswordArgs;
+    response: FirebaseUser;
+  }>(),
 });
 
-export const signOut = createActionGroup<null, null>({
-  method: 'POST',
+export const signOut = createActionGroup({
   name: 'Sign In With E-Mail And Password',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: null;
+    response: null;
+  }>(),
 });
 
-export const createUserWithEmailAndPassword = createActionGroup<
-  Models.CreateUserWithEmailAndPasswordArgs,
-  FirebaseUser
->({
-  method: 'POST',
+export const createUserWithEmailAndPassword = createActionGroup({
   name: 'Create User With E-Mail And Password',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.CreateUserWithEmailAndPasswordArgs;
+    response: FirebaseUser;
+  }>(),
 });
 
-export const sendPasswordResetEmail = createActionGroup<
-  Models.SendPasswordResetEmailArgs,
-  null
->({
-  method: 'POST',
+export const sendPasswordResetEmail = createActionGroup({
   name: 'Send Password Reset E-Mail',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.SendPasswordResetEmailArgs;
+    response: null;
+  }>(),
 });
 
-export const deleteUser = createActionGroup<null, null>({
-  method: 'POST',
+export const deleteUser = createActionGroup({
   name: 'Delete User',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: null;
+    response: null;
+  }>(),
 });
 
-export const getUserIdToken = createActionGroup<
-  Models.GetUserIdTokenArgs,
-  string
->({
-  method: 'GET',
+export const getUserIdToken = createActionGroup({
   name: 'User ID Token',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.GetUserIdTokenArgs;
+    response: string;
+  }>(),
 });
 
-export const reloadUser = createActionGroup<null, FirebaseUser>({
-  method: 'POST',
+export const reloadUser = createActionGroup({
   name: 'Reload User',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: null;
+    response: FirebaseUser;
+  }>(),
 });
 
-export const sendUserEmailVerification = createActionGroup<null, null>({
-  method: 'POST',
+export const sendUserEmailVerification = createActionGroup({
   name: 'Send User E-Mail Verification',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: null;
+    response: null;
+  }>(),
 });
 
-export const updateUserEmail = createActionGroup<
-  Models.UpdateUserEmailArgs,
-  null
->({
-  method: 'POST',
+export const updateUserEmail = createActionGroup({
   name: 'Update User E-Mail',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.UpdateUserEmailArgs;
+    response: null;
+  }>(),
 });
 
-export const updateUserPassword = createActionGroup<
-  Models.UpdateUserPasswordArgs,
-  null
->({
-  method: 'POST',
+export const updateUserPassword = createActionGroup({
   name: 'Update User Password',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
+  argsTypes: defineArgTypes<{
+    args: Models.UpdateUserPasswordArgs;
+    response: null;
+  }>(),
 });
 
-export const AUTH_ACTIONS = [
+export const AUTH_ACTIONS = {
   fetchSignInMethodsForEmail,
   signInWithEmailAndPassword,
   signOut,
@@ -114,4 +126,4 @@ export const AUTH_ACTIONS = [
   sendUserEmailVerification,
   updateUserEmail,
   updateUserPassword,
-] as const;
+};

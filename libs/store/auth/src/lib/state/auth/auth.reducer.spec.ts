@@ -1,15 +1,8 @@
 import * as Actions from './auth.actions';
-import {
-  CallState,
-  createActionId,
-  createCallState,
-  uniformActionType,
-} from '@tomtomb/ngrx-toolkit';
-import { reducer, storeSlice } from './auth.reducer';
+import { CallState, createTestingState } from '@tomtomb/ngrx-toolkit';
+import { initialState, reducer } from './auth.reducer';
 
 describe('AuthReducer', () => {
-  const initialState = storeSlice.initialState;
-
   describe('unknown action', () => {
     it('should return the default state', () => {
       const action = {
@@ -27,17 +20,14 @@ describe('AuthReducer', () => {
         args: { body: { email: 'test@example.com' } },
       });
 
-      const actionId = createActionId(action);
-      const actionKey = uniformActionType(action.type);
-      const state = reducer(initialState, action);
-      const callState = createCallState(action, CallState.LOADING);
-
-      state[actionKey].entities[actionId].timestamp = callState.timestamp;
-
-      expect(state).toEqual({
-        ...initialState,
-        [actionKey]: { ids: [actionId], entities: { [actionId]: callState } },
+      const { state, expectedState } = createTestingState({
+        action,
+        reducer,
+        initialState,
+        callState: CallState.LOADING,
       });
+
+      expect(state).toEqual(expectedState);
     });
   });
 
@@ -48,17 +38,14 @@ describe('AuthReducer', () => {
         response: ['test'],
       });
 
-      const actionId = createActionId(action);
-      const actionKey = uniformActionType(action.type);
-      const state = reducer(initialState, action);
-      const callState = createCallState(action, CallState.SUCCESS);
-
-      state[actionKey].entities[actionId].timestamp = callState.timestamp;
-
-      expect(state).toEqual({
-        ...initialState,
-        [actionKey]: { ids: [actionId], entities: { [actionId]: callState } },
+      const { state, expectedState } = createTestingState({
+        action,
+        reducer,
+        initialState,
+        callState: CallState.SUCCESS,
       });
+
+      expect(state).toEqual(expectedState);
     });
   });
 
@@ -73,17 +60,14 @@ describe('AuthReducer', () => {
         },
       });
 
-      const actionId = createActionId(action);
-      const actionKey = uniformActionType(action.type);
-      const state = reducer(initialState, action);
-      const callState = createCallState(action, CallState.ERROR);
-
-      state[actionKey].entities[actionId].timestamp = callState.timestamp;
-
-      expect(state).toEqual({
-        ...initialState,
-        [actionKey]: { ids: [actionId], entities: { [actionId]: callState } },
+      const { state, expectedState } = createTestingState({
+        action,
+        reducer,
+        initialState,
+        callState: CallState.ERROR,
       });
+
+      expect(state).toEqual(expectedState);
     });
   });
 });
