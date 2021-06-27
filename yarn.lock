@@ -2594,10 +2594,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tomtomb/ngrx-toolkit@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@tomtomb/ngrx-toolkit/-/ngrx-toolkit-2.3.2.tgz#f275c3dc758dfcb5a94d583e5df0db9d9887a578"
-  integrity sha512-dVQZ3BCP9XlkX4o7l4EOyAjJ/RIEAsi9QLeLUHKO6X/a4Tsddy6sYYTkQRfE1k5QRL4xLA85KnBiGm0Q4YI4CA==
+"@tomtomb/ngrx-toolkit@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@tomtomb/ngrx-toolkit/-/ngrx-toolkit-2.4.1.tgz#50995c25dc82f0a6ed3077565f313a057023cd9d"
+  integrity sha512-LCuawEA3boFLUyr9BuNA/w26v3d4p5yELqKMk0V+UOhds5DYcATLHYBUp6bIWmGzmBQEC+3En2z8JZJc8J71VA==
   dependencies:
     tslib "^2.0.0"
 

@@ -1,5 +1,5 @@
-import * as Actions from './auth.actions';
-import { Actions as ActionsNative } from '@ngrx/effects';
+import * as FeatureActions from './auth.actions';
+import { Actions } from '@ngrx/effects';
 import { AuthService } from './auth.service';
 import { EffectBase } from '@tomtomb/ngrx-toolkit';
 import { Injectable } from '@angular/core';
@@ -7,62 +7,62 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthEffects extends EffectBase {
   createUserWithEmailAndPassword$ = this.onActionSwitchMap({
-    action: Actions.createUserWithEmailAndPassword,
+    action: FeatureActions.createUserWithEmailAndPassword,
     serviceCall: this._featureService.createUserWithEmailAndPassword,
   });
 
   deleteUser$ = this.onActionSwitchMap({
-    action: Actions.deleteUser,
+    action: FeatureActions.deleteUser,
     serviceCall: this._featureService.deleteUser,
   });
 
   fetchSignInMethodsForEmail$ = this.onActionSwitchMap({
-    action: Actions.fetchSignInMethodsForEmail,
+    action: FeatureActions.fetchSignInMethodsForEmail,
     serviceCall: this._featureService.fetchSignInMethodsForEmail,
   });
 
   getUserIdToken$ = this.onActionSwitchMap({
-    action: Actions.getUserIdToken,
+    action: FeatureActions.getUserIdToken,
     serviceCall: this._featureService.getUserIdToken,
   });
 
   reloadUser$ = this.onActionSwitchMap({
-    action: Actions.reloadUser,
+    action: FeatureActions.reloadUser,
     serviceCall: this._featureService.reloadUser,
   });
 
   sendPasswordResetEmail$ = this.onActionSwitchMap({
-    action: Actions.sendPasswordResetEmail,
+    action: FeatureActions.sendPasswordResetEmail,
     serviceCall: this._featureService.sendPasswordResetEmail,
   });
 
   sendUserEmailVerification$ = this.onActionSwitchMap({
-    action: Actions.sendUserEmailVerification,
+    action: FeatureActions.sendUserEmailVerification,
     serviceCall: this._featureService.sendUserEmailVerification,
   });
 
   signInWithEmailAndPassword$ = this.onActionSwitchMap({
-    action: Actions.signInWithEmailAndPassword,
+    action: FeatureActions.signInWithEmailAndPassword,
     serviceCall: this._featureService.signInWithEmailAndPassword,
   });
 
   signOut$ = this.onActionSwitchMap({
-    action: Actions.signOut,
+    action: FeatureActions.signOut,
     serviceCall: this._featureService.signOut,
   });
 
   updateUserEmail$ = this.onActionSwitchMap({
-    action: Actions.updateUserEmail,
+    action: FeatureActions.updateUserEmail,
     serviceCall: this._featureService.updateUserEmail,
   });
 
   updateUserPassword$ = this.onActionSwitchMap({
-    action: Actions.updateUserPassword,
+    action: FeatureActions.updateUserPassword,
     serviceCall: this._featureService.updateUserPassword,
   });
 
   constructor(
-    private _actions$: ActionsNative,
+    private _actions$: Actions,
     private _featureService: AuthService,
   ) {
     super(_actions$, _featureService);
