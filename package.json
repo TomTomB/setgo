@@ -39,7 +39,8 @@
     "help": "nx help",
     "dev:ssr": "nx run setgo:serve-ssr",
     "serve:ssr": "node dist/apps/setgo/server/main.js",
-    "build:ssr": "nx build --with-deps && nx run setgo:server",
+    "build:ssr:client": "nx build --with-deps",
+    "build:ssr:server": "nx run setgo:server",
     "prerender": "nx run setgo:prerender"
   },
   "private": true,

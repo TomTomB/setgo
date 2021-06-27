@@ -15,6 +15,8 @@ COPY . .
 
 RUN npm run build:version
 
-RUN npm run build:ssr
+RUN npm run build:ssr:client
+
+RUN npm run build:ssr:server
 
 CMD npm run serve:ssr
