@@ -25,7 +25,7 @@ export const signInWithEmailAndPassword = createActionGroup({
 });
 
 export const signOut = createActionGroup({
-  name: 'Sign In With E-Mail And Password',
+  name: 'Sign Out',
   scope: AUTH_ACTION_PREFIX,
   isUnique: true,
   argsTypes: defineArgTypes<{
