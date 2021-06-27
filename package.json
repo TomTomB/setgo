@@ -88,7 +88,7 @@
     "@nrwl/eslint-plugin-nx": "12.4.0",
     "@nrwl/jest": "12.4.0",
     "@nrwl/linter": "12.4.0",
-    "@nrwl/nx-cloud": "12.2.4",
+    "@nrwl/nx-cloud": "12.2.7",
     "@nrwl/tao": "12.4.0",
     "@nrwl/workspace": "12.4.0",
     "@simondotm/nx-firebase": "^0.3.2",
