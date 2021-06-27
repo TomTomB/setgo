@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/firebase',
     '<rootDir>/libs/env',
     '<rootDir>/libs/types',
+    '<rootDir>/libs/store/auth',
   ],
 };

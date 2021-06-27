@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@setgo/env": ["libs/env/src/index.ts"],
+      "@setgo/store/auth": ["libs/store/auth/src/index.ts"],
       "@setgo/types": ["libs/types/src/index.ts"]
     }
   },

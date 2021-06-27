@@ -8,3 +8,9 @@ export interface FirebaseConfig {
   appId: string;
   measurementId: string;
 }
+
+export interface FirebaseError {
+  isError?: boolean;
+  message?: string;
+  code: string;
+}
