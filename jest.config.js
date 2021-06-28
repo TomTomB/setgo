@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/env',
     '<rootDir>/libs/types',
     '<rootDir>/libs/store/auth',
+    '<rootDir>/libs/uikit/common',
   ],
 };

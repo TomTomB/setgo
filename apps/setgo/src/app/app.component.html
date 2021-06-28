@@ -1,16 +1,28 @@
-<div
+<header
   class="
-    container
-    mx-auto
-    flex flex-col
-    justify-center
-    items-center
-    h-full
-    relative
+    bg-toolbar-light
+    dark:bg-toolbar-dark
+    bg-opacity-90
+    dark:bg-opacity-90
+    fixed
+    top-0
+    shadow-md
+    w-full
+    z-10
+    backdrop-blur-md
   "
 >
-  <h1 class="text-4xl mb-4 tracking-wider">SET.GO.</h1>
-  <p class="italic">Please stand by...</p>
+  <div class="container mx-auto px-3 py-3">
+    <span class="tracking-wider mb-4 text-2xl font-black">SET.GO.</span>
+  </div>
+</header>
+<div class="mx-auto flex flex-col relative px-3 container h-full pt-[56px]">
+  <uikit-common-card class="w-full mt-4 md:w-[400px]"></uikit-common-card>
 
-  <p class="text-xs absolute bottom-4">Version {{ version.raw }}</p>
+  <p class="text-xs text-center absolute bottom-4">
+    Version {{ version.raw }} |
+    <button class="underline" (click)="setTheme('light')">Light</button> |
+    <button class="underline" (click)="setTheme('dark')">Dark</button> |
+    <button class="underline" (click)="setTheme('system')">System</button>
+  </p>
 </div>

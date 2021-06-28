@@ -7,6 +7,7 @@ import {
 } from './modules';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { UikitCommonModule } from '@setgo/uikit/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { NgModule } from '@angular/core';
     FirebaseModule,
     NgRxModule,
     SentryModule,
+    UikitCommonModule,
   ],
 
   bootstrap: [AppComponent],
