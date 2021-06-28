@@ -5,18 +5,22 @@ WORKDIR /usr/src/app
 ENV PORT 8080
 ENV HOST 0.0.0.0
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git yarn
 
 COPY package*.json ./
+COPY decorate-angular-cli.js ./
+COPY yarn.lock ./
+COPY tools/ ./tools/
+COPY .git/ ./.git/
 
-RUN npm install
+RUN yarn --frozen-lockfile
 
 COPY . .
 
-RUN npm run build:version
+RUN yarn build:version
 
-RUN npm run build:ssr:client
+RUN yarn build:ssr:client
 
-RUN npm run build:ssr:server
+RUN yarn build:ssr:server
 
-CMD npm run serve:ssr
+CMD yarn serve:ssr
