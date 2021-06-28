@@ -114,7 +114,7 @@
     "prettier-plugin-tailwind": "^2.2.12",
     "rxjs-marbles": "^7.0.0",
     "ts-jest": "^27.0.3",
-    "ts-node": "~9.1.1",
+    "ts-node": "~10.0.0",
     "typescript": "~4.2.4"
   }
 }
