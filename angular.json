@@ -142,7 +142,11 @@
             "polyfills": "apps/setgo/src/polyfills.ts",
             "tsConfig": "apps/setgo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/setgo/src/favicon.ico", "apps/setgo/src/assets"],
+            "assets": [
+              "apps/setgo/src/favicon.ico",
+              "apps/setgo/src/assets",
+              "apps/setgo/src/robots.txt"
+            ],
             "styles": ["apps/setgo/src/styles.scss"],
             "scripts": []
           },
