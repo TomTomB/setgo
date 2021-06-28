@@ -40,9 +40,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/env"
-          ],
+          "outputs": ["dist/libs/env"],
           "options": {
             "project": "libs/env/ng-package.json"
           },
@@ -58,9 +56,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/env"
-          ],
+          "outputs": ["coverage/libs/env"],
           "options": {
             "jestConfig": "libs/env/jest.config.js",
             "passWithNoTests": true
@@ -84,17 +80,13 @@
       "architect": {
         "build": {
           "builder": "@simondotm/nx-firebase:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/firebase",
             "main": "apps/firebase/src/index.ts",
             "tsConfig": "apps/firebase/tsconfig.app.json",
             "packageJson": "apps/firebase/package.json",
-            "assets": [
-              "apps/firebase/*.md"
-            ]
+            "assets": ["apps/firebase/*.md"]
           }
         },
         "serve": {
@@ -120,16 +112,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/firebase/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/firebase/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/firebase"
-          ],
+          "outputs": ["coverage/apps/firebase"],
           "options": {
             "jestConfig": "apps/firebase/jest.config.js",
             "passWithNoTests": true
@@ -145,13 +133,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "allowedCommonJsDependencies": [
-              "@firebase/app-check"
-            ],
+            "allowedCommonJsDependencies": ["@firebase/app-check"],
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
             "main": "apps/setgo/src/main.ts",
@@ -163,9 +147,7 @@
               "apps/setgo/src/assets",
               "apps/setgo/src/robots.txt"
             ],
-            "styles": [
-              "apps/setgo/src/styles.scss"
-            ],
+            "styles": ["apps/setgo/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -236,9 +218,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/setgo"
-          ],
+          "outputs": ["coverage/apps/setgo"],
           "options": {
             "jestConfig": "apps/setgo/jest.config.js",
             "passWithNoTests": true
@@ -293,9 +273,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -332,9 +310,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/setgo-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -347,9 +323,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/auth"
-          ],
+          "outputs": ["dist/libs/store/auth"],
           "options": {
             "project": "libs/store/auth/ng-package.json"
           },
@@ -365,9 +339,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/auth"
-          ],
+          "outputs": ["coverage/libs/store/auth"],
           "options": {
             "jestConfig": "libs/store/auth/jest.config.js",
             "passWithNoTests": true
@@ -392,9 +364,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/types"
-          ],
+          "outputs": ["dist/libs/types"],
           "options": {
             "project": "libs/types/ng-package.json"
           },
@@ -410,9 +380,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/types"
-          ],
+          "outputs": ["coverage/libs/types"],
           "options": {
             "jestConfig": "libs/types/jest.config.js",
             "passWithNoTests": true
@@ -437,9 +405,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/uikit/common"
-          ],
+          "outputs": ["dist/libs/uikit/common"],
           "options": {
             "project": "libs/uikit/common/ng-package.json"
           },
@@ -455,9 +421,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/uikit/common"
-          ],
+          "outputs": ["coverage/libs/uikit/common"],
           "options": {
             "jestConfig": "libs/uikit/common/jest.config.js",
             "passWithNoTests": true
