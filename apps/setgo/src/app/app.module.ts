@@ -7,10 +7,9 @@ import {
 } from './modules';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TestComponent } from './test.component';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'sgs' }),
     AppRoutingModule,
