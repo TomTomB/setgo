@@ -3033,6 +3033,28 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@storybook/addon-a11y@^6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-6.3.1.tgz#376f380f99855ee7171b97fa92995ad7c723f719"
+  integrity sha512-UFBm4NWHV1tm/DfIjFmZeG2Csfv1rh5vsqbllMiTXnvuKAFSTxMTzyk/mEy4wSDAC58+MAyiJ+x6JM8oQKfUTQ==
+  dependencies:
+    "@storybook/addons" "6.3.1"
+    "@storybook/api" "6.3.1"
+    "@storybook/channels" "6.3.1"
+    "@storybook/client-api" "6.3.1"
+    "@storybook/client-logger" "6.3.1"
+    "@storybook/components" "6.3.1"
+    "@storybook/core-events" "6.3.1"
+    "@storybook/theming" "6.3.1"
+    axe-core "^4.2.0"
+    core-js "^3.8.2"
+    global "^4.4.0"
+    lodash "^4.17.20"
+    react-sizeme "^3.0.1"
+    regenerator-runtime "^0.13.7"
+    ts-dedent "^2.0.0"
+    util-deprecate "^1.0.2"
+
 "@storybook/addon-actions@6.3.1":
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.3.1.tgz#b483e1c2cf5c77b8b750fb8d03a3f7defc4adc98"
@@ -5353,6 +5375,11 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+
+axe-core@^4.2.0:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.2.3.tgz#2a3afc332f0031b42f602f4a3de03c211ca98f72"
+  integrity sha512-pXnVMfJKSIWU2Ml4JHP7pZEPIrgBO1Fd3WGx+fPBsS+KRGhE4vxooD8XBGWbQOIVSZsVK7pUDBBkCicNu80yzQ==
 
 axios@0.21.1, axios@^0.21.1:
   version "0.21.1"
@@ -16081,6 +16108,11 @@ storybook-addon-outline@^1.4.0:
     "@storybook/components" "^6.3.0"
     "@storybook/core-events" "^6.3.0"
     ts-dedent "^2.1.1"
+
+storybook-tailwind-dark-mode@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/storybook-tailwind-dark-mode/-/storybook-tailwind-dark-mode-1.0.9.tgz#232ae56644cb89d0fd874d91b6790cb0021de4a8"
+  integrity sha512-T/Tl7nDBeuOKP7SKK+g5cioiFTFRCP4lSio44adkcx9TmtO8vVrRSjJvNMk7n3RnhSd+MxH0zMXDZmQtVvofuA==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
