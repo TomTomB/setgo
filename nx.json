@@ -43,6 +43,10 @@
     },
     "uikit-common": {
       "tags": []
+    },
+    "uikit-common-e2e": {
+      "tags": [],
+      "implicitDependencies": ["uikit-common"]
     }
   },
   "targetDependencies": {
