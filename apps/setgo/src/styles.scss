@@ -13,7 +13,7 @@
   }
 
   h1 {
-    @apply text-2xl font-black;
+    @apply text-3xl uppercase tracking-wider font-black;
   }
   h2 {
     @apply text-xl;
@@ -23,6 +23,10 @@
   }
   a {
     @apply text-blue-600 underline;
+  }
+
+  p {
+    @apply max-w-prose;
   }
 }
 
