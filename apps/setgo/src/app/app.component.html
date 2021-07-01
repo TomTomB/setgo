@@ -10,14 +10,26 @@
     w-full
     z-10
     backdrop-blur-md
+    transition-colors
   "
 >
   <div class="container mx-auto px-3 py-3">
     <span class="tracking-wider mb-4 text-2xl font-black">SET.GO.</span>
   </div>
 </header>
-<div class="mx-auto flex flex-col relative px-3 container h-full pt-[56px]">
-  <uikit-common-card class="w-full mt-4 md:w-[400px]">
+<div
+  class="
+    mx-auto
+    flex flex-col
+    relative
+    px-3
+    container
+    h-full
+    pt-[56px]
+    md:justify-center md:items-center
+  "
+>
+  <uikit-common-card class="w-full mt-4 md:w-[475px]">
     <ng-container card-header>
       <h1 class="mb-1 md:mb-2 text-3xl">
         Anmeldung<span
@@ -41,6 +53,7 @@
     <ng-container card-before-body>
       <div
         class="
+          transition-colors
           bg-error-light
           dark:bg-error-dark
           py-2.5
@@ -61,7 +74,7 @@
             focus-within:after:scale-100
             after:origin-bottom-left
             relative
-            after:scale-0 after:transition-all after:duration-300
+            after:scale-0 after:transition-transform after:duration-300
             rounded
             overflow-hidden
             after:absolute
@@ -97,6 +110,44 @@
           />
         </div>
       </div>
+      <a class="inline-block mb-6" routerLink=".">E-Mail-Adresse vergessen?</a>
+    </ng-container>
+    <ng-container card-actions>
+      <button
+        type="submit"
+        class="
+          outline-none
+          hover:before:opacity-100
+          focus-visible:before:opacity-100
+          before:transition-opacity
+          overflow-hidden
+          relative
+          before:absolute
+          before:opacity-0
+          before:top-0
+          before:left-0
+          before:w-full
+          before:h-full
+          before:bg-gradient-to-r
+          before:from-primary
+          before:via-secondary-light
+          before:to-secondary
+          bg-gradient-to-r
+          from-primary
+          to-secondary-light
+          transition-colors
+          w-full
+          rounded-b-xl
+          py-4
+          px-3
+          font-medium
+        "
+      >
+        <uikit-common-spinner
+          class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+        ></uikit-common-spinner>
+        <span class="relative z-10 text-white">Weiter</span>
+      </button>
     </ng-container>
   </uikit-common-card>
 

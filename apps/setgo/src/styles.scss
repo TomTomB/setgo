@@ -13,20 +13,20 @@
   }
 
   h1 {
-    @apply text-3xl uppercase tracking-wider font-black;
+    @apply text-3xl uppercase tracking-wider font-black transition-colors;
   }
   h2 {
-    @apply text-xl;
+    @apply text-xl transition-colors;
   }
   h3 {
-    @apply text-lg;
+    @apply text-lg transition-colors;
   }
   a {
-    @apply text-blue-600 underline;
+    @apply underline;
   }
 
   p {
-    @apply max-w-prose;
+    @apply max-w-prose transition-colors;
   }
 }
 
@@ -75,9 +75,7 @@
   font-display: swap;
   src: url('/assets/fonts/raleway/variable/WOFF2/Raleway-VF.woff2')
       format('woff2-variations'),
-    url('/assets/fonts/raleway/variable/WOFF2/Raleway-VF.woff2') format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-VF.woff') format('woff'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-VF.ttf') format('truetype');
+    url('/assets/fonts/raleway/variable/WOFF2/Raleway-VF.woff2') format('woff2');
 }
 
 @font-face {
@@ -87,11 +85,7 @@
   src: url('/assets/fonts/raleway/variable/WOFF2/Raleway-Italic-VF.woff2')
       format('woff2-variations'),
     url('/assets/fonts/raleway/variable/WOFF2/Raleway-Italic-VF.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Italic-VF.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Italic-VF.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -100,11 +94,7 @@
   font-weight: 100;
   font-display: swap;
   src: local('Raleway-Thin'), local('RalewayThin'),
-    url('/assets/fonts/raleway/static/WOFF2/Raleway-Thin.woff2') format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Thin.woff') format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Thin.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Thin.ttf')
-      format('truetype');
+    url('/assets/fonts/raleway/static/WOFF2/Raleway-Thin.woff2') format('woff2');
 }
 
 @font-face {
@@ -114,13 +104,7 @@
   font-display: swap;
   src: local('Raleway-ExtraLight'), local('RalewayExtraLight'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-ExtraLight.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-ExtraLight.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-ExtraLight.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-ExtraLight.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -130,11 +114,7 @@
   font-display: swap;
   src: local('Raleway-Light'), local('RalewayLight'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-Light.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Light.woff') format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Light.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Light.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -144,12 +124,7 @@
   font-display: swap;
   src: local('Raleway-Regular'), local('RalewayRegular'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-Regular.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Regular.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Regular.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Regular.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -159,12 +134,7 @@
   font-display: swap;
   src: local('Raleway-Medium'), local('RalewayMedium'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-Medium.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Medium.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Medium.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Medium.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -174,12 +144,7 @@
   font-display: swap;
   src: local('Raleway-SemiBold'), local('RalewaySemiBold'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-SemiBold.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-SemiBold.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-SemiBold.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-SemiBold.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -188,11 +153,7 @@
   font-weight: 700;
   font-display: swap;
   src: local('Raleway-Bold'), local('RalewayBold'),
-    url('/assets/fonts/raleway/static/WOFF2/Raleway-Bold.woff2') format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Bold.woff') format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Bold.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Bold.ttf')
-      format('truetype');
+    url('/assets/fonts/raleway/static/WOFF2/Raleway-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -202,13 +163,7 @@
   font-display: swap;
   src: local('Raleway-ExtraBold'), local('RalewayExtraBold'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-ExtraBold.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-ExtraBold.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-ExtraBold.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-ExtraBold.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -218,11 +173,7 @@
   font-display: swap;
   src: local('Raleway-Black'), local('RalewayBlack'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-Black.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Black.woff') format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Black.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Black.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -232,13 +183,7 @@
   font-display: swap;
   src: local('Raleway-ThinItalic'), local('RalewayThinItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-ThinItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-ThinItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-ThinItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-ThinItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -248,13 +193,7 @@
   font-display: swap;
   src: local('Raleway-ExtraLightItalic'), local('RalewayExtraLightItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-ExtraLightItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-ExtraLightItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-ExtraLightItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-ExtraLightItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -264,13 +203,7 @@
   font-display: swap;
   src: local('Raleway-LightItalic'), local('RalewayLightItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-LightItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-LightItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-LightItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-LightItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -280,12 +213,7 @@
   font-display: swap;
   src: local('Raleway-Italic'), local('RalewayItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-Italic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-Italic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-Italic.otf') format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-Italic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -295,13 +223,7 @@
   font-display: swap;
   src: local('Raleway-MediumItalic'), local('RalewayMediumItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-MediumItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-MediumItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-MediumItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-MediumItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -311,13 +233,7 @@
   font-display: swap;
   src: local('Raleway-SemiBoldItalic'), local('RalewaySemiBoldItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-SemiBoldItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-SemiBoldItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-SemiBoldItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-SemiBoldItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -327,13 +243,7 @@
   font-display: swap;
   src: local('Raleway-BoldItalic'), local('RalewayBoldItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-BoldItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-BoldItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-BoldItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-BoldItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -343,13 +253,7 @@
   font-display: swap;
   src: local('Raleway-ExtraBoldItalic'), local('RalewayExtraBoldItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-ExtraBoldItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-ExtraBoldItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-ExtraBoldItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-ExtraBoldItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
 
 @font-face {
@@ -359,11 +263,5 @@
   font-display: swap;
   src: local('Raleway-BlackItalic'), local('RalewayBlackItalic'),
     url('/assets/fonts/raleway/static/WOFF2/Raleway-BlackItalic.woff2')
-      format('woff2'),
-    url('/assets/fonts/raleway/variable/WOFF/Raleway-BlackItalic.woff')
-      format('woff'),
-    url('/assets/fonts/raleway/variable/OTF/Raleway-BlackItalic.otf')
-      format('otf'),
-    url('/assets/fonts/raleway/variable/TTF/Raleway-BlackItalic.ttf')
-      format('truetype');
+      format('woff2');
 }
