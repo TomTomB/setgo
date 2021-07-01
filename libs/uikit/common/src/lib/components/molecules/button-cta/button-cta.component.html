@@ -1,0 +1,64 @@
+<button
+  [type]="type"
+  [attr.aria-disabled]="isDisabled || isLoading"
+  [ngClass]="{
+    'rounded-xl': rounded === 'both',
+    'rounded-t-xl': rounded === 'top',
+    'rounded-b-xl': rounded === 'bottom'
+  }"
+  (click)="buttonCTAClick.emit()"
+  class="
+    hover:before:opacity-100
+    focus-visible:before:opacity-100
+    outline-none
+    focus-visible:ring-1 focus-visible:ring-offset-2
+    transition
+    tracking-wider
+    uppercase
+    before:transition-opacity
+    overflow-hidden
+    font-semibold
+    relative
+    before:absolute
+    before:opacity-0
+    before:top-0
+    before:left-0
+    before:w-full
+    before:h-full
+    before:bg-gradient-to-r
+    before:from-primary
+    before:via-secondary-light
+    before:to-secondary
+    bg-gradient-to-r
+    from-primary
+    to-secondary-light
+    w-full
+    rounded-b-xl
+    py-4
+    px-3
+  "
+>
+  <uikit-common-spinner
+    [ngClass]="{ 'opacity-100': isLoading, 'opacity-0': !isLoading }"
+    class="
+      text-white
+      absolute
+      left-1/2
+      -translate-x-1/2
+      top-1/2
+      -translate-y-1/2
+      transition-opacity
+    "
+  ></uikit-common-spinner>
+  <span
+    [ngClass]="{
+      'opacity-0': isLoading
+    }"
+    class="relative z-10 transition-opacity text-white"
+  >
+    <ng-content></ng-content>
+  </span>
+  <span class="sr-only" aria-live="assertive">
+    {{ isLoading ? assertLoadingMessage : null }}
+  </span>
+</button>

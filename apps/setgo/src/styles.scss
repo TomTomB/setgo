@@ -63,6 +63,10 @@
   }
 }
 
+* {
+  @apply outline-none;
+}
+
 /// TODO (TRB): Remove this once angular fire provides a way to disable this warning
 /// See: https://github.com/angular/angularfire/issues/2724
 .firebase-emulator-warning {

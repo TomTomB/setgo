@@ -113,41 +113,14 @@
       <a class="inline-block mb-6" routerLink=".">E-Mail-Adresse vergessen?</a>
     </ng-container>
     <ng-container card-actions>
-      <button
+      <uikit-common-button-cta
+        class="block"
+        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
+        rounded="bottom"
         type="submit"
-        class="
-          outline-none
-          hover:before:opacity-100
-          focus-visible:before:opacity-100
-          before:transition-opacity
-          overflow-hidden
-          relative
-          before:absolute
-          before:opacity-0
-          before:top-0
-          before:left-0
-          before:w-full
-          before:h-full
-          before:bg-gradient-to-r
-          before:from-primary
-          before:via-secondary-light
-          before:to-secondary
-          bg-gradient-to-r
-          from-primary
-          to-secondary-light
-          transition-colors
-          w-full
-          rounded-b-xl
-          py-4
-          px-3
-          font-medium
-        "
       >
-        <uikit-common-spinner
-          class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
-        ></uikit-common-spinner>
-        <span class="relative z-10 text-white">Weiter</span>
-      </button>
+        Weiter
+      </uikit-common-button-cta>
     </ng-container>
   </uikit-common-card>
 
