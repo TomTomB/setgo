@@ -11,7 +11,7 @@ module.exports = {
           dark: '#009ca4',
         },
         secondary: {
-          DEFAULT: '#e91e6',
+          DEFAULT: '#e91e63',
           light: '#ff6090',
           dark: '#b0003a',
         },
@@ -30,6 +30,8 @@ module.exports = {
         card: {
           light: '#fff',
           dark: '#424242',
+          'light-border': '#fdfdfd',
+          'dark-border': '#383838',
         },
         footer: {
           light: '#ececec',
@@ -38,6 +40,12 @@ module.exports = {
         chip: {
           light: '#ececec',
           dark: '#5a5a5a',
+        },
+        border: {
+          light: 'rgba(0, 0, 0, 0.12)',
+          'light-hover': 'rgba(0, 0, 0, 0.87)',
+          dark: 'hsla(0, 0%, 100%, 0.3)',
+          'dark-hover': '#fff',
         },
       },
     },
