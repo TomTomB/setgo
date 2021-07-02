@@ -1,3 +1,4 @@
+import { Animations } from '@setgo/uikit/common';
 import { AuthFacade, fetchSignInMethodsForEmail } from '@setgo/store/auth';
 import {
   ChangeDetectionStrategy,
@@ -12,6 +13,7 @@ import { environment } from '@setgo/env';
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  animations: [Animations.growShrink],
 })
 export class AppComponent {
   version = environment.version;

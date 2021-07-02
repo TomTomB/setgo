@@ -53,18 +53,18 @@
     <ng-container card-before-body>
       <div
         *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
+        @growShrink
         class="
+          overflow-hidden
           transition-colors
           bg-error-light
           dark:bg-error-dark
-          py-2.5
-          md:py-3
-          px-6
-          md:px-10
           text-white
         "
       >
-        <p>{{ error.message }}</p>
+        <p class="py-2.5 md:py-3 px-6 md:px-10" aria-live="assertive">
+          {{ error.message }}
+        </p>
       </div>
     </ng-container>
     <ng-container card-body>

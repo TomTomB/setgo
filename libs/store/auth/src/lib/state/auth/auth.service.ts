@@ -36,7 +36,20 @@ export class AuthService {
   }
 
   fetchSignInMethodsForEmail({ body }: Models.FetchSignInMethodsForEmailArgs) {
-    return from(this._firebaseAuth.fetchSignInMethodsForEmail(body.email));
+    return from(this._firebaseAuth.fetchSignInMethodsForEmail(body.email)).pipe(
+      map((methods) => {
+        if (methods.length) {
+          return methods;
+        }
+
+        const error: FirebaseError = {
+          code: 'auth/user-has-no-sign-in-methods',
+          isError: true,
+          message: 'The user does not have any sign in methods',
+        };
+        throw error;
+      }),
+    );
   }
 
   signOut() {
