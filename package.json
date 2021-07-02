@@ -66,7 +66,7 @@
     "@sentry/tracing": "^6.8.0",
     "@tomtomb/ngrx-toolkit": "^2.4.2",
     "express": "^4.17.1",
-    "firebase": "8.6.8",
+    "firebase": "8.7.0",
     "firebase-admin": "^9.10.0",
     "firebase-functions": "^3.14.1",
     "rxjs": "~6.6.0",
