@@ -52,6 +52,7 @@
     </ng-container>
     <ng-container card-before-body>
       <div
+        *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
         class="
           transition-colors
           bg-error-light
@@ -63,7 +64,7 @@
           text-white
         "
       >
-        <p>Error</p>
+        <p>{{ error.message }}</p>
       </div>
     </ng-container>
     <ng-container card-body>
@@ -96,6 +97,8 @@
               outline-none
               bg-background-light
               dark:bg-background-dark
+              text-black
+              dark:!text-white
               pb-2.5
               px-2
               pt-3
@@ -118,6 +121,8 @@
         assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
         rounded="bottom"
         type="submit"
+        [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
+        (buttonCTAClick)="checkEmail()"
       >
         Weiter
       </uikit-common-button-cta>
