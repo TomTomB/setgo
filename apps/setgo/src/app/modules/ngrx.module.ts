@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterModule } from '@setgo/store/router';
 import { environment } from '@setgo/env';
 
 @NgModule({
@@ -28,8 +28,8 @@ import { environment } from '@setgo/env';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreRouterConnectingModule.forRoot(),
     StoreAuthModule,
+    StoreRouterModule,
   ],
 })
 export class NgRxModule {}
