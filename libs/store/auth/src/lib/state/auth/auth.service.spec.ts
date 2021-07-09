@@ -176,6 +176,31 @@ describe('AuthEffects', () => {
         done();
       });
     });
+
+    it('should error if the methods array is empty', (done) => {
+      const email = 'test@test.de';
+
+      jest
+        .spyOn(angularFireAuth, 'fetchSignInMethodsForEmail')
+        .mockReturnValue(new Promise((resolve) => resolve([])));
+
+      const result = authService.fetchSignInMethodsForEmail({
+        body: { email },
+      });
+
+      expect(angularFireAuth.fetchSignInMethodsForEmail).toBeCalledWith(email);
+
+      result.subscribe({
+        error: (e) => {
+          expect(e).toEqual({
+            code: 'auth/user-has-no-sign-in-methods',
+            isError: true,
+            message: 'The user does not have any sign in methods',
+          });
+          done();
+        },
+      });
+    });
   });
 
   describe('signOut', () => {

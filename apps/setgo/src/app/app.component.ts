@@ -1,8 +1,11 @@
+import { Animations } from '@setgo/uikit/common';
+import { AuthFacade, fetchSignInMethodsForEmail } from '@setgo/store/auth';
 import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from '@angular/core';
+import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
 import { environment } from '@setgo/env';
 
 @Component({
@@ -10,9 +13,23 @@ import { environment } from '@setgo/env';
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  animations: [Animations.growShrink],
 })
 export class AppComponent {
   version = environment.version;
+
+  fetchSignInMethodsForEmailStore?: MappedEntityState<
+    typeof fetchSignInMethodsForEmail
+  >;
+
+  constructor(private _authFacade: AuthFacade) {}
+
+  checkEmail() {
+    this.fetchSignInMethodsForEmailStore =
+      this._authFacade.fetchSignInMethodsForEmail({
+        body: { email: 'test@test.de' },
+      });
+  }
 
   setTheme(theme: 'light' | 'dark' | 'system') {
     if (theme === 'system') {

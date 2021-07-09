@@ -356,6 +356,88 @@
         }
       }
     },
+    "store-router": {
+      "projectType": "library",
+      "root": "libs/store/router",
+      "sourceRoot": "libs/store/router/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/store/router"],
+          "options": {
+            "project": "libs/store/router/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/store/router/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/store/router/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/store/router"],
+          "options": {
+            "jestConfig": "libs/store/router/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/store/router/src/**/*.ts",
+              "libs/store/router/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "store-testing": {
+      "projectType": "library",
+      "root": "libs/store/testing",
+      "sourceRoot": "libs/store/testing/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/store/testing"],
+          "options": {
+            "project": "libs/store/testing/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/store/testing/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/store/testing/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/store/testing"],
+          "options": {
+            "jestConfig": "libs/store/testing/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/store/testing/src/**/*.ts",
+              "libs/store/testing/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "types": {
       "projectType": "library",
       "root": "libs/types",

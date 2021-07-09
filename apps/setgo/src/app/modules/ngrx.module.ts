@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
+import { NgrxUniversalRehydrateModule } from '@trellisorg/ngrx-universal-rehydrate';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterModule } from '@setgo/store/router';
+import { TransferState } from '@angular/platform-browser';
 import { environment } from '@setgo/env';
 
 @NgModule({
@@ -28,8 +30,10 @@ import { environment } from '@setgo/env';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreRouterConnectingModule.forRoot(),
     StoreAuthModule,
+    StoreRouterModule,
+    NgrxUniversalRehydrateModule.forRoot({}),
   ],
+  providers: [TransferState],
 })
 export class NgRxModule {}

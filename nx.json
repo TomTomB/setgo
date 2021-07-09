@@ -38,6 +38,12 @@
     "store-auth": {
       "tags": []
     },
+    "store-router": {
+      "tags": []
+    },
+    "store-testing": {
+      "tags": []
+    },
     "types": {
       "tags": []
     },
