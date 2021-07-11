@@ -3984,12 +3984,12 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
-"@tomtomb/ngrx-toolkit@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@tomtomb/ngrx-toolkit/-/ngrx-toolkit-2.4.2.tgz#d23c15c76348d8cb38cb44f12a17d967d67c4d81"
-  integrity sha512-4IW27Q9dgEADDBwiOI3KzQHto9SgDoqYs5E7vSVG8dQ5HsTSM91bJjAgE7YfEyrHjNtKpZBkkRL8rG6CzPE4YA==
+"@tomtomb/ngrx-toolkit@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tomtomb/ngrx-toolkit/-/ngrx-toolkit-3.0.0.tgz#071c1dc494e46a36a444a235f1807ba33bf35056"
+  integrity sha512-iafwFwnpC2j/m5StYDBkmulrj2eTEVD65BlLx2r6ATn5EyTPka5im554XTq3fJmxSMQW0rZfAC8fHGLwU87TWw==
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.3.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
