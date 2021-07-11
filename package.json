@@ -64,7 +64,7 @@
     "@nrwl/angular": "12.5.2",
     "@sentry/angular": "^6.8.0",
     "@sentry/tracing": "^6.8.0",
-    "@tomtomb/ngrx-toolkit": "^2.4.2",
+    "@tomtomb/ngrx-toolkit": "^3.0.0",
     "express": "^4.17.1",
     "firebase": "8.7.0",
     "firebase-admin": "^9.10.0",
