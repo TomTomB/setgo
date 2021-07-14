@@ -269,3 +269,7 @@
     url('/assets/fonts/raleway/static/WOFF2/Raleway-BlackItalic.woff2')
       format('woff2');
 }
+
+html.dark {
+  color-scheme: dark;
+}

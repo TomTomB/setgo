@@ -4,10 +4,23 @@
   [ngClass]="{
     'rounded-xl': rounded === 'both',
     'rounded-t-xl': rounded === 'top',
-    'rounded-b-xl': rounded === 'bottom'
+    'rounded-b-xl': rounded === 'bottom',
+    'after:!opacity-0 before:!opacity-0 cursor-default': isDisabled || isLoading
   }"
   (click)="buttonCTAClick.emit()"
   class="
+    group
+    after:transition-opacity
+    after:absolute
+    after:opacity-0
+    after:top-0
+    after:left-0
+    after:w-full
+    after:h-full
+    after:bg-gradient-to-r
+    after:from-secondary-light
+    after:to-secondary-dark
+    active:after:opacity-100
     hover:before:opacity-100
     focus-visible:before:opacity-100
     outline-none
@@ -54,7 +67,14 @@
     [ngClass]="{
       'opacity-0': isLoading
     }"
-    class="relative z-10 transition-opacity text-white"
+    class="
+      group-active:scale-95
+      transition-all
+      relative
+      z-10
+      text-white
+      inline-block
+    "
   >
     <ng-content></ng-content>
   </span>
