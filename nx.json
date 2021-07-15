@@ -53,6 +53,9 @@
     "uikit-common-e2e": {
       "tags": [],
       "implicitDependencies": ["uikit-common"]
+    },
+    "uikit-forms": {
+      "tags": []
     }
   },
   "targetDependencies": {

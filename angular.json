@@ -576,6 +576,47 @@
           }
         }
       }
+    },
+    "uikit-forms": {
+      "projectType": "library",
+      "root": "libs/uikit/forms",
+      "sourceRoot": "libs/uikit/forms/src",
+      "prefix": "uikit-forms",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/uikit/forms"],
+          "options": {
+            "project": "libs/uikit/forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/uikit/forms/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/uikit/forms/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/uikit/forms"],
+          "options": {
+            "jestConfig": "libs/uikit/forms/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/uikit/forms/src/**/*.ts",
+              "libs/uikit/forms/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

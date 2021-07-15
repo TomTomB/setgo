@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
 import { UikitCommonModule } from '@setgo/uikit/common';
+import { UikitFormsModule } from '@setgo/uikit/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { UikitCommonModule } from '@setgo/uikit/common';
     NgRxToolkitModule,
     SentryModule,
     UikitCommonModule,
+    UikitFormsModule,
   ],
 
   bootstrap: [AppComponent],

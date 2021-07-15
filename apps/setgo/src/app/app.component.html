@@ -50,102 +50,55 @@
         Logge dich direkt ein, um auf alle SET.GO. Services zugreifen zu können.
       </p>
     </ng-container>
-    <ng-container card-before-body>
-      <div
-        *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
-        @growShrink
-        class="overflow-hidden origin-center"
+    <div
+      *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
+      @growShrink
+      card-before-body
+      class="overflow-hidden origin-center"
+    >
+      <p
+        class="
+          py-2.5
+          md:py-3
+          px-6
+          md:px-10
+          mb-4
+          md:mb-7
+          transition-colors
+          bg-error-light
+          dark:bg-error-dark
+          text-white
+        "
+        aria-live="assertive"
       >
-        <p
-          class="
-            py-2.5
-            md:py-3
-            px-6
-            md:px-10
-            mb-4
-            md:mb-5
-            transition-colors
-            bg-error-light
-            dark:bg-error-dark
-            text-white
-          "
-          aria-live="assertive"
-        >
-          {{ error.message }}
-        </p>
-      </div>
-    </ng-container>
+        {{ error.message }}
+      </p>
+    </div>
     <ng-container card-body>
-      <div class="pb-3 md:pb-5 relative">
-        <div class="group relative overflow-hidden">
-          <input
-            class="
-              font-medium
-              tracking-wide
-              peer
-              rounded
-              transition-colors
-              w-full
-              border- border-2 border-border-light
-              dark:border-border-dark
-              hover:border-border-light-hover
-              focus:border-primary
-              dark:hover:border-border-dark-hover dark:focus:border-primary
-              outline-none
-              bg-transparent
-              text-black
-              dark:!text-white
-              pb-2
-              px-2.5
-              pt-6
-              leading-none
-            "
-            type="email"
-            formControlName="email"
-            autocapitalize="off"
-            autocomplete="username"
-            spellcheck="false"
-            id="email"
-            placeholder="&nbsp;"
-            #emailInputRef
-          />
-          <label
-            class="
-              peer-placeholder-shown:scale-100
-              peer-placeholder-shown:-translate-y-1/2
-              group-focus-within:!translate-y-[-110%]
-              group-focus-within:!scale-75
-              group-focus-within:text-primary
-              font-medium
-              translate-y-[-110%]
-              scale-75
-              transition-transform
-              origin-left
-              absolute
-              left-[12px]
-              top-1/2
-              leading-none
-              pt-[1px]
-            "
-            for="email"
-            >E-Mail</label
+      <div card-body class="pb-5 md:pb-6">
+        <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
+          <uikit-forms-field-text
+            [control]="emailControl"
+            inputType="email"
+            inputAutocomplete="username"
+            inputId="email"
+            label="E-Mail-Adresse"
           >
-        </div>
+          </uikit-forms-field-text>
+        </form>
       </div>
-      <a class="inline-block mb-6" routerLink=".">Account erstellen</a>
     </ng-container>
-    <ng-container card-actions>
-      <uikit-common-button-cta
-        class="block"
-        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
-        rounded="bottom"
-        type="submit"
-        [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
-        (buttonCTAClick)="checkEmail()"
-      >
-        Weiter
-      </uikit-common-button-cta>
-    </ng-container>
+
+    <uikit-common-button-cta
+      card-actions
+      assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
+      rounded="bottom"
+      type="submit"
+      [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
+      (buttonCTAClick)="checkEmail()"
+    >
+      Weiter
+    </uikit-common-button-cta>
   </uikit-common-card>
 
   <p class="text-xs text-center absolute bottom-4">

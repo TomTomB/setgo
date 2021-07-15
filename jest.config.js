@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/uikit/common',
     '<rootDir>/libs/store/testing',
     '<rootDir>/libs/store/router',
+    '<rootDir>/libs/uikit/forms',
   ],
 };

@@ -22,7 +22,8 @@
       "@setgo/store/router": ["libs/store/router/src/index.ts"],
       "@setgo/store/testing": ["libs/store/testing/src/index.ts"],
       "@setgo/types": ["libs/types/src/index.ts"],
-      "@setgo/uikit/common": ["libs/uikit/common/src/index.ts"]
+      "@setgo/uikit/common": ["libs/uikit/common/src/index.ts"],
+      "@setgo/uikit/forms": ["libs/uikit/forms/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
