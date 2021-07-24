@@ -1,4 +1,8 @@
 {
+  "npmScope": "setgo",
+  "affected": {
+    "defaultBase": "origin/main"
+  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -6,10 +10,6 @@
     },
     ".eslintrc.json": "*"
   },
-  "affected": {
-    "defaultBase": "origin/main"
-  },
-  "npmScope": "setgo",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -20,6 +20,14 @@
         "showUsageWarnings": true
       }
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   },
   "projects": {
     "env": {
@@ -57,13 +65,5 @@
     "uikit-forms": {
       "tags": []
     }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
   }
 }
