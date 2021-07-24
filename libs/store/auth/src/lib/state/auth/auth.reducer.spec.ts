@@ -31,43 +31,43 @@ describe('AuthReducer', () => {
     });
   });
 
-  describe('fetchSignInMethodsForEmail.success action', () => {
-    it('should update the state in an immutable way', () => {
-      const action = Actions.fetchSignInMethodsForEmail.success({
-        args: { body: { email: 'test@example.com' } },
-        response: ['test'],
-      });
+  // describe('fetchSignInMethodsForEmail.success action', () => {
+  //   it('should update the state in an immutable way', () => {
+  //     const action = Actions.fetchSignInMethodsForEmail.success({
+  //       args: { body: { email: 'test@example.com' } },
+  //       response: ['test'],
+  //     });
 
-      const { state, expectedState } = createTestingState({
-        action,
-        reducer,
-        initialState,
-        callState: CallState.SUCCESS,
-      });
+  //     const { state, expectedState } = createTestingState({
+  //       action,
+  //       reducer,
+  //       initialState,
+  //       callState: CallState.SUCCESS,
+  //     });
 
-      expect(state).toEqual(expectedState);
-    });
-  });
+  //     expect(state).toEqual(expectedState);
+  //   });
+  // });
 
-  describe('fetchSignInMethodsForEmail.failure action', () => {
-    it('should update the state in an immutable way', () => {
-      const action = Actions.fetchSignInMethodsForEmail.failure({
-        args: { body: { email: 'test@example.com' } },
-        error: {
-          data: null,
-          message: 'test error',
-          status: 'error',
-        },
-      });
+  // describe('fetchSignInMethodsForEmail.failure action', () => {
+  //   it('should update the state in an immutable way', () => {
+  //     const action = Actions.fetchSignInMethodsForEmail.failure({
+  //       args: { body: { email: 'test@example.com' } },
+  //       error: {
+  //         data: null,
+  //         message: 'test error',
+  //         status: 'error',
+  //       },
+  //     });
 
-      const { state, expectedState } = createTestingState({
-        action,
-        reducer,
-        initialState,
-        callState: CallState.ERROR,
-      });
+  //     const { state, expectedState } = createTestingState({
+  //       action,
+  //       reducer,
+  //       initialState,
+  //       callState: CallState.ERROR,
+  //     });
 
-      expect(state).toEqual(expectedState);
-    });
-  });
+  //     expect(state).toEqual(expectedState);
+  //   });
+  // });
 });

@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ErrorMessagePipe } from '../../../../pipes';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TextFieldComponent } from './text-field.component';
+import { TextInputComponent } from '../../../atoms';
 
 describe('TextFieldComponent', () => {
   let component: TextFieldComponent;
@@ -7,7 +10,8 @@ describe('TextFieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TextFieldComponent],
+      declarations: [TextFieldComponent, TextInputComponent, ErrorMessagePipe],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   });
 
