@@ -1,5 +1,8 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
   projects: [
+    ...getJestProjects(),
     '<rootDir>/apps/setgo',
     '<rootDir>/apps/firebase',
     '<rootDir>/libs/env',
