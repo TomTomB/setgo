@@ -15,10 +15,10 @@ import {
 })
 export class ButtonCTAComponent {
   @Input()
-  isLoading?: boolean;
+  isLoading?: boolean | null;
 
   @Input()
-  isDisabled?: boolean;
+  isDisabled?: boolean | null;
 
   @Input()
   assertLoadingMessage = 'Loading, please wait...';

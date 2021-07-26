@@ -50,78 +50,55 @@
         Logge dich direkt ein, um auf alle SET.GO. Services zugreifen zu können.
       </p>
     </ng-container>
-    <ng-container card-before-body>
-      <div
+    <div
+      *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
+      @growShrink
+      card-before-body
+      class="overflow-hidden origin-center"
+    >
+      <p
         class="
-          transition-colors
-          bg-error-light
-          dark:bg-error-dark
           py-2.5
           md:py-3
           px-6
           md:px-10
+          mb-4
+          md:mb-7
+          transition-colors
+          bg-error-light
+          dark:bg-error-dark
           text-white
         "
+        aria-live="assertive"
       >
-        <p>Error</p>
-      </div>
-    </ng-container>
+        {{ error.message }}
+      </p>
+    </div>
     <ng-container card-body>
-      <div class="mt-4 md:mt-5 pb-3 md:pb-5">
-        <div><label for="email">E-Mail</label></div>
-        <div
-          class="
-            focus-within:after:scale-100
-            after:origin-bottom-left
-            relative
-            after:scale-0 after:transition-transform after:duration-300
-            rounded
-            overflow-hidden
-            after:absolute
-            after:w-full
-            after:h-0.5
-            after:bg-primary
-            after:left-0
-            after:bottom-0
-          "
-        >
-          <input
-            class="
-              transition-colors
-              w-full
-              border-b-2 border-border-light
-              dark:border-border-dark
-              hover:border-border-light-hover
-              dark:hover:border-border-dark-hover
-              outline-none
-              bg-background-light
-              dark:bg-background-dark
-              pb-2.5
-              px-2
-              pt-3
-            "
-            type="email"
-            formControlName="email"
-            autocapitalize="off"
-            autocomplete="username"
-            spellcheck="false"
-            id="email"
-            #emailInputRef
-          />
-        </div>
+      <div card-body class="pb-5 md:pb-6">
+        <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
+          <uikit-forms-field-text
+            [control]="emailControl"
+            inputType="email"
+            inputAutocomplete="username"
+            inputId="email"
+            label="E-Mail-Adresse"
+          >
+          </uikit-forms-field-text>
+        </form>
       </div>
-      <a class="inline-block mb-6" routerLink=".">E-Mail-Adresse vergessen?</a>
     </ng-container>
-    <ng-container card-actions>
-      <uikit-common-button-cta
-        class="block"
-        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
-        rounded="bottom"
-        type="submit"
-      >
-        Weiter
-      </uikit-common-button-cta>
-    </ng-container>
+
+    <uikit-common-button-cta
+      card-actions
+      assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
+      rounded="bottom"
+      type="submit"
+      [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
+      (buttonCTAClick)="checkEmail()"
+    >
+      Weiter
+    </uikit-common-button-cta>
   </uikit-common-card>
 
   <p class="text-xs text-center absolute bottom-4">

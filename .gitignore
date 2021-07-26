@@ -41,3 +41,4 @@ Thumbs.db
 git-version.json
 docker-sa.json
 .firebase
+migrations.json

@@ -5,19 +5,25 @@ import {
   NgRxModule,
   SentryModule,
 } from './modules';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
 import { UikitCommonModule } from '@setgo/uikit/common';
+import { UikitFormsModule } from '@setgo/uikit/forms';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'sgs' }),
     AppRoutingModule,
+    BrowserAnimationsModule,
     FirebaseModule,
     NgRxModule,
+    NgRxToolkitModule,
     SentryModule,
     UikitCommonModule,
+    UikitFormsModule,
   ],
 
   bootstrap: [AppComponent],

@@ -1,0 +1,33 @@
+<input
+  *ngIf="control"
+  [type]="inputType"
+  [id]="inputId"
+  [formControl]="control"
+  [attr.autocomplete]="inputAutocomplete"
+  [attr.spellcheck]="inputSpellcheck"
+  [ngClass]="{
+    'border-error-light dark:border-error-dark':
+      control.invalid && control.touched,
+    'border-border-light dark:border-border-dark hover:border-border-light-hover focus:border-primary dark:hover:border-border-dark-hover dark:focus:border-primary':
+      control.valid || control.untouched
+  }"
+  #inputRef
+  class="
+    font-medium
+    tracking-wide
+    peer
+    rounded
+    transition-colors
+    w-full
+    border-2
+    outline-none
+    bg-transparent
+    text-black
+    dark:!text-white
+    pb-2
+    px-2.5
+    pt-6
+    leading-none
+  "
+  autocapitalize="off"
+/>

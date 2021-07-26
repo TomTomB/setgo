@@ -1,0 +1,26 @@
+<label
+  class="
+    cursor-text
+    group-focus-within:translate-y-[-110%] group-focus-within:scale-75
+    dark:text-gray-300
+    text-gray-500
+    font-medium
+    transition-all
+    origin-left
+    absolute
+    left-[12px]
+    top-1/2
+    leading-none
+    pt-[1px]
+  "
+  [ngClass]="{
+    'text-error-light dark:text-error-dark': isInvalid,
+    'dark:text-gray-300 text-gray-500 group-focus-within:text-primary':
+      !isInvalid,
+    'translate-y-[-110%] scale-75': doFloat,
+    '-translate-y-1/2': !doFloat
+  }"
+  [for]="htmlFor"
+>
+  <ng-content></ng-content>
+</label>
