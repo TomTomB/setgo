@@ -115,7 +115,7 @@
     "git-describe": "^4.0.4",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
-    "jest-preset-angular": "9.0.5",
+    "jest-preset-angular": "9.0.7",
     "ng-packagr": "12.1.2",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
