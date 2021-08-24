@@ -11,7 +11,6 @@ function guessProductionMode() {
 
 process.env.TAILWIND_MODE = guessProductionMode() ? 'build' : 'watch';
 
-
 module.exports = {
   mode: 'jit',
   purge: ['./apps/**/*.html', './libs/**/*.html'],
