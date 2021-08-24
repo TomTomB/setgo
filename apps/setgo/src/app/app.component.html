@@ -29,80 +29,198 @@
     md:justify-center md:items-center
   "
 >
-  <uikit-common-card class="w-full mt-4 md:w-[475px]">
-    <ng-container card-header>
-      <h1 class="mb-1 md:mb-2 text-3xl">
-        Anmeldung<span
-          aria-hidden="true"
-          class="
-            inline-block
-            w-2
-            h-2
-            bg-secondary
-            relative
-            left-0.5
-            bottom-[-2px]
-            rounded-sm
-          "
-        ></span>
-      </h1>
-      <p class="mb-4 md:mb-6">
-        Logge dich direkt ein, um auf alle SET.GO. Services zugreifen zu können.
-      </p>
-    </ng-container>
-    <div
-      *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
-      @growShrink
-      card-before-body
-      class="overflow-hidden origin-center"
-    >
-      <p
-        class="
-          py-2.5
-          md:py-3
-          px-6
-          md:px-10
-          mb-4
-          md:mb-7
-          transition-colors
-          bg-error-light
-          dark:bg-error-dark
-          text-white
-        "
-        aria-live="assertive"
+  <div class="w-full mt-16 md:w-[475px]">
+    <uikit-common-card>
+      <ng-container card-header>
+        <h1 class="mb-1 md:mb-2 text-3xl">
+          Anmeldung<span
+            aria-hidden="true"
+            class="
+              inline-block
+              w-2
+              h-2
+              bg-secondary
+              relative
+              left-0.5
+              bottom-[-2px]
+              rounded-sm
+            "
+          ></span>
+        </h1>
+        <p class="mb-4 md:mb-6 dark:text-gray-200">
+          Logge dich direkt ein, um auf alle SET.GO. Services zugreifen zu
+          können.
+        </p>
+      </ng-container>
+      <div
+        *ngIf="fetchSignInMethodsForEmailStore?.error$ | async as error"
+        @growShrink
+        card-before-body
+        class="overflow-hidden origin-center"
       >
-        {{ error.message }}
-      </p>
-    </div>
-    <ng-container card-body>
-      <div card-body class="pb-5 md:pb-6">
-        <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
-          <uikit-forms-field-text
-            [control]="emailControl"
-            inputType="email"
-            inputAutocomplete="username"
-            inputId="email"
-            label="E-Mail-Adresse"
-          >
-          </uikit-forms-field-text>
-        </form>
+        <p
+          class="
+            py-2.5
+            md:py-3
+            px-6
+            md:px-10
+            mb-4
+            md:mb-7
+            transition-colors
+            bg-error-light
+            dark:bg-error-dark
+            text-white
+          "
+          aria-live="assertive"
+        >
+          {{ error.message }}
+        </p>
       </div>
-    </ng-container>
+      <ng-container card-body>
+        <div card-body class="pb-5 md:pb-6">
+          <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
+            <uikit-forms-field-text
+              [control]="emailControl"
+              inputType="email"
+              inputAutocomplete="username"
+              inputId="email"
+              label="E-Mail-Adresse"
+            >
+            </uikit-forms-field-text>
+          </form>
+        </div>
+      </ng-container>
 
-    <uikit-common-button-cta
-      card-actions
-      assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
-      rounded="bottom"
-      type="submit"
-      [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
-      (buttonCTAClick)="checkEmail()"
-    >
-      Weiter
-    </uikit-common-button-cta>
-  </uikit-common-card>
+      <uikit-common-button-cta
+        card-actions
+        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
+        rounded="bottom"
+        type="submit"
+        [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
+        (buttonCTAClick)="checkEmail()"
+      >
+        Weiter
+      </uikit-common-button-cta>
+    </uikit-common-card>
+
+    <div class="mt-12 -mb-12">
+      <hr class="border-border-light dark:border-border-dark mb-6" />
+      <ul class="grid gap-2">
+        <li>
+          <a
+            class="
+              dark:text-gray-300
+              no-underline
+              relative
+              hover:after:scale-x-100
+              dark:hover:text-white dark:focus-visible:text-white
+              focus-visible:ring-1
+              focus-visible:ring-offset-2
+              focus-visible:after:hidden
+              rounded
+              outline-none
+              after:transition-transform
+              after:absolute
+              after:rounded-sm
+              after:left-0
+              after:bottom-[-3px]
+              after:w-full
+              after:h-0.5
+              after:scale-x-[25%]
+              after:origin-left
+              after:bg-gradient-to-r
+              after:from-primary
+              after:to-secondary-light
+            "
+            href="#"
+          >
+            Account erstellen
+          </a>
+        </li>
+        <li>
+          <a
+            class="
+              dark:text-gray-300
+              no-underline
+              relative
+              hover:after:scale-x-100
+              dark:hover:text-white dark:focus-visible:text-white
+              focus-visible:ring-1
+              focus-visible:ring-offset-2
+              focus-visible:after:hidden
+              rounded
+              outline-none
+              transition-colors
+              after:transition-transform
+              after:absolute
+              after:rounded-sm
+              after:left-0
+              after:bottom-[-3px]
+              after:w-full
+              after:h-0.5
+              after:scale-x-[25%]
+              after:origin-left
+              after:bg-gradient-to-r
+              after:from-primary
+              after:to-secondary-light
+            "
+            href="#"
+            >Passwort zurücksetzen</a
+          >
+        </li>
+        <li class="dark:text-gray-300 text-xs mt-6">
+          <ul class="flex gap-1">
+            <li>
+              <a
+                class="
+                  dark:text-gray-300
+                  dark:hover:text-white
+                  dark:focus-visible:text-white
+                  focus-visible:ring-1
+                  focus-visible:ring-offset-2
+                  focus-visible:no-underline
+                  rounded
+                  transition-colors
+                  underline
+                  text-xs
+                "
+                href="#"
+              >
+                Datenschutz
+              </a>
+              <span aria-hidden="true">&bull;</span>
+            </li>
+            <li>
+              <a
+                class="
+                  dark:text-gray-300
+                  dark:hover:text-white
+                  dark:focus-visible:text-white
+                  focus-visible:ring-1
+                  focus-visible:ring-offset-2
+                  focus-visible:no-underline
+                  rounded
+                  transition-colors
+                  underline
+                  text-xs
+                "
+                href="#"
+              >
+                Impressum
+              </a>
+              <span aria-hidden="true">&bull;</span>
+            </li>
+            <li>
+              <span>{{ version.raw }}</span>
+            </li>
+          </ul>
+        </li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
 
   <p class="text-xs text-center absolute bottom-4">
-    Version {{ version.raw }} |
     <button class="underline" (click)="setTheme('light')">Light</button> |
     <button class="underline" (click)="setTheme('dark')">Dark</button> |
     <button class="underline" (click)="setTheme('system')">System</button>

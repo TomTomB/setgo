@@ -1,5 +1,7 @@
 import { Environment } from '@setgo/types';
-import versionFile from '../../../../../git-version.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import versionFile from '../../../../git-version.json';
 
 export const environment: Environment = {
   production: true,
