@@ -1,3 +1,17 @@
+function guessProductionMode() {
+  const argv = process.argv.join(' ').toLowerCase();
+  const isProdEnv = process.env.NODE_ENV === 'production';
+  return (
+    isProdEnv ||
+    [' build', ':build', 'ng b', '--prod'].some((command) =>
+      argv.includes(command),
+    )
+  );
+}
+
+process.env.TAILWIND_MODE = guessProductionMode() ? 'build' : 'watch';
+
+
 module.exports = {
   mode: 'jit',
   purge: ['./apps/**/*.html', './libs/**/*.html'],
