@@ -23,4 +23,6 @@ RUN yarn build:ssr:client
 
 RUN yarn build:ssr:server
 
+RUN yarn build:compress
+
 CMD yarn serve:ssr
