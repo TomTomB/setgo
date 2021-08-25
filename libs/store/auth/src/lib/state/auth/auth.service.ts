@@ -1,16 +1,27 @@
 import * as Models from './auth.models';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {
+  Auth,
+  authInstance$,
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  updateEmail,
+  updatePassword,
+} from '@angular/fire/auth';
 import { FirebaseError, FirebaseUser } from '@setgo/types';
 import { Injectable } from '@angular/core';
+import { User, UserCredential } from 'firebase/auth';
 import { from } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private get _firebaseUser() {
-    return this._firebaseAuth.user.pipe(
+    return authInstance$.pipe(
       map((user) => {
-        if (!user) {
+        if (!user.currentUser) {
           const error: FirebaseError = {
             code: 'auth/not-signed-in',
             isError: true,
@@ -18,16 +29,16 @@ export class AuthService {
           };
           throw error;
         }
-        return user;
+        return user.currentUser;
       }),
     );
   }
 
-  constructor(private _firebaseAuth: AngularFireAuth) {}
+  constructor(private _firebaseAuth: Auth) {}
 
   signInWithEmailAndPassword({ body }: Models.SignInWithEmailAndPasswordArgs) {
     return from(
-      this._firebaseAuth.signInWithEmailAndPassword(body.email, body.password),
+      signInWithEmailAndPassword(this._firebaseAuth, body.email, body.password),
     ).pipe(
       map((userCredential) =>
         this._mapUserCredentialToFirebaseUser(userCredential),
@@ -36,7 +47,9 @@ export class AuthService {
   }
 
   fetchSignInMethodsForEmail({ body }: Models.FetchSignInMethodsForEmailArgs) {
-    return from(this._firebaseAuth.fetchSignInMethodsForEmail(body.email)).pipe(
+    return from(
+      fetchSignInMethodsForEmail(this._firebaseAuth, body.email),
+    ).pipe(
       map((methods) => {
         if (methods.length) {
           return methods;
@@ -60,7 +73,8 @@ export class AuthService {
     body,
   }: Models.CreateUserWithEmailAndPasswordArgs) {
     return from(
-      this._firebaseAuth.createUserWithEmailAndPassword(
+      createUserWithEmailAndPassword(
+        this._firebaseAuth,
         body.email,
         body.password,
       ),
@@ -72,7 +86,7 @@ export class AuthService {
   }
 
   sendPasswordResetEmail({ body }: Models.SendPasswordResetEmailArgs) {
-    return from(this._firebaseAuth.sendPasswordResetEmail(body.email)).pipe(
+    return from(sendPasswordResetEmail(this._firebaseAuth, body.email)).pipe(
       map(() => null),
     );
   }
@@ -103,27 +117,25 @@ export class AuthService {
 
   sendUserEmailVerification() {
     return this._firebaseUser
-      .pipe(switchMap((u) => u.sendEmailVerification()))
+      .pipe(switchMap((u) => sendEmailVerification(u)))
       .pipe(map(() => null));
   }
 
   updateUserEmail({ body }: Models.UpdateUserEmailArgs) {
     return this._firebaseUser.pipe(
-      switchMap((u) => u.updateEmail(body.email)),
+      switchMap((u) => updateEmail(u, body.email)),
       map(() => null),
     );
   }
 
   updateUserPassword({ body }: Models.UpdateUserPasswordArgs) {
     return this._firebaseUser.pipe(
-      switchMap((u) => u.updatePassword(body.password)),
+      switchMap((u) => updatePassword(u, body.password)),
       map(() => null),
     );
   }
 
-  private _mapUserCredentialToFirebaseUser(
-    userCredential: firebase.default.auth.UserCredential,
-  ) {
+  private _mapUserCredentialToFirebaseUser(userCredential: UserCredential) {
     if (!userCredential.user) {
       const error: FirebaseError = {
         code: 'auth/user-invalid',
@@ -151,7 +163,7 @@ export class AuthService {
     return user;
   }
 
-  private _mapUserToFirebaseUser(user: firebase.default.User) {
+  private _mapUserToFirebaseUser(user: User) {
     if (!user.email) {
       const error: FirebaseError = {
         code: 'auth/user-email-missing',
