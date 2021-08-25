@@ -168,6 +168,14 @@
                 {
                   "replace": "libs/env/src/lib/environment.ts",
                   "with": "libs/env/src/lib/setgo/environment.prod.ts"
+                },
+                {
+                  "replace": "apps/setgo/src/app/modules/firebase.module.ts",
+                  "with": "apps/setgo/src/app/modules/firebase.module.prod.ts"
+                },
+                {
+                  "replace": "apps/setgo/src/app/modules/ngrx.module.ts",
+                  "with": "apps/setgo/src/app/modules/ngrx.module.prod.ts"
                 }
               ],
               "outputHashing": "all"

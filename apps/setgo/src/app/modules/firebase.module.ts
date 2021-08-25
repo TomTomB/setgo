@@ -30,17 +30,7 @@ import { providePerformance } from '@angular/fire/performance';
 
 @NgModule({
   imports: [
-    provideFirebaseApp(() => {
-      const app = initializeApp(environment.firebase);
-
-      if (environment.production) {
-        initializeAppCheck(app, {
-          provider: new ReCaptchaV3Provider(environment.recaptcha),
-        });
-      }
-
-      return app;
-    }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => {
       const firestore = getFirestore();
       connectFirestoreEmulator(firestore, 'http://localhost', 8080);
@@ -70,13 +60,13 @@ import { providePerformance } from '@angular/fire/performance';
     }),
     provideAnalytics(() => {
       const analytics = getAnalytics();
-      analytics.app.automaticDataCollectionEnabled = environment.production;
+      analytics.app.automaticDataCollectionEnabled = false;
       return analytics;
     }),
     providePerformance(() => {
       const performance = getPerformance();
-      performance.dataCollectionEnabled = environment.production;
-      performance.instrumentationEnabled = environment.production;
+      performance.dataCollectionEnabled = false;
+      performance.instrumentationEnabled = false;
       return performance;
     }),
   ],
