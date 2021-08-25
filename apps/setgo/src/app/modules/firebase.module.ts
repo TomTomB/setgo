@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ReCaptchaV3Provider, initializeAppCheck } from 'firebase/app-check';
 import { connectAuthEmulator, provideAuth } from '@angular/fire/auth';
 import {
   connectDatabaseEmulator,
