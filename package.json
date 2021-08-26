@@ -17,6 +17,7 @@
     "build": "ng build",
     "build:version": "node tools/scripts/generate-version-file.js",
     "build:compress": "node tools/scripts/compress-dist.js",
+    "build:sw-config": "node tools/scripts/generate-sw-config.js",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
