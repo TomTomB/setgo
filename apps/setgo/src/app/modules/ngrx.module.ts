@@ -6,6 +6,7 @@ import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterModule } from '@setgo/store/router';
+import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
 import { TransferState } from '@angular/platform-browser';
 
 @NgModule({
@@ -20,16 +21,16 @@ import { TransferState } from '@angular/platform-browser';
           strictStateImmutability: true,
           strictActionSerializability: true,
           strictActionTypeUniqueness: true,
-          strictActionWithinNgZone: true,
           strictStateSerializability: true,
         },
       },
     ),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
+    NgrxUniversalRehydrateModule.forRoot({}),
     StoreAuthModule,
     StoreRouterModule,
-    NgrxUniversalRehydrateModule.forRoot({}),
+    StoreServiceWorkerModule,
   ],
   providers: [TransferState],
 })

@@ -3,12 +3,16 @@ import { AuthFacade, fetchSignInMethodsForEmail } from '@setgo/store/auth';
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
+import { Observable } from 'rxjs';
+import { ServiceWorkerFacade } from '@setgo/store/service-worker';
 import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
+import { UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 
 @Component({
@@ -18,7 +22,7 @@ import { environment } from '@setgo/env';
   encapsulation: ViewEncapsulation.None,
   animations: [Animations.growShrink],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild(TextFieldComponent)
   emailFieldRef?: TextFieldComponent;
 
@@ -32,11 +36,28 @@ export class AppComponent {
     email: new FormControl(null, [ValidatorsExtra.email, Validators.required]),
   });
 
+  hasAvailableUpdate$!: Observable<boolean>;
+  availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
+
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
   }
 
-  constructor(private _authFacade: AuthFacade) {}
+  constructor(
+    private _authFacade: AuthFacade,
+    private _serviceWorkerFacade: ServiceWorkerFacade,
+  ) {}
+
+  ngOnInit(): void {
+    this._serviceWorkerFacade.startPolling();
+
+    this.hasAvailableUpdate$ = this._serviceWorkerFacade.hasAvailableUpdate$;
+    this.availableUpdate$ = this._serviceWorkerFacade.availableUpdate$;
+  }
+
+  update() {
+    window.location.reload();
+  }
 
   checkEmail() {
     if (this.emailForm.invalid) {

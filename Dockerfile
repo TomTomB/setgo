@@ -19,6 +19,8 @@ COPY . .
 
 RUN yarn build:version
 
+RUN yarn build:sw-config
+
 RUN yarn build:ssr:client
 
 RUN yarn build:ssr:server

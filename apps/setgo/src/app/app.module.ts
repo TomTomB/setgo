@@ -9,8 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { UikitCommonModule } from '@setgo/uikit/common';
 import { UikitFormsModule } from '@setgo/uikit/forms';
+import { environment } from '@setgo/env';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +26,12 @@ import { UikitFormsModule } from '@setgo/uikit/forms';
     SentryModule,
     UikitCommonModule,
     UikitFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 
   bootstrap: [AppComponent],

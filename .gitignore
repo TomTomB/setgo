@@ -42,3 +42,4 @@ git-version.json
 docker-sa.json
 .firebase
 migrations.json
+ngsw-config.json

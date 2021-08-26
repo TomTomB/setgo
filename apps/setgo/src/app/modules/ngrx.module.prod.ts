@@ -5,6 +5,7 @@ import { NgrxUniversalRehydrateModule } from '@trellisorg/ngrx-universal-rehydra
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterModule } from '@setgo/store/router';
+import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
 import { TransferState } from '@angular/platform-browser';
 
 @NgModule({
@@ -19,15 +20,15 @@ import { TransferState } from '@angular/platform-browser';
           strictStateImmutability: true,
           strictActionSerializability: true,
           strictActionTypeUniqueness: true,
-          strictActionWithinNgZone: true,
           strictStateSerializability: true,
         },
       },
     ),
     EffectsModule.forRoot([]),
+    NgrxUniversalRehydrateModule.forRoot({}),
     StoreAuthModule,
     StoreRouterModule,
-    NgrxUniversalRehydrateModule.forRoot({}),
+    StoreServiceWorkerModule,
   ],
   providers: [TransferState],
 })

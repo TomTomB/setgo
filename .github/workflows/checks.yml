@@ -47,6 +47,9 @@ jobs:
       - name: Build version file
         run: yarn build:version
 
+      - name: Build service worker config
+        run: yarn build:sw-config
+
       - name: Check format
         run: yarn format:check
 
