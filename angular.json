@@ -420,6 +420,47 @@
         }
       }
     },
+    "store-service-worker": {
+      "projectType": "library",
+      "root": "libs/store/service-worker",
+      "sourceRoot": "libs/store/service-worker/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/store/service-worker"],
+          "options": {
+            "project": "libs/store/service-worker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/store/service-worker/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/store/service-worker/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/store/service-worker"],
+          "options": {
+            "jestConfig": "libs/store/service-worker/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/store/service-worker/src/**/*.ts",
+              "libs/store/service-worker/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "store-testing": {
       "projectType": "library",
       "root": "libs/store/testing",

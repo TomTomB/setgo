@@ -16,7 +16,20 @@
   <div class="container mx-auto px-3 py-3">
     <span class="tracking-wider mb-4 text-2xl font-black">SET.GO.</span>
   </div>
+
+  <button
+    *ngIf="hasAvailableUpdate$ | async"
+    class="bg-primary px-3 py-3 text-center w-full"
+    (click)="update()"
+  >
+    <div class="container mx-auto">
+      Update installieren ({{
+        (availableUpdate$ | async)?.available?.appData?.update?.version?.raw
+      }})
+    </div>
+  </button>
 </header>
+
 <div
   class="
     mx-auto
@@ -186,9 +199,9 @@
                 "
                 href="#"
               >
-                Datenschutz
-              </a>
-              <span aria-hidden="true">&bull;</span>
+                Datenschutz</a
+              >
+              <span aria-hidden="true"> &bull;</span>
             </li>
             <li>
               <a
@@ -206,9 +219,9 @@
                 "
                 href="#"
               >
-                Impressum
-              </a>
-              <span aria-hidden="true">&bull;</span>
+                Impressum</a
+              >
+              <span aria-hidden="true"> &bull;</span>
             </li>
             <li>
               <span>{{ version.raw }}</span>

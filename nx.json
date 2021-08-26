@@ -49,6 +49,9 @@
     "store-router": {
       "tags": []
     },
+    "store-service-worker": {
+      "tags": []
+    },
     "store-testing": {
       "tags": []
     },
