@@ -17,10 +17,63 @@
         document.documentElement.classList.remove('dark');
       }
     </script>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
   </head>
   <body
     class="h-full dark:bg-background-dark bg-background-light transition-colors"
   >
     <setgo-root class="block h-full"></setgo-root>
+    <noscript>
+      <div
+        class="
+          z-[1000]
+          fixed
+          left-0
+          top-0
+          flex flex-col
+          items-center
+          justify-center
+          w-full
+          h-full
+          dark:bg-background-dark
+          bg-background-light bg-opacity-90
+          dark:bg-opacity-90
+          backdrop-blur-sm
+        "
+      >
+        <h1 class="mb-3">Achtung</h1>
+        <p>Bitte aktiviere JavaScript, um SET.GO. weiter nutzen zu können.</p>
+        <p class="mb-3">
+          <a href="https://www.enable-javascript.com/de/" target="_blank"
+            >Wie schalte ich JavaScript in meinem Browser ein?</a
+          >
+        </p>
+
+        <form action="">
+          <button
+            type="submit"
+            class="
+              px-4
+              py-3
+              text-white
+              font-bold
+              tracking-wider
+              bg-primary
+              active:bg-primary-dark
+              hover:bg-primary-light
+              focus-visible:bg-primary-light
+              rounded-xl
+              uppercase
+              active:scale-95
+              transition-all
+            "
+            onClick="window.location.reload();"
+          >
+            Seite neuladen
+          </button>
+        </form>
+      </div>
+    </noscript>
   </body>
 </html>
