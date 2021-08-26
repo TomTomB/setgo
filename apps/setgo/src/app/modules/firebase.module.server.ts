@@ -14,16 +14,13 @@ import {
   provideFunctions,
 } from '@angular/fire/functions';
 import { connectStorageEmulator, provideStorage } from '@angular/fire/storage';
-import { enableIndexedDbPersistence } from 'firebase/firestore';
 import { environment } from '@setgo/env';
-import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 import { getFunctions } from 'firebase/functions';
 import { getPerformance } from 'firebase/performance';
 import { getStorage } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
-import { provideAnalytics } from '@angular/fire/analytics';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { providePerformance } from '@angular/fire/performance';
 
