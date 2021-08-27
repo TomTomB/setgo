@@ -7,6 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterModule } from '@setgo/store/router';
 import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
+import { StoreUiShellModule } from '@setgo/store/ui/shell';
 import { TransferState } from '@angular/platform-browser';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { TransferState } from '@angular/platform-browser';
     StoreAuthModule,
     StoreRouterModule,
     StoreServiceWorkerModule,
+    StoreUiShellModule,
   ],
   providers: [TransferState],
 })

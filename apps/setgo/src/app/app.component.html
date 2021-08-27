@@ -8,13 +8,20 @@
     top-0
     shadow-md
     w-full
-    z-10
+    z-30
     backdrop-blur-md
     transition-colors
   "
 >
-  <div class="container mx-auto px-3 py-3">
-    <span class="tracking-wider mb-4 text-2xl font-black">SET.GO.</span>
+  <div class="container mx-auto px-3 py-3 flex justify-between">
+    <span class="tracking-wider text-2xl font-black">SET.GO.</span>
+
+    <button
+      *ngIf="notificationShadeVisibility$ | async as visibility"
+      (click)="setNotificationShadeVisibility('toggle')"
+    >
+      Notification Shade
+    </button>
   </div>
 
   <button
@@ -29,6 +36,133 @@
     </div>
   </button>
 </header>
+
+<div class="container w-full mx-auto relative">
+  <div
+    *ngIf="(notificationShadeVisibility$ | async) === 'open'"
+    @slideFromTop
+    class="
+      overflow-overlay
+      h-[calc(100vh-56px-1.5rem)]
+      md:max-h-[500px] md:min-h-[500px]
+      absolute
+      right-3
+      left-3
+      bottom-3
+      md:left-[unset] md:bottom-[unset]
+      top-[71px]
+      rounded-lg
+      md:w-[350px]
+      bg-card-light
+      dark:bg-card-dark
+      transition-colors
+      z-20
+      shadow-md
+    "
+  >
+    <div
+      class="
+        grid grid-cols-[1fr,auto]
+        gap-2
+        px-4
+        pt-4
+        pb-2
+        items-center
+        sticky
+        top-0
+        bg-card-light
+        dark:bg-card-dark
+        bg-opacity-80
+        dark:bg-opacity-80
+        backdrop-blur-md
+      "
+    >
+      <h3 class="font-semibold text-lg tracking-wide">Benachrichtigungen</h3>
+      <button
+        class="
+          text-sm
+          px-3
+          py-1
+          bg-toolbar-light
+          dark:bg-toolbar-dark
+          rounded-lg
+        "
+      >
+        Alle löschen
+      </button>
+    </div>
+
+    <div class="pb-2">
+      <div class="px-4 pt-4 pb-2">X <span class="text-sm">Updater</span></div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
+        <h6 class="font-medium dark:text-gray-200">
+          Ein Update steht zur Verfügung
+        </h6>
+        <p class="text-sm dark:text-gray-200">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+          nam animi eaque excepturi quasi sit nihil mollitia repudiandae
+          suscipit illo.
+        </p>
+      </div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
+        <h6 class="font-medium">Einstellungen gesichert</h6>
+        <p class="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mx-4 border-border-light dark:border-border-dark" />
+
+    <div class="pb-2">
+      <div class="px-4 pt-4 pb-2">X <span class="text-sm">Updater</span></div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
+        <h6 class="font-medium dark:text-gray-200">
+          Ein Update steht zur Verfügung
+        </h6>
+        <p class="text-sm dark:text-gray-200">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+          nam animi eaque excepturi quasi sit nihil mollitia repudiandae
+          suscipit illo.
+        </p>
+      </div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
+        <h6 class="font-medium">Einstellungen gesichert</h6>
+        <p class="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mx-4 border-border-light dark:border-border-dark" />
+
+    <div class="pb-2">
+      <div class="px-4 pt-4 pb-2">X <span class="text-sm">Updater</span></div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
+        <h6 class="font-medium dark:text-gray-200">
+          Ein Update steht zur Verfügung
+        </h6>
+        <p class="text-sm dark:text-gray-200">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+          nam animi eaque excepturi quasi sit nihil mollitia repudiandae
+          suscipit illo.
+        </p>
+      </div>
+      <div class="px-4 py-3">
+        <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
+        <h6 class="font-medium">Einstellungen gesichert</h6>
+        <p class="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div
   class="

@@ -14,7 +14,12 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
         "accessToken": "YWU2NDZlZmMtZWMzNi00YTc2LWJlMjctMGNiMzIyZTYzYzgwfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -41,7 +46,9 @@
     },
     "setgo-e2e": {
       "tags": [],
-      "implicitDependencies": ["setgo"]
+      "implicitDependencies": [
+        "setgo"
+      ]
     },
     "store-auth": {
       "tags": []
@@ -55,6 +62,9 @@
     "store-testing": {
       "tags": []
     },
+    "store-ui-shell": {
+      "tags": []
+    },
     "types": {
       "tags": []
     },
@@ -63,7 +73,9 @@
     },
     "uikit-common-e2e": {
       "tags": [],
-      "implicitDependencies": ["uikit-common"]
+      "implicitDependencies": [
+        "uikit-common"
+      ]
     },
     "uikit-forms": {
       "tags": []

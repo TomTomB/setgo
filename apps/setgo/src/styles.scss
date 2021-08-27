@@ -300,3 +300,57 @@
 html.dark {
   color-scheme: dark;
 }
+
+@media (min-width: 786px) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 11px;
+    background-color: transparent;
+    height: 11px;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  ::-webkit-resizer {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 6px;
+    background-clip: padding-box;
+    height: 11px;
+    background-color: darkgray;
+
+    &:hover {
+      background-color: lightgray;
+    }
+
+    &:active {
+      background-color: gray;
+    }
+  }
+
+  .dark {
+    ::-webkit-scrollbar-thumb {
+      background-color: gray;
+  
+      &:hover {
+        background-color: lightgray;
+      }
+  
+      &:active {
+        background-color: darkgray;
+      }
+    }
+  }
+}
+
+.overflow-overlay {
+  overflow: overlay;
+}

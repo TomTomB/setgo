@@ -10,9 +10,11 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
 import { Observable } from 'rxjs';
+import { RouterFacade } from '@setgo/store/router';
 import { ServiceWorkerFacade } from '@setgo/store/service-worker';
 import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
-import { UpdateAvailableEventWithData } from '@setgo/types';
+import { UiShellFacade } from '@setgo/store/ui/shell';
+import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 
 @Component({
@@ -20,7 +22,7 @@ import { environment } from '@setgo/env';
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [Animations.growShrink],
+  animations: [Animations.growShrink, Animations.slideFromTop],
 })
 export class AppComponent implements OnInit {
   @ViewChild(TextFieldComponent)
@@ -39,13 +41,17 @@ export class AppComponent implements OnInit {
   hasAvailableUpdate$!: Observable<boolean>;
   availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
 
+  notificationShadeVisibility$!: Observable<UiTriggerAction>;
+
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
   }
-
+     
   constructor(
     private _authFacade: AuthFacade,
     private _serviceWorkerFacade: ServiceWorkerFacade,
+    private _uiShellFacade: UiShellFacade,
+    private _stuff: RouterFacade,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +59,9 @@ export class AppComponent implements OnInit {
 
     this.hasAvailableUpdate$ = this._serviceWorkerFacade.hasAvailableUpdate$;
     this.availableUpdate$ = this._serviceWorkerFacade.availableUpdate$;
+
+    this.notificationShadeVisibility$ =
+      this._uiShellFacade.notificationShadeVisibility$;
   }
 
   update() {
@@ -89,5 +98,9 @@ export class AppComponent implements OnInit {
         document.documentElement.classList.remove('dark');
       }
     }
+  }
+
+  setNotificationShadeVisibility(uiAction: UiTriggerAction) {
+    this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
   }
 }
