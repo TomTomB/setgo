@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
   }
-     
+
   constructor(
     private _authFacade: AuthFacade,
     private _serviceWorkerFacade: ServiceWorkerFacade,

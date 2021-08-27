@@ -1,10 +1,6 @@
 import * as Actions from './shell.actions';
 import { Action, createReducer, on } from '@ngrx/store';
-import {
-  UiTriggerAction,
-  UpdateActivatedEventWithData,
-  UpdateAvailableEventWithData,
-} from '@setgo/types';
+import { UiTriggerAction } from '@setgo/types';
 
 export const UI_SHELL_FEATURE_KEY = 'uiShell';
 

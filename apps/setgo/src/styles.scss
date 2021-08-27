@@ -339,11 +339,11 @@ html.dark {
   .dark {
     ::-webkit-scrollbar-thumb {
       background-color: gray;
-  
+
       &:hover {
         background-color: lightgray;
       }
-  
+
       &:active {
         background-color: darkgray;
       }
