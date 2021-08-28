@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
+  isMouseDownOnNotification = false;
+
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
   }
@@ -102,5 +104,51 @@ export class AppComponent implements OnInit {
 
   setNotificationShadeVisibility(uiAction: UiTriggerAction) {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
+  }
+
+  notificationMouseDown(e: TouchEvent) {
+    console.log('down', e);
+    e.preventDefault();
+    this.isMouseDownOnNotification = true;
+
+    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
+    element.classList.remove('transition-all');
+  }
+
+  notificationMouseMove(e: TouchEvent) {
+    if (!this.isMouseDownOnNotification) {
+      return;
+    }
+    e.preventDefault();
+
+    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
+    const previousClientX = parseInt(element.dataset.previousClientX || '0');
+    let transformX = parseInt(element.dataset.transformX || '0');
+
+    if (previousClientX < e.targetTouches[0].clientX) {
+      transformX = transformX + 2;
+    } else if (previousClientX > e.targetTouches[0].clientX) {
+      transformX = transformX - 2;
+    }
+
+    element.dataset.previousClientX = e.targetTouches[0].clientX.toString();
+    element.dataset.transformX = transformX.toString();
+
+    element.style.transform = `translateX(${transformX}px)`;
+
+    console.log('move', e);
+  }
+
+  notificationMouseUp(e: TouchEvent) {
+    console.log('up', e);
+    e.preventDefault();
+
+    this.isMouseDownOnNotification = false;
+
+    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
+    delete element.dataset.previousClientX;
+    delete element.dataset.transformX;
+    element.style.transform = '';
+    element.classList.add('transition-all');
   }
 }
