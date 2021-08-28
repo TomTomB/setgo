@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UikitCommonModule } from '@setgo/uikit/common';
+import { UikitCoreModule } from '@setgo/uikit/core';
 import { UikitFormsModule } from '@setgo/uikit/forms';
 import { environment } from '@setgo/env';
 
@@ -25,6 +26,7 @@ import { environment } from '@setgo/env';
     NgRxToolkitModule,
     SentryModule,
     UikitCommonModule,
+    UikitCoreModule,
     UikitFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

@@ -44,6 +44,9 @@
       "@setgo/uikit/common": [
         "libs/uikit/common/src/index.ts"
       ],
+      "@setgo/uikit/core": [
+        "libs/uikit/core/src/index.ts"
+      ],
       "@setgo/uikit/forms": [
         "libs/uikit/forms/src/index.ts"
       ]
