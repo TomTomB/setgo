@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
   }
 
   notificationMouseDown(e: TouchEvent) {
-    console.log('down', e);
+    // console.log('down', e);
     e.preventDefault();
     this.isMouseDownOnNotification = true;
 
@@ -136,11 +136,11 @@ export class AppComponent implements OnInit {
 
     element.style.transform = `translateX(${transformX}px)`;
 
-    console.log('move', e);
+    // console.log('move', e);
   }
 
   notificationMouseUp(e: TouchEvent) {
-    console.log('up', e);
+    // console.log('up', e);
     e.preventDefault();
 
     this.isMouseDownOnNotification = false;
