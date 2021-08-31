@@ -6,6 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterModule } from '@setgo/store/router';
 import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
+import { StoreUiShellModule } from '@setgo/store/ui/shell';
 import { environment } from '@setgo/env';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
@@ -66,6 +67,7 @@ import { provideStorage } from '@angular/fire/storage';
     StoreAuthModule,
     StoreRouterModule,
     StoreServiceWorkerModule,
+    StoreUiShellModule,
   ],
 })
 export class StoreTestingModule {}

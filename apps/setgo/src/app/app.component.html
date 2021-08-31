@@ -8,13 +8,21 @@
     top-0
     shadow-md
     w-full
-    z-10
+    z-30
     backdrop-blur-md
     transition-colors
   "
 >
-  <div class="container mx-auto px-3 py-3">
-    <span class="tracking-wider mb-4 text-2xl font-black">SET.GO.</span>
+  <div class="container mx-auto px-3 py-3 md:px-4 flex justify-between">
+    <span class="tracking-wider text-2xl font-black">SET.GO.</span>
+
+    <button
+      *ngIf="notificationShadeVisibility$ | async as visibility"
+      id="notificationShadeToggleButton"
+      (click)="setNotificationShadeVisibility('toggle')"
+    >
+      Notification Shade
+    </button>
   </div>
 
   <button
@@ -29,6 +37,153 @@
     </div>
   </button>
 </header>
+
+<div class="md:container w-full mx-auto relative">
+  <div
+    *ngIf="(notificationShadeVisibility$ | async) === 'open'"
+    @slideFromTop
+    class="
+      w-full
+      md:w-[350px]
+      absolute
+      md:left-[unset] md:right-3
+      top-[56px]
+      md:top-[71px]
+      left-0
+      z-20
+    "
+    uikitCoreClickOutside
+    (clickOutside)="setNotificationShadeVisibility('close')"
+    [clickOutsideIgnoreList]="['notificationShadeToggleButton']"
+  >
+    <div
+      class="
+        w-8
+        overflow-hidden
+        hidden
+        md:inline-block
+        absolute
+        top-[-18px]
+        right-12
+      "
+      aria-hidden="true"
+    >
+      <div
+        class="
+          h-5
+          w-5
+          bg-card-light
+          dark:bg-card-dark
+          rotate-45
+          transform
+          origin-bottom-left
+          rounded-md
+        "
+      ></div>
+    </div>
+
+    <div
+      class="
+        overflow-overlay
+        h-[calc(100vh-56px)]
+        md:max-h-[500px] md:min-h-[500px] md:rounded-lg
+        bg-card-light
+        dark:bg-card-dark
+        transition-colors
+        md:shadow-md
+      "
+    >
+      <div class="container mx-auto overflow-x-hidden">
+        <div
+          class="
+            grid grid-cols-[1fr,auto]
+            gap-2
+            px-3
+            md:px-4
+            pt-4
+            pb-2
+            items-center
+            sticky
+            top-0
+            bg-card-light
+            dark:bg-card-dark
+            bg-opacity-80
+            dark:bg-opacity-80
+            backdrop-blur-md
+          "
+        >
+          <h3 class="font-semibold text-lg tracking-wide">
+            Benachrichtigungen
+          </h3>
+          <button
+            *ngIf="notifications.length"
+            @fade
+            class="
+              text-sm
+              px-3
+              py-1
+              bg-toolbar-light
+              dark:bg-toolbar-dark
+              rounded-lg
+            "
+            (click)="clearAllNotifications()"
+          >
+            Alle löschen
+          </button>
+        </div>
+
+        <div
+          class="pb-2 overflow-hidden"
+          @shrink
+          *ngFor="let notificationGroup of notifications; let i = index"
+          #group
+        >
+          <hr
+            class="mx-4 border-border-light dark:border-border-dark"
+            *ngIf="i !== 0"
+          />
+          <div
+            class="px-3 md:px-4 pt-4 pb-2"
+            (touchstart)="notificationGroupMouseDown($event, group)"
+            (touchmove)="notificationGroupMouseMove($event, group)"
+            (touchend)="
+              notificationGroupMouseUp($event, notificationGroup, group)
+            "
+          >
+            [ICON]
+            <span class="text-sm">{{ notificationGroup.appletName }} </span>
+          </div>
+          <div
+            *ngFor="let notificationMessage of notificationGroup.messages"
+            @shrink
+            class="px-3 md:px-4 py-3 transition-all"
+            (touchstart)="notificationMouseDown($event, notification)"
+            (touchmove)="notificationMouseMove($event, notification)"
+            (touchend)="
+              notificationMouseUp(
+                $event,
+                notificationGroup,
+                notificationMessage,
+                notification
+              )
+            "
+            #notification
+          >
+            <p class="text-xs dark:text-gray-400">
+              {{ notificationMessage.timestamp | date }}
+            </p>
+            <h6 class="font-medium dark:text-gray-200">
+              {{ notificationMessage.title }}
+            </h6>
+            <p class="text-sm dark:text-gray-200">
+              {{ notificationMessage.body }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div
   class="
