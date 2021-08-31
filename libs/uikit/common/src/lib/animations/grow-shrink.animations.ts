@@ -27,3 +27,29 @@ export const growShrink = trigger('growShrink', [
     ),
   ]),
 ]);
+
+export const shrink = trigger('shrink', [
+  transition(':enter', [
+    style({
+      opacity: 0,
+      height: '0px',
+    }),
+    animate(
+      '150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      style({
+        opacity: 1,
+        height: '*',
+      }),
+    ),
+  ]),
+  transition(':leave', [
+    animate(
+      '150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      style({
+        opacity: 0,
+        height: '0px',
+        padding: '0px',
+      }),
+    ),
+  ]),
+]);

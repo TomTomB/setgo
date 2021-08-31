@@ -17,12 +17,53 @@ import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 
+interface NotificationGroup {
+  appletName: string;
+  id: string;
+  messages: NotificationMessage[];
+}
+
+interface NotificationMessage {
+  timestamp: number;
+  title: string;
+  body: string;
+  id: string;
+}
+
+const notifications: NotificationGroup[] = [];
+
+for (let i = 0; i < 10; i++) {
+  notifications.push({
+    appletName: 'Updater ' + i,
+    id: i.toString(),
+    messages: [
+      {
+        timestamp: Date.now(),
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        title: 'Ein Update steht zur Verfügung',
+        id: `${i}_0`,
+      },
+      {
+        timestamp: Date.now(),
+        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        title: 'Update installiert',
+        id: `${i}_1`,
+      },
+    ],
+  });
+}
+
 @Component({
   selector: 'setgo-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [Animations.growShrink, Animations.slideFromTop],
+  animations: [
+    Animations.growShrink,
+    Animations.slideFromTop,
+    Animations.fade,
+    Animations.shrink,
+  ],
 })
 export class AppComponent implements OnInit {
   @ViewChild(TextFieldComponent)
@@ -42,6 +83,8 @@ export class AppComponent implements OnInit {
   availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
+
+  notifications = notifications;
 
   isMouseDownOnNotification = false;
 
@@ -106,49 +149,114 @@ export class AppComponent implements OnInit {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
   }
 
-  notificationMouseDown(e: TouchEvent) {
-    // console.log('down', e);
-    e.preventDefault();
-    this.isMouseDownOnNotification = true;
+  clearAllNotifications() {
+    this.notifications = [];
+    this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
 
-    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
-    element.classList.remove('transition-all');
   }
 
-  notificationMouseMove(e: TouchEvent) {
+  notificationMouseDown(event: TouchEvent, element: HTMLDivElement) {
+    event.preventDefault();
+
+    this.isMouseDownOnNotification = true;
+
+    element.classList.remove('transition-all');
+
+    const currentClientX = event.targetTouches[0].clientX;
+    element.dataset.originClientX = currentClientX.toString();
+  }
+
+  notificationMouseMove(event: TouchEvent, element: HTMLDivElement) {
     if (!this.isMouseDownOnNotification) {
       return;
     }
-    e.preventDefault();
+    event.preventDefault();
 
-    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
-    const previousClientX = parseInt(element.dataset.previousClientX || '0');
-    let transformX = parseInt(element.dataset.transformX || '0');
+    const currentClientX = event.targetTouches[0].clientX;
+    const originClientX = parseInt(element.dataset.originClientX || '0');
+    const movement = (originClientX - currentClientX) * -1;
 
-    if (previousClientX < e.targetTouches[0].clientX) {
-      transformX = transformX + 2;
-    } else if (previousClientX > e.targetTouches[0].clientX) {
-      transformX = transformX - 2;
-    }
+    element.dataset.movement = movement.toString();
 
-    element.dataset.previousClientX = e.targetTouches[0].clientX.toString();
-    element.dataset.transformX = transformX.toString();
-
-    element.style.transform = `translateX(${transformX}px)`;
-
-    // console.log('move', e);
+    element.style.transform = `translateX(${movement}px)`;
   }
 
-  notificationMouseUp(e: TouchEvent) {
-    // console.log('up', e);
-    e.preventDefault();
+  notificationMouseUp(
+    event: TouchEvent,
+    notificationGroup: NotificationGroup,
+    notificationMessage: NotificationMessage,
+    element: HTMLDivElement,
+  ) {
+    event.preventDefault();
 
-    this.isMouseDownOnNotification = false;
-
-    const element = (e.target as HTMLElement).parentElement as HTMLDivElement;
-    delete element.dataset.previousClientX;
-    delete element.dataset.transformX;
-    element.style.transform = '';
+    const movement = +(element.dataset.movement || '0');
     element.classList.add('transition-all');
+
+    if (movement > 100 || movement < -100) {
+      element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
+
+      notificationGroup.messages = notificationGroup.messages.filter(
+        (m) => m.id !== notificationMessage.id,
+      );
+      if (!notificationGroup.messages.length) {
+        this.notifications = this.notifications.filter(
+          (group) => group.id !== notificationGroup.id,
+        );
+      }
+    } else {
+      delete element.dataset.originClientX;
+      delete element.dataset.movement;
+      element.style.transform = '';
+    }
+  }
+
+  notificationGroupMouseDown(event: TouchEvent, element: HTMLDivElement) {
+    event.preventDefault();
+
+    this.isMouseDownOnNotification = true;
+
+    element.classList.remove('transition-all');
+
+    const currentClientX = event.targetTouches[0].clientX;
+    element.dataset.originClientX = currentClientX.toString();
+  }
+
+  notificationGroupMouseMove(event: TouchEvent, element: HTMLDivElement) {
+    if (!this.isMouseDownOnNotification) {
+      return;
+    }
+    event.preventDefault();
+
+    const currentClientX = event.targetTouches[0].clientX;
+    const originClientX = parseInt(element.dataset.originClientX || '0');
+    const movement = (originClientX - currentClientX) * -1;
+
+    element.dataset.movement = movement.toString();
+
+    element.style.transform = `translateX(${movement}px)`;
+  }
+
+  notificationGroupMouseUp(
+    event: TouchEvent,
+    notificationGroup: NotificationGroup,
+    element: HTMLDivElement,
+  ) {
+    event.preventDefault();
+
+    const movement = +(element.dataset.movement || '0');
+    element.classList.add('transition-all');
+
+    if (movement > 150 || movement < -150) {
+      element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
+
+      this.notifications = this.notifications.filter(
+        (group) => group.id !== notificationGroup.id,
+      );
+    } else {
+      delete element.dataset.originClientX;
+      delete element.dataset.movement;
+      element.style.transform = '';
+      element.classList.add('transition-all');
+    }
   }
 }

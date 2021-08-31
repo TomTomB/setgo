@@ -116,6 +116,8 @@
             Benachrichtigungen
           </h3>
           <button
+            *ngIf="notifications.length"
+            @fade
             class="
               text-sm
               px-3
@@ -124,89 +126,56 @@
               dark:bg-toolbar-dark
               rounded-lg
             "
+            (click)="clearAllNotifications()"
           >
             Alle löschen
           </button>
         </div>
 
-        <div class="pb-2">
-          <div class="px-3 md:px-4 pt-4 pb-2">
-            X <span class="text-sm">Updater</span>
+        <div
+          class="pb-2 overflow-hidden"
+          @shrink
+          *ngFor="let notificationGroup of notifications; let i = index"
+          #group
+        >
+          <hr
+            class="mx-4 border-border-light dark:border-border-dark"
+            *ngIf="i !== 0"
+          />
+          <div
+            class="px-3 md:px-4 pt-4 pb-2"
+            (touchstart)="notificationGroupMouseDown($event, group)"
+            (touchmove)="notificationGroupMouseMove($event, group)"
+            (touchend)="
+              notificationGroupMouseUp($event, notificationGroup, group)
+            "
+          >
+            [ICON] <span class="text-sm">{{ notificationGroup.appletName }} </span>
           </div>
           <div
+            *ngFor="let notificationMessage of notificationGroup.messages"
+            @shrink
             class="px-3 md:px-4 py-3 transition-all"
-            (touchstart)="notificationMouseDown($event)"
-            (touchmove)="notificationMouseMove($event)"
-            (touchend)="notificationMouseUp($event)"
+            (touchstart)="notificationMouseDown($event, notification)"
+            (touchmove)="notificationMouseMove($event, notification)"
+            (touchend)="
+              notificationMouseUp(
+                $event,
+                notificationGroup,
+                notificationMessage,
+                notification
+              )
+            "
+            #notification
           >
-            <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
+            <p class="text-xs dark:text-gray-400">
+              {{ notificationMessage.timestamp | date }}
+            </p>
             <h6 class="font-medium dark:text-gray-200">
-              Ein Update steht zur Verfügung
-              {{ isMouseDownOnNotification ? 'down' : 'up' }}
+              {{ notificationMessage.title }}
             </h6>
             <p class="text-sm dark:text-gray-200">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto nam animi eaque excepturi quasi sit nihil mollitia
-              repudiandae suscipit illo.
-            </p>
-          </div>
-          <div class="px-3 md:px-4 py-3">
-            <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
-            <h6 class="font-medium">Einstellungen gesichert</h6>
-            <p class="text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-        </div>
-
-        <hr class="mx-4 border-border-light dark:border-border-dark" />
-
-        <div class="pb-2">
-          <div class="px-3 md:px-4 pt-4 pb-2">
-            X <span class="text-sm">Updater</span>
-          </div>
-          <div class="px-3 md:px-4 py-3">
-            <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
-            <h6 class="font-medium dark:text-gray-200">
-              Ein Update steht zur Verfügung
-            </h6>
-            <p class="text-sm dark:text-gray-200">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto nam animi eaque excepturi quasi sit nihil mollitia
-              repudiandae suscipit illo.
-            </p>
-          </div>
-          <div class="px-3 md:px-4 py-3">
-            <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
-            <h6 class="font-medium">Einstellungen gesichert</h6>
-            <p class="text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
-          </div>
-        </div>
-
-        <hr class="mx-4 border-border-light dark:border-border-dark" />
-
-        <div class="pb-2">
-          <div class="px-3 md:px-4 pt-4 pb-2">
-            X <span class="text-sm">Updater</span>
-          </div>
-          <div class="px-3 md:px-4 py-3">
-            <p class="text-xs dark:text-gray-400">Vor 2 Stunden</p>
-            <h6 class="font-medium dark:text-gray-200">
-              Ein Update steht zur Verfügung
-            </h6>
-            <p class="text-sm dark:text-gray-200">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto nam animi eaque excepturi quasi sit nihil mollitia
-              repudiandae suscipit illo.
-            </p>
-          </div>
-          <div class="px-3 md:px-4 py-3">
-            <p class="text-xs dark:text-gray-400">Vor 13 Stunden</p>
-            <h6 class="font-medium">Einstellungen gesichert</h6>
-            <p class="text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              {{ notificationMessage.body }}
             </p>
           </div>
         </div>
