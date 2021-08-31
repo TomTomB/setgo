@@ -152,7 +152,6 @@ export class AppComponent implements OnInit {
   clearAllNotifications() {
     this.notifications = [];
     this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
-
   }
 
   notificationMouseDown(event: TouchEvent, element: HTMLDivElement) {
