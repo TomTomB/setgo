@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
   }
 
   update() {
-    window.location.reload();
+    this._serviceWorkerFacade.dispatchActivateUpdate();
   }
 
   checkEmail() {
@@ -155,29 +155,47 @@ export class AppComponent implements OnInit {
   }
 
   notificationMouseDown(event: TouchEvent, element: HTMLDivElement) {
-    event.preventDefault();
-
     this.isMouseDownOnNotification = true;
 
     element.classList.remove('transition-all');
 
     const currentClientX = event.targetTouches[0].clientX;
+    const currentClientY = event.targetTouches[0].clientY;
     element.dataset.originClientX = currentClientX.toString();
+    element.dataset.originClientY = currentClientY.toString();
+    element.dataset.timestamp = Date.now().toString();
   }
 
   notificationMouseMove(event: TouchEvent, element: HTMLDivElement) {
-    if (!this.isMouseDownOnNotification) {
+    if (!this.isMouseDownOnNotification || element.dataset.isScrolling) {
       return;
     }
-    event.preventDefault();
 
     const currentClientX = event.targetTouches[0].clientX;
+    const currentClientY = event.targetTouches[0].clientY;
+
     const originClientX = parseInt(element.dataset.originClientX || '0');
-    const movement = (originClientX - currentClientX) * -1;
+    const originClientY = parseInt(element.dataset.originClientY || '0');
 
-    element.dataset.movement = movement.toString();
+    const movementX = (originClientX - currentClientX) * -1;
+    const movementY = originClientY - currentClientY;
 
-    element.style.transform = `translateX(${movement}px)`;
+    const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
+
+    if (!element.dataset.isDragging) {
+      if (positiveMovementY > movementX) {
+        element.dataset.isScrolling = 'true';
+        return;
+      } else {
+        element.dataset.isDragging = 'true';
+      }
+    }
+
+    event.preventDefault();
+
+    element.dataset.movement = movementX.toString();
+
+    element.style.transform = `translateX(${movementX}px)`;
   }
 
   notificationMouseUp(
@@ -186,12 +204,17 @@ export class AppComponent implements OnInit {
     notificationMessage: NotificationMessage,
     element: HTMLDivElement,
   ) {
-    event.preventDefault();
-
-    const movement = +(element.dataset.movement || '0');
     element.classList.add('transition-all');
 
-    if (movement > 100 || movement < -100) {
+    const movement = +(element.dataset.movement || '0');
+    const timestampStart = +(element.dataset.timestamp || '0');
+    const timestampEnd = Date.now();
+
+    const swipeTime = timestampEnd - timestampStart;
+    const pixelPerMillisecond = movement / swipeTime;
+    const pixelPerSecond = pixelPerMillisecond * 1000;
+
+    if (movement > 150 || movement < -150 || pixelPerSecond > 150) {
       element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
 
       notificationGroup.messages = notificationGroup.messages.filter(
@@ -204,35 +227,57 @@ export class AppComponent implements OnInit {
       }
     } else {
       delete element.dataset.originClientX;
+      delete element.dataset.originClientY;
       delete element.dataset.movement;
+      delete element.dataset.isScrolling;
+      delete element.dataset.isDragging;
+      delete element.dataset.timestamp;
       element.style.transform = '';
     }
   }
 
   notificationGroupMouseDown(event: TouchEvent, element: HTMLDivElement) {
-    event.preventDefault();
-
     this.isMouseDownOnNotification = true;
 
     element.classList.remove('transition-all');
 
     const currentClientX = event.targetTouches[0].clientX;
+    const currentClientY = event.targetTouches[0].clientY;
     element.dataset.originClientX = currentClientX.toString();
+    element.dataset.originClientY = currentClientY.toString();
+    element.dataset.timestamp = Date.now().toString();
   }
 
   notificationGroupMouseMove(event: TouchEvent, element: HTMLDivElement) {
-    if (!this.isMouseDownOnNotification) {
+    if (!this.isMouseDownOnNotification || element.dataset.isScrolling) {
       return;
     }
-    event.preventDefault();
 
     const currentClientX = event.targetTouches[0].clientX;
+    const currentClientY = event.targetTouches[0].clientY;
+
     const originClientX = parseInt(element.dataset.originClientX || '0');
-    const movement = (originClientX - currentClientX) * -1;
+    const originClientY = parseInt(element.dataset.originClientY || '0');
 
-    element.dataset.movement = movement.toString();
+    const movementX = (originClientX - currentClientX) * -1;
+    const movementY = originClientY - currentClientY;
 
-    element.style.transform = `translateX(${movement}px)`;
+    const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
+
+    if (!element.dataset.isDragging) {
+      if (positiveMovementY > movementX) {
+        element.dataset.isScrolling = 'true';
+        return;
+      } else {
+        element.dataset.isDragging = 'true';
+      }
+    }
+
+    event.preventDefault();
+
+    element.dataset.movement = movementX.toString();
+
+    element.style.transform = `translateX(${movementX}px)`;
   }
 
   notificationGroupMouseUp(
@@ -240,12 +285,17 @@ export class AppComponent implements OnInit {
     notificationGroup: NotificationGroup,
     element: HTMLDivElement,
   ) {
-    event.preventDefault();
-
-    const movement = +(element.dataset.movement || '0');
     element.classList.add('transition-all');
 
-    if (movement > 150 || movement < -150) {
+    const movement = +(element.dataset.movement || '0');
+    const timestampStart = +(element.dataset.timestamp || '0');
+    const timestampEnd = Date.now();
+
+    const swipeTime = timestampEnd - timestampStart;
+    const pixelPerMillisecond = movement / swipeTime;
+    const pixelPerSecond = pixelPerMillisecond * 1000;
+
+    if (movement > 150 || movement < -150 || pixelPerSecond > 150) {
       element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
 
       this.notifications = this.notifications.filter(
@@ -253,7 +303,11 @@ export class AppComponent implements OnInit {
       );
     } else {
       delete element.dataset.originClientX;
+      delete element.dataset.originClientY;
       delete element.dataset.movement;
+      delete element.dataset.isScrolling;
+      delete element.dataset.isDragging;
+      delete element.dataset.timestamp;
       element.style.transform = '';
       element.classList.add('transition-all');
     }

@@ -29,9 +29,104 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
+    },
+    "@schematics/angular:component": {
+      "style": "none",
+      "changeDetection": "OnPush",
+      "viewEncapsulation": "None"
     }
   },
   "projects": {
+    "core": {
+      "projectType": "library",
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/core"
+          ],
+          "options": {
+            "project": "libs/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/core/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/core/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/core"
+          ],
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/core/src/**/*.ts",
+              "libs/core/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "domain-notifications": {
+      "projectType": "library",
+      "root": "libs/domain/notifications",
+      "sourceRoot": "libs/domain/notifications/src",
+      "prefix": "domain",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/domain/notifications"
+          ],
+          "options": {
+            "project": "libs/domain/notifications/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/domain/notifications/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/domain/notifications/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/domain/notifications"
+          ],
+          "options": {
+            "jestConfig": "libs/domain/notifications/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/domain/notifications/src/**/*.ts",
+              "libs/domain/notifications/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "env": {
       "projectType": "library",
       "root": "libs/env",
