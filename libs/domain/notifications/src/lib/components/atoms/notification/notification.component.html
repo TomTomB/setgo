@@ -1,0 +1,17 @@
+<li
+  class="px-3 md:px-4 py-3 transition-all"
+  (touchstart)="startTouchHandling($event, notification)"
+  (touchmove)="updateTouchHandling($event)"
+  (touchend)="endTouchHandling()"
+  #notification
+>
+  <p class="text-xs dark:text-gray-400">
+    {{ notificationMessage.timestamp | date }}
+  </p>
+  <h6 class="font-medium dark:text-gray-200">
+    {{ notificationMessage.title }}
+  </h6>
+  <p class="text-sm dark:text-gray-200">
+    {{ notificationMessage.body }}
+  </p>
+</li>

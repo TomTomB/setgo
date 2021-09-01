@@ -20,6 +20,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@setgo/core": [
+        "libs/core/src/index.ts"
+      ],
+      "@setgo/domain/notifications": [
+        "libs/domain/notifications/src/index.ts"
+      ],
       "@setgo/env": [
         "libs/env/src/index.ts"
       ],

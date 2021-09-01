@@ -35,6 +35,12 @@
     ]
   },
   "projects": {
+    "core": {
+      "tags": []
+    },
+    "domain-notifications": {
+      "tags": []
+    },
     "env": {
       "tags": []
     },
