@@ -22,6 +22,7 @@ import { TransferState } from '@angular/platform-browser';
           strictActionSerializability: true,
           strictActionTypeUniqueness: true,
           strictStateSerializability: true,
+          strictActionWithinNgZone: true,
         },
       },
     ),

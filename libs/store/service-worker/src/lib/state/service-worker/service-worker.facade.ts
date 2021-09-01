@@ -2,7 +2,7 @@ import * as Actions from './service-worker.actions';
 import * as Selectors from './service-worker.selectors';
 import * as fromReducer from './service-worker.reducer';
 import { Action, Store } from '@ngrx/store';
-import { ApplicationRef, Injectable } from '@angular/core';
+import { ApplicationRef, Injectable, NgZone } from '@angular/core';
 import { concat, interval } from 'rxjs';
 import { first } from 'rxjs/operators';
 
@@ -24,6 +24,7 @@ export class ServiceWorkerFacade {
   constructor(
     private appRef: ApplicationRef,
     private store: Store<fromReducer.ServiceWorkerPartialState>,
+    private zone: NgZone,
   ) {}
 
   startPolling() {
@@ -34,7 +35,7 @@ export class ServiceWorkerFacade {
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 
     everySixHoursOnceAppIsStable$.subscribe(() =>
-      this.dispatchCheckForUpdate(),
+      this.zone.run(this.dispatchCheckForUpdate, this),
     );
   }
 
