@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
   }
 
   update() {
-    window.location.reload();
+    this._serviceWorkerFacade.dispatchActivateUpdate();
   }
 
   checkEmail() {
