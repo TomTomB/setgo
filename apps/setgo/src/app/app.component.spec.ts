@@ -1,4 +1,5 @@
 import { AppComponent } from './app.component';
+import { DomainNotificationsModule } from '@setgo/domain/notifications';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreTestingModule } from '@setgo/store/testing';
@@ -15,6 +16,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         UikitCommonModule,
         UikitFormsModule,
+        DomainNotificationsModule,
         StoreTestingModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: environment.production,

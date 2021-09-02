@@ -1,0 +1,28 @@
+<div class="pb-2 overflow-hidden" #group>
+  <hr
+    class="mx-4 border-border-light dark:border-border-dark"
+    *ngIf="showTopHorizontalLine"
+  />
+  <div
+    class="px-3 md:px-4 pt-4 pb-2"
+    (touchstart)="startNotificationGroupSwipe($event, group)"
+    (touchmove)="updateNotificationGroupSwipe($event)"
+    (touchend)="endNotificationGroupSwipe()"
+  >
+    [ICON]
+    <span class="text-sm">{{ notificationGroup.appletName }} </span>
+  </div>
+
+  <ul>
+    <domain-notification
+      *ngFor="
+        let notificationMessage of notificationGroup.messages;
+        trackBy: trackByNotificationFn
+      "
+      [notificationMessage]="notificationMessage"
+      class="block"
+      (deleteNotification)="deleteNotification.emit($event)"
+      @shrink
+    ></domain-notification>
+  </ul>
+</div>

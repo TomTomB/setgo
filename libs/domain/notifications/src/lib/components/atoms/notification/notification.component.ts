@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { NotificationGroup, NotificationMessage } from '../../../types';
@@ -21,8 +23,8 @@ export class NotificationComponent implements OnInit {
   @Input()
   notificationMessage!: NotificationMessage;
 
-  @Input()
-  notificationGroup!: NotificationGroup;
+  @Output()
+  deleteNotification = new EventEmitter<NotificationMessage>();
 
   constructor(
     private _notificationUiHandlerService: NotificationUiHandlerService,
@@ -32,44 +34,45 @@ export class NotificationComponent implements OnInit {
     this._assertInputsAreProvided();
   }
 
-  startTouchHandling(event: TouchEvent, element: HTMLLIElement) {
+  startNotificationSwipe(event: TouchEvent, element: HTMLLIElement) {
     this._notificationSwipeHandlerId =
-      this._notificationUiHandlerService.startSwipe(event);
+      this._notificationUiHandlerService.startNotificationSwipe(event, element);
   }
 
-  updateTouchHandling(event: TouchEvent) {
+  updateNotificationSwipe(event: TouchEvent) {
     if (!this._notificationSwipeHandlerId) {
       return;
     }
 
-    const handler = this._notificationUiHandlerService.updateSwipe(
+    const didSwipe = this._notificationUiHandlerService.updateNotificationSwipe(
       this._notificationSwipeHandlerId,
       event,
     );
 
-    if (handler.isScrolling) {
-      this._notificationUiHandlerService.cancelSwipe(
-        this._notificationSwipeHandlerId,
-      );
-      return;
+    if (!didSwipe) {
+      this._notificationSwipeHandlerId = null;
     }
   }
 
-  endTouchHandling() {
+  endNotificationSwipe() {
     if (!this._notificationSwipeHandlerId) {
       return;
     }
 
-    const swipeResult = this._notificationUiHandlerService.endSwipe(
-      this._notificationSwipeHandlerId,
-    );
+    const shouldRemoveNotification =
+      this._notificationUiHandlerService.endNotificationSwipe(
+        this._notificationSwipeHandlerId,
+      );
     this._notificationSwipeHandlerId = null;
+
+    if (shouldRemoveNotification) {
+      this.deleteNotification.emit(this.notificationMessage);
+    }
   }
 
   private _assertInputsAreProvided() {
     assertInputsAreProvided({
       notificationData: this.notificationMessage,
-      notificationGroup: this.notificationGroup,
     });
   }
 }

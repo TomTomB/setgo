@@ -1,0 +1,2 @@
+export const MIN_SWIPE_TO_DELETE_LENGTH = 150;
+export const MIN_VELOCITY_TO_DELETE = 150;

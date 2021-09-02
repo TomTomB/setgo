@@ -9,26 +9,16 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
+import {
+  NotificationGroup,
+  NotificationMessage,
+} from '@setgo/domain/notifications';
 import { Observable } from 'rxjs';
-import { RouterFacade } from '@setgo/store/router';
 import { ServiceWorkerFacade } from '@setgo/store/service-worker';
 import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
-
-interface NotificationGroup {
-  appletName: string;
-  id: string;
-  messages: NotificationMessage[];
-}
-
-interface NotificationMessage {
-  timestamp: number;
-  title: string;
-  body: string;
-  id: string;
-}
 
 const notifications: NotificationGroup[] = [];
 
@@ -86,8 +76,6 @@ export class AppComponent implements OnInit {
 
   notifications = notifications;
 
-  isMouseDownOnNotification = false;
-
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
   }
@@ -96,7 +84,6 @@ export class AppComponent implements OnInit {
     private _authFacade: AuthFacade,
     private _serviceWorkerFacade: ServiceWorkerFacade,
     private _uiShellFacade: UiShellFacade,
-    private _stuff: RouterFacade,
   ) {}
 
   ngOnInit(): void {
@@ -154,162 +141,23 @@ export class AppComponent implements OnInit {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
   }
 
-  notificationMouseDown(event: TouchEvent, element: HTMLDivElement) {
-    this.isMouseDownOnNotification = true;
-
-    element.classList.remove('transition-all');
-
-    const currentClientX = event.targetTouches[0].clientX;
-    const currentClientY = event.targetTouches[0].clientY;
-    element.dataset.originClientX = currentClientX.toString();
-    element.dataset.originClientY = currentClientY.toString();
-    element.dataset.timestamp = Date.now().toString();
-  }
-
-  notificationMouseMove(event: TouchEvent, element: HTMLDivElement) {
-    if (!this.isMouseDownOnNotification || element.dataset.isScrolling) {
-      return;
-    }
-
-    const currentClientX = event.targetTouches[0].clientX;
-    const currentClientY = event.targetTouches[0].clientY;
-
-    const originClientX = parseInt(element.dataset.originClientX || '0');
-    const originClientY = parseInt(element.dataset.originClientY || '0');
-
-    const movementX = (originClientX - currentClientX) * -1;
-    const movementY = originClientY - currentClientY;
-
-    const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
-
-    if (!element.dataset.isDragging) {
-      if (positiveMovementY > movementX) {
-        element.dataset.isScrolling = 'true';
-        return;
-      } else {
-        element.dataset.isDragging = 'true';
-      }
-    }
-
-    event.preventDefault();
-
-    element.dataset.movement = movementX.toString();
-
-    element.style.transform = `translateX(${movementX}px)`;
-  }
-
-  notificationMouseUp(
-    event: TouchEvent,
+  deleteNotification(
     notificationGroup: NotificationGroup,
     notificationMessage: NotificationMessage,
-    element: HTMLDivElement,
   ) {
-    element.classList.add('transition-all');
-
-    const movement = +(element.dataset.movement || '0');
-    const timestampStart = +(element.dataset.timestamp || '0');
-    const timestampEnd = Date.now();
-
-    const swipeTime = timestampEnd - timestampStart;
-    const pixelPerMillisecond = movement / swipeTime;
-    const pixelPerSecond = pixelPerMillisecond * 1000;
-
-    if (movement > 150 || movement < -150 || pixelPerSecond > 150) {
-      element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
-
-      notificationGroup.messages = notificationGroup.messages.filter(
-        (m) => m.id !== notificationMessage.id,
-      );
-      if (!notificationGroup.messages.length) {
-        this.notifications = this.notifications.filter(
-          (group) => group.id !== notificationGroup.id,
-        );
-      }
-    } else {
-      delete element.dataset.originClientX;
-      delete element.dataset.originClientY;
-      delete element.dataset.movement;
-      delete element.dataset.isScrolling;
-      delete element.dataset.isDragging;
-      delete element.dataset.timestamp;
-      element.style.transform = '';
-    }
-  }
-
-  notificationGroupMouseDown(event: TouchEvent, element: HTMLDivElement) {
-    this.isMouseDownOnNotification = true;
-
-    element.classList.remove('transition-all');
-
-    const currentClientX = event.targetTouches[0].clientX;
-    const currentClientY = event.targetTouches[0].clientY;
-    element.dataset.originClientX = currentClientX.toString();
-    element.dataset.originClientY = currentClientY.toString();
-    element.dataset.timestamp = Date.now().toString();
-  }
-
-  notificationGroupMouseMove(event: TouchEvent, element: HTMLDivElement) {
-    if (!this.isMouseDownOnNotification || element.dataset.isScrolling) {
-      return;
-    }
-
-    const currentClientX = event.targetTouches[0].clientX;
-    const currentClientY = event.targetTouches[0].clientY;
-
-    const originClientX = parseInt(element.dataset.originClientX || '0');
-    const originClientY = parseInt(element.dataset.originClientY || '0');
-
-    const movementX = (originClientX - currentClientX) * -1;
-    const movementY = originClientY - currentClientY;
-
-    const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
-
-    if (!element.dataset.isDragging) {
-      if (positiveMovementY > movementX) {
-        element.dataset.isScrolling = 'true';
-        return;
-      } else {
-        element.dataset.isDragging = 'true';
-      }
-    }
-
-    event.preventDefault();
-
-    element.dataset.movement = movementX.toString();
-
-    element.style.transform = `translateX(${movementX}px)`;
-  }
-
-  notificationGroupMouseUp(
-    event: TouchEvent,
-    notificationGroup: NotificationGroup,
-    element: HTMLDivElement,
-  ) {
-    element.classList.add('transition-all');
-
-    const movement = +(element.dataset.movement || '0');
-    const timestampStart = +(element.dataset.timestamp || '0');
-    const timestampEnd = Date.now();
-
-    const swipeTime = timestampEnd - timestampStart;
-    const pixelPerMillisecond = movement / swipeTime;
-    const pixelPerSecond = pixelPerMillisecond * 1000;
-
-    if (movement > 150 || movement < -150 || pixelPerSecond > 150) {
-      element.style.transform = `translateX(${movement < 0 ? '-' : ''}100%)`;
-
+    notificationGroup.messages = notificationGroup.messages.filter(
+      (m) => m.id !== notificationMessage.id,
+    );
+    if (!notificationGroup.messages.length) {
       this.notifications = this.notifications.filter(
         (group) => group.id !== notificationGroup.id,
       );
-    } else {
-      delete element.dataset.originClientX;
-      delete element.dataset.originClientY;
-      delete element.dataset.movement;
-      delete element.dataset.isScrolling;
-      delete element.dataset.isDragging;
-      delete element.dataset.timestamp;
-      element.style.transform = '';
-      element.classList.add('transition-all');
     }
+  }
+
+  deleteNotificationGroup(notificationGroup: NotificationGroup) {
+    this.notifications = this.notifications.filter(
+      (group) => group.id !== notificationGroup.id,
+    );
   }
 }
