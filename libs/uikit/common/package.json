@@ -1,5 +1,5 @@
 {
-  "name": "@setgo/uikit-common",
+  "name": "@setgo/uikit/common",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.5",
