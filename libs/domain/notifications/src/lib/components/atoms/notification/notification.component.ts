@@ -7,7 +7,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { NotificationGroup, NotificationMessage } from '../../../types';
+import { NotificationMessage } from '../../../types';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
 
