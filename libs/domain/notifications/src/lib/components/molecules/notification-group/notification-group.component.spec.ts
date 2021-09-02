@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NOTIFICATION_GROUP_MOCK } from '../../../mocks';
 import { NotificationComponent } from '../../atoms';
@@ -10,6 +11,7 @@ describe('NotificationGroupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotificationGroupComponent, NotificationComponent],
+      imports: [BrowserAnimationsModule],
     }).compileComponents();
   });
 
