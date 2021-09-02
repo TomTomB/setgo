@@ -13,6 +13,8 @@ export interface SwipeHandler {
   timestamp: number;
   movementX: number;
   movementY: number;
+  positiveMovementX: number;
+  positiveMovementY: number;
   isScrolling: boolean;
   isSwiping: boolean;
 }

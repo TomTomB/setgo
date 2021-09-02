@@ -21,6 +21,8 @@ export class SwipeHandlerService {
       timestamp,
       movementX: 0,
       movementY: 0,
+      positiveMovementX: 0,
+      positiveMovementY: 0,
       isScrolling: false,
       isSwiping: false,
     };
@@ -38,10 +40,11 @@ export class SwipeHandlerService {
     const movementX = (originClientX - currentClientX) * -1;
     const movementY = originClientY - currentClientY;
 
+    const positiveMovementX = movementX < 0 ? movementX * -1 : movementX;
     const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
 
     if (!isSwiping && !isScrolling) {
-      if (positiveMovementY > movementX) {
+      if (positiveMovementY > positiveMovementX) {
         handler.isScrolling = true;
       } else {
         handler.isSwiping = true;
@@ -51,22 +54,32 @@ export class SwipeHandlerService {
     handler.movementX = movementX;
     handler.movementY = movementY;
 
+    handler.positiveMovementX = positiveMovementX;
+    handler.positiveMovementY = positiveMovementY;
+
     return handler;
   }
 
   endSwipe(handlerId: string) {
-    const { movementX, movementY, timestamp, originClientX, originClientY } =
-      this._getSwipeHandler(handlerId);
+    const {
+      movementX,
+      movementY,
+      timestamp,
+      originClientX,
+      originClientY,
+      positiveMovementX,
+      positiveMovementY,
+    } = this._getSwipeHandler(handlerId);
 
     const timestampStart = timestamp;
     const timestampEnd = Date.now();
 
     const swipeTime = timestampEnd - timestampStart;
 
-    const pixelPerMillisecondX = movementX / swipeTime;
+    const pixelPerMillisecondX = positiveMovementX / swipeTime;
     const pixelPerSecondX = pixelPerMillisecondX * 1000;
 
-    const pixelPerMillisecondY = movementY / swipeTime;
+    const pixelPerMillisecondY = positiveMovementY / swipeTime;
     const pixelPerSecondY = pixelPerMillisecondY * 1000;
 
     delete this._handlerMap[handlerId];
