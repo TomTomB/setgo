@@ -14,15 +14,16 @@
   </div>
 
   <ul>
-    <domain-notification
+    <li
       *ngFor="
         let notificationMessage of notificationGroup.messages;
         trackBy: trackByNotificationFn
       "
       [notificationMessage]="notificationMessage"
+      domainNotification
       class="block"
       (deleteNotification)="deleteNotification.emit($event)"
       @shrink
-    ></domain-notification>
+    ></li>
   </ul>
 </div>

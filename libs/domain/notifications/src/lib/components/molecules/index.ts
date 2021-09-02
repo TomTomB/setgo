@@ -2,4 +2,4 @@ import { NotificationGroupComponent } from './notification-group/notification-gr
 
 export * from './notification-group/notification-group.component';
 
-export const COMPONENTS = [NotificationGroupComponent];
+export const COMPONENTS = [NotificationGroupComponent] as const;
