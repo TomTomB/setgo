@@ -1,105 +1,73 @@
 import { Injectable } from '@angular/core';
-import { v4 as uuidV4 } from 'uuid';
+import { NotificationConstants } from '../constants';
+import { SwipeHandlerService } from '.';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationUiHandlerService {
-  private _handlerMap: Record<
-    string,
-    {
-      originClientX: number;
-      originClientY: number;
-      timestamp: number;
-      movementX: number;
-      movementY: number;
-      isScrolling: boolean;
-      isSwiping: boolean;
-    }
-  > = {};
+  private _notificationElementMap: Record<string, HTMLElement> = {};
 
-  startSwipe(event: TouchEvent) {
-    const handlerId = uuidV4();
+  constructor(private _swipeHandlerService: SwipeHandlerService) {}
 
-    const originClientX = event.targetTouches[0].clientX;
-    const originClientY = event.targetTouches[0].clientY;
-    const timestamp = Date.now();
+  startNotificationSwipe(event: TouchEvent, element: HTMLElement) {
+    const handlerId = this._swipeHandlerService.startSwipe(event);
 
-    this._handlerMap[handlerId] = {
-      originClientX,
-      originClientY,
-      timestamp,
-      movementX: 0,
-      movementY: 0,
-      isScrolling: false,
-      isSwiping: false,
-    };
+    element.classList.remove('transition-all');
+    this._notificationElementMap[handlerId] = element;
 
     return handlerId;
   }
 
-  updateSwipe(handlerId: string, event: TouchEvent) {
-    const handler = this._getSwipeHandler(handlerId);
-    const { originClientX, originClientY, isSwiping, isScrolling } = handler;
+  updateNotificationSwipe(handlerId: string, event: TouchEvent) {
+    const { isScrolling, movementX } = this._swipeHandlerService.updateSwipe(
+      handlerId,
+      event,
+    );
+    const notificationElement = this._getNotificationSwipeElement(handlerId);
 
-    const currentClientX = event.targetTouches[0].clientX;
-    const currentClientY = event.targetTouches[0].clientY;
-
-    const movementX = (originClientX - currentClientX) * -1;
-    const movementY = originClientY - currentClientY;
-
-    const positiveMovementY = movementY < 0 ? movementY * -1 : movementY;
-
-    if (!isSwiping && !isScrolling) {
-      if (positiveMovementY > movementX) {
-        handler.isScrolling = true;
-      } else {
-        handler.isSwiping = true;
-      }
+    if (isScrolling) {
+      this._swipeHandlerService.cancelSwipe(handlerId);
+      delete this._notificationElementMap[handlerId];
+      return false;
     }
 
-    handler.movementX = movementX;
-    handler.movementY = movementY;
+    event.preventDefault();
+    notificationElement.style.transform = `translateX(${movementX}px)`;
 
-    return handler;
+    return true;
   }
 
-  endSwipe(handlerId: string) {
-    const { movementX, movementY, timestamp, originClientX, originClientY } =
-      this._getSwipeHandler(handlerId);
+  endNotificationSwipe(handlerId: string) {
+    const { movementX, pixelPerSecondX } =
+      this._swipeHandlerService.endSwipe(handlerId);
+    const notificationElement = this._getNotificationSwipeElement(handlerId);
 
-    const timestampStart = timestamp;
-    const timestampEnd = Date.now();
+    notificationElement.classList.add('transition-all');
 
-    const swipeTime = timestampEnd - timestampStart;
+    if (
+      movementX > NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
+      movementX < -NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
+      pixelPerSecondX > NotificationConstants.MIN_VELOCITY_TO_DELETE
+    ) {
+      notificationElement.style.transform = `translateX(${
+        movementX < 0 ? '-' : ''
+      }100%)`;
+      return true;
+    }
 
-    const pixelPerMillisecondX = movementX / swipeTime;
-    const pixelPerSecondX = pixelPerMillisecondX * 1000;
+    notificationElement.style.transform = '';
 
-    const pixelPerMillisecondY = movementY / swipeTime;
-    const pixelPerSecondY = pixelPerMillisecondY * 1000;
-
-    delete this._handlerMap[handlerId];
-
-    return {
-      pixelPerSecondX,
-      pixelPerSecondY,
-      movementX,
-      movementY,
-      originClientX,
-      originClientY,
-    };
+    return false;
   }
 
-  cancelSwipe(handlerId: string) {
-    delete this._handlerMap[handlerId];
-  }
-
-  private _getSwipeHandler(handlerId: string) {
-    const handler = this._handlerMap[handlerId];
+  private _getNotificationSwipeElement(handlerId: string) {
+    const handler = this._notificationElementMap[handlerId];
 
     if (!handler) {
-      throw new Error(`The swipe handler with id ${[handlerId]} was not found`);
+      throw new Error(
+        `The notification swipe handler with id ${[handlerId]} was not found`,
+      );
     }
 
     return handler;

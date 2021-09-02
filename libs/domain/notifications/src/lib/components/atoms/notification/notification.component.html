@@ -1,8 +1,8 @@
 <li
   class="px-3 md:px-4 py-3 transition-all"
-  (touchstart)="startTouchHandling($event, notification)"
-  (touchmove)="updateTouchHandling($event)"
-  (touchend)="endTouchHandling()"
+  (touchstart)="startNotificationSwipe($event, notification)"
+  (touchmove)="updateNotificationSwipe($event)"
+  (touchend)="endNotificationSwipe()"
   #notification
 >
   <p class="text-xs dark:text-gray-400">

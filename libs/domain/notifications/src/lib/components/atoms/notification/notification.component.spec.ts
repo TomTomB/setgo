@@ -24,11 +24,6 @@ describe('NotificationComponent', () => {
       title: 'Test',
     };
 
-    component.notificationGroup = {
-      appletName: 'Test',
-      id: '1',
-      messages: [notification],
-    };
     component.notificationMessage = notification;
 
     fixture.detectChanges();
