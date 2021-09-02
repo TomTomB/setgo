@@ -12,6 +12,7 @@ import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
 import {
   NotificationGroup,
   NotificationMessage,
+  trackByNotificationGroup,
 } from '@setgo/domain/notifications';
 import { Observable } from 'rxjs';
 import { ServiceWorkerFacade } from '@setgo/store/service-worker';
@@ -75,6 +76,8 @@ export class AppComponent implements OnInit {
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
   notifications = notifications;
+
+  trackByNotificationGroupFn = trackByNotificationGroup;
 
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
