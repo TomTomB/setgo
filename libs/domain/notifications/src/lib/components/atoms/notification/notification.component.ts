@@ -12,7 +12,7 @@ import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
 
 @Component({
-  selector: 'domain-notification',
+  selector: 'domain-notification, [domainNotification]',
   templateUrl: './notification.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +34,7 @@ export class NotificationComponent implements OnInit {
     this._assertInputsAreProvided();
   }
 
-  startNotificationSwipe(event: TouchEvent, element: HTMLLIElement) {
+  startNotificationSwipe(event: TouchEvent, element: HTMLDivElement) {
     this._notificationSwipeHandlerId =
       this._notificationUiHandlerService.startNotificationSwipe(event, element);
   }
