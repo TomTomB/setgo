@@ -11,7 +11,7 @@ import {
 import { NotificationGroup, NotificationMessage } from '../../../types';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
-import { trackByNotification } from '@setgo/domain/notifications';
+import { trackByNotification } from '../../../utils';
 
 @Component({
   selector: 'domain-notification-group',

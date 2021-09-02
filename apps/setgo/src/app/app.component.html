@@ -139,7 +139,11 @@
       </div>
       <div class="container mx-auto overflow-x-hidden">
         <domain-notification-group
-          *ngFor="let notificationGroup of notifications; let i = index"
+          *ngFor="
+            let notificationGroup of notifications;
+            let i = index;
+            trackBy: trackByNotificationGroupFn
+          "
           class="block"
           [notificationGroup]="notificationGroup"
           [showTopHorizontalLine]="i !== 0"
