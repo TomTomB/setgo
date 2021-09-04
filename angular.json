@@ -45,9 +45,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/core"
-          ],
+          "outputs": ["dist/libs/core"],
           "options": {
             "project": "libs/core/ng-package.json"
           },
@@ -63,9 +61,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/core"
-          ],
+          "outputs": ["coverage/libs/core"],
           "options": {
             "jestConfig": "libs/core/jest.config.js",
             "passWithNoTests": true
@@ -90,9 +86,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/domain/notifications"
-          ],
+          "outputs": ["dist/libs/domain/notifications"],
           "options": {
             "project": "libs/domain/notifications/ng-package.json"
           },
@@ -108,9 +102,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/domain/notifications"
-          ],
+          "outputs": ["coverage/libs/domain/notifications"],
           "options": {
             "jestConfig": "libs/domain/notifications/jest.config.js",
             "passWithNoTests": true
@@ -142,9 +134,7 @@
         },
         "build-storybook": {
           "builder": "@nrwl/storybook:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/domain-notifications",
@@ -168,9 +158,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/env"
-          ],
+          "outputs": ["dist/libs/env"],
           "options": {
             "project": "libs/env/ng-package.json"
           },
@@ -186,9 +174,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/env"
-          ],
+          "outputs": ["coverage/libs/env"],
           "options": {
             "jestConfig": "libs/env/jest.config.js",
             "passWithNoTests": true
@@ -212,17 +198,13 @@
       "architect": {
         "build": {
           "builder": "@simondotm/nx-firebase:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/firebase",
             "main": "apps/firebase/src/index.ts",
             "tsConfig": "apps/firebase/tsconfig.app.json",
             "packageJson": "apps/firebase/package.json",
-            "assets": [
-              "apps/firebase/*.md"
-            ]
+            "assets": ["apps/firebase/*.md"]
           }
         },
         "serve": {
@@ -248,16 +230,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/firebase/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/firebase/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/firebase"
-          ],
+          "outputs": ["coverage/apps/firebase"],
           "options": {
             "jestConfig": "apps/firebase/jest.config.js",
             "passWithNoTests": true
@@ -292,6 +270,31 @@
         }
       }
     },
+    "libs-e2e-uikit-common-e2e": {
+      "root": "apps/libs-e2e/uikit/common-e2e",
+      "sourceRoot": "apps/libs-e2e/uikit/common-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/libs-e2e/uikit/common-e2e/cypress.json",
+            "devServerTarget": "uikit-common:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "uikit-common:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/libs-e2e/uikit/common-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "libs-e2e-uikit-forms-e2e": {
       "root": "apps/libs-e2e/uikit/forms-e2e",
       "sourceRoot": "apps/libs-e2e/uikit/forms-e2e/src",
@@ -312,9 +315,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/libs-e2e/uikit/forms-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/libs-e2e/uikit/forms-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -327,13 +328,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "allowedCommonJsDependencies": [
-              "@firebase/app-check"
-            ],
+            "allowedCommonJsDependencies": ["@firebase/app-check"],
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
             "main": "apps/setgo/src/main.ts",
@@ -346,9 +343,7 @@
               "apps/setgo/src/robots.txt",
               "apps/setgo/src/manifest.webmanifest"
             ],
-            "styles": [
-              "apps/setgo/src/styles.scss"
-            ],
+            "styles": ["apps/setgo/src/styles.scss"],
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "apps/setgo/ngsw-config.json"
@@ -429,9 +424,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/setgo"
-          ],
+          "outputs": ["coverage/apps/setgo"],
           "options": {
             "jestConfig": "apps/setgo/jest.config.js",
             "passWithNoTests": true
@@ -498,9 +491,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -537,9 +528,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/setgo-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -552,9 +541,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/auth"
-          ],
+          "outputs": ["dist/libs/store/auth"],
           "options": {
             "project": "libs/store/auth/ng-package.json"
           },
@@ -570,9 +557,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/auth"
-          ],
+          "outputs": ["coverage/libs/store/auth"],
           "options": {
             "jestConfig": "libs/store/auth/jest.config.js",
             "passWithNoTests": true
@@ -597,9 +582,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/router"
-          ],
+          "outputs": ["dist/libs/store/router"],
           "options": {
             "project": "libs/store/router/ng-package.json"
           },
@@ -615,9 +598,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/router"
-          ],
+          "outputs": ["coverage/libs/store/router"],
           "options": {
             "jestConfig": "libs/store/router/jest.config.js",
             "passWithNoTests": true
@@ -642,9 +623,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/service-worker"
-          ],
+          "outputs": ["dist/libs/store/service-worker"],
           "options": {
             "project": "libs/store/service-worker/ng-package.json"
           },
@@ -660,9 +639,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/service-worker"
-          ],
+          "outputs": ["coverage/libs/store/service-worker"],
           "options": {
             "jestConfig": "libs/store/service-worker/jest.config.js",
             "passWithNoTests": true
@@ -687,9 +664,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/testing"
-          ],
+          "outputs": ["dist/libs/store/testing"],
           "options": {
             "project": "libs/store/testing/ng-package.json"
           },
@@ -705,9 +680,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/testing"
-          ],
+          "outputs": ["coverage/libs/store/testing"],
           "options": {
             "jestConfig": "libs/store/testing/jest.config.js",
             "passWithNoTests": true
@@ -732,9 +705,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/store/ui/shell"
-          ],
+          "outputs": ["dist/libs/store/ui/shell"],
           "options": {
             "project": "libs/store/ui/shell/ng-package.json"
           },
@@ -750,9 +721,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/store/ui/shell"
-          ],
+          "outputs": ["coverage/libs/store/ui/shell"],
           "options": {
             "jestConfig": "libs/store/ui/shell/jest.config.js",
             "passWithNoTests": true
@@ -777,9 +746,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/types"
-          ],
+          "outputs": ["dist/libs/types"],
           "options": {
             "project": "libs/types/ng-package.json"
           },
@@ -795,9 +762,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/types"
-          ],
+          "outputs": ["coverage/libs/types"],
           "options": {
             "jestConfig": "libs/types/jest.config.js",
             "passWithNoTests": true
@@ -822,9 +787,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/uikit/common"
-          ],
+          "outputs": ["dist/libs/uikit/common"],
           "options": {
             "project": "libs/uikit/common/ng-package.json"
           },
@@ -840,9 +803,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/uikit/common"
-          ],
+          "outputs": ["coverage/libs/uikit/common"],
           "options": {
             "jestConfig": "libs/uikit/common/jest.config.js",
             "passWithNoTests": true
@@ -874,9 +835,7 @@
         },
         "build-storybook": {
           "builder": "@nrwl/storybook:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/uikit-common",
@@ -892,34 +851,6 @@
         }
       }
     },
-    "uikit-common-e2e": {
-      "root": "apps/uikit-common-e2e",
-      "sourceRoot": "apps/uikit-common-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/uikit-common-e2e/cypress.json",
-            "tsConfig": "apps/uikit-common-e2e/tsconfig.e2e.json",
-            "devServerTarget": "uikit-common:storybook"
-          },
-          "configurations": {
-            "ci": {
-              "devServerTarget": "uikit-common:storybook:ci"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/uikit-common-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
     "uikit-core": {
       "projectType": "library",
       "root": "libs/uikit/core",
@@ -928,9 +859,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/uikit/core"
-          ],
+          "outputs": ["dist/libs/uikit/core"],
           "options": {
             "project": "libs/uikit/core/ng-package.json"
           },
@@ -946,9 +875,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/uikit/core"
-          ],
+          "outputs": ["coverage/libs/uikit/core"],
           "options": {
             "jestConfig": "libs/uikit/core/jest.config.js",
             "passWithNoTests": true
@@ -973,9 +900,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/uikit/forms"
-          ],
+          "outputs": ["dist/libs/uikit/forms"],
           "options": {
             "project": "libs/uikit/forms/ng-package.json"
           },
@@ -991,9 +916,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/uikit/forms"
-          ],
+          "outputs": ["coverage/libs/uikit/forms"],
           "options": {
             "jestConfig": "libs/uikit/forms/jest.config.js",
             "passWithNoTests": true
@@ -1025,9 +948,7 @@
         },
         "build-storybook": {
           "builder": "@nrwl/storybook:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/uikit-forms",
