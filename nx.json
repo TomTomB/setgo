@@ -47,6 +47,18 @@
     "firebase": {
       "tags": []
     },
+    "libs-e2e-domain-notifications-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "domain-notifications"
+      ]
+    },
+    "libs-e2e-uikit-forms-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "uikit-forms"
+      ]
+    },
     "setgo": {
       "tags": []
     },
