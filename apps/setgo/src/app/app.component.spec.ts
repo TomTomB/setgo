@@ -5,6 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreTestingModule } from '@setgo/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { UikitCommonModule } from '@setgo/uikit/common';
+import { UikitCoreModule } from '@setgo/uikit/core';
 import { UikitFormsModule } from '@setgo/uikit/forms';
 import { environment } from '@setgo/env';
 
@@ -14,6 +15,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       imports: [
         RouterTestingModule,
+        UikitCoreModule,
         UikitCommonModule,
         UikitFormsModule,
         DomainNotificationsModule,

@@ -2617,6 +2617,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
+"@iconify/icons-ic@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-ic/-/icons-ic-1.1.10.tgz#fdc3823edf98ffd69035a6968f0905c6637b4a9e"
+  integrity sha512-decmjXkGbK7BocYw+T0dDZMOpHqs4JX//aN1+pNbcdjUYu/gK5pir717CoSpX771eCGKmoLWS0VGx0tIC8wqJQ==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -5325,6 +5330,13 @@
   dependencies:
     "@typescript-eslint/types" "4.30.0"
     eslint-visitor-keys "^2.0.0"
+
+"@visurel/iconify-angular@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@visurel/iconify-angular/-/iconify-angular-11.0.0.tgz#6311538ca5c8b82b6e8240211ad3e604c71059d5"
+  integrity sha512-VaF0Zg0em3an3BnylxquJQATh7/Z34KG76dd85hvWXrm/FIv6q5yB8GAndUuTwTOU3CIRswsv6Lt15pdzk//xA==
+  dependencies:
+    tslib "^2.0.0"
 
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"

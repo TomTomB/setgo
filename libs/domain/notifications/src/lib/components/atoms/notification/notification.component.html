@@ -1,13 +1,31 @@
 <div
-  class="px-3 md:px-4 py-3 transition-all"
+  class="px-3 md:px-4 py-3 transition-all group"
   (touchstart)="startNotificationSwipe($event, notification)"
   (touchmove)="updateNotificationSwipe($event)"
   (touchend)="endNotificationSwipe()"
   #notification
 >
-  <p class="text-xs dark:text-gray-400">
-    {{ notificationMessage.timestamp | date }}
-  </p>
+  <div class="grid grid-cols-[1fr,auto]">
+    <p class="text-xs dark:text-gray-400">
+      {{ notificationMessage.timestamp | date }}
+    </p>
+    <button
+      class="
+        hidden
+        md:block
+        opacity-0
+        text-xs
+        group-hover:opacity-100
+        focus-visible:opacity-100
+        dark:text-gray-400
+        transition-opacity
+      "
+      aria-label="Benachrichigung löschen"
+      (click)="deleteNotification.emit(notificationMessage)"
+    >
+      <ic-icon aria-hidden="true" [icon]="icons.iconClose"></ic-icon>
+    </button>
+  </div>
   <h6 class="font-medium dark:text-gray-200">
     {{ notificationMessage.title }}
   </h6>
