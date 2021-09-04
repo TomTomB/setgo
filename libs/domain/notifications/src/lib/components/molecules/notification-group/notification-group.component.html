@@ -1,16 +1,44 @@
-<div class="pb-2 overflow-hidden" #group>
+<div class="pb-2" #group>
   <hr
     class="mx-4 border-border-light dark:border-border-dark"
     *ngIf="showTopHorizontalLine"
   />
   <div
-    class="px-3 md:px-4 pt-4 pb-2"
+    class="
+      px-3
+      md:px-4
+      pt-4
+      pb-2
+      grid grid-cols-[auto,1fr,auto]
+      group
+      items-center
+      gap-1
+    "
     (touchstart)="startNotificationGroupSwipe($event, group)"
     (touchmove)="updateNotificationGroupSwipe($event)"
     (touchend)="endNotificationGroupSwipe()"
   >
-    [ICON]
+    <ic-icon
+      aria-hidden="true"
+      [icon]="icons.iconOutlineNotifications"
+    ></ic-icon>
+
     <span class="text-sm">{{ notificationGroup.appletName }} </span>
+    <button
+      class="
+        hidden
+        md:block
+        opacity-0
+        text-sm
+        group-hover:opacity-100
+        focus-visible:opacity-100
+        transition-opacity
+      "
+      aria-label="Alle Benachrichigung der Gruppe löschen"
+      (click)="deleteNotificationGroup.emit(notificationGroup)"
+    >
+      <ic-icon aria-hidden="true" [icon]="icons.iconClose"></ic-icon>
+    </button>
   </div>
 
   <ul>

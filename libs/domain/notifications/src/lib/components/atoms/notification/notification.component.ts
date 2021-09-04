@@ -7,9 +7,11 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { IconCollection } from '@setgo/uikit/core';
 import { NotificationMessage } from '../../../types';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
+import iconClose from '@iconify/icons-ic/close';
 
 @Component({
   selector: 'domain-notification, [domainNotification]',
@@ -25,6 +27,10 @@ export class NotificationComponent implements OnInit {
 
   @Output()
   deleteNotification = new EventEmitter<NotificationMessage>();
+
+  icons: IconCollection = {
+    iconClose,
+  };
 
   constructor(
     private _notificationUiHandlerService: NotificationUiHandlerService,

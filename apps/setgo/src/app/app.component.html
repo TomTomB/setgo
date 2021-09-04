@@ -18,10 +18,15 @@
 
     <button
       *ngIf="notificationShadeVisibility$ | async as visibility"
+      class="mr-[50px]"
       id="notificationShadeToggleButton"
       (click)="setNotificationShadeVisibility('toggle')"
     >
-      Notification Shade
+      <ic-icon
+        class="text-2xl pointer-events-none block"
+        aria-hidden="true"
+        [icon]="icons.iconOutlineNotifications"
+      ></ic-icon>
     </button>
   </div>
 
@@ -51,6 +56,7 @@
       md:top-[71px]
       left-0
       z-20
+      origin-top-right
     "
     role="dialog"
     aria-labelledby="notificationShadeHeader"
@@ -74,83 +80,94 @@
         class="
           h-5
           w-5
-          bg-card-light
-          dark:bg-card-dark
+          bg-toolbar-light
+          dark:bg-toolbar-dark
           rotate-45
           transform
           origin-bottom-left
           rounded-md
+          bg-opacity-90
+          dark:bg-opacity-90
         "
       ></div>
     </div>
 
     <div
       class="
-        overflow-overlay
+        overflow-auto
+        md:overflow-overlay
         h-[calc(100vh-56px)]
         md:max-h-[500px] md:min-h-[500px] md:rounded-lg
-        bg-card-light
-        dark:bg-card-dark
         transition-colors
         md:shadow-md
       "
     >
       <div
         class="
-          container
-          mx-auto
-          grid grid-cols-[1fr,auto]
-          gap-2
-          px-3
-          md:px-4
-          pt-4
-          pb-2
-          items-center
-          sticky
-          top-0
-          bg-card-light
-          dark:bg-card-dark
-          bg-opacity-80
-          dark:bg-opacity-80
+          bg-toolbar-light
+          dark:bg-toolbar-dark
+          bg-opacity-90
+          dark:bg-opacity-90
           backdrop-blur-md
+          top-0
+          sticky
+          z-10
+          overflow-hidden
         "
       >
-        <h3
-          id="notificationShadeHeader"
-          class="font-semibold text-lg tracking-wide"
-        >
-          Benachrichtigungen
-        </h3>
-        <button
-          *ngIf="notifications.length"
-          @fade
+        <div
           class="
-            text-sm
+            container
+            mx-auto
+            grid grid-cols-[1fr,auto]
+            gap-2
             px-3
-            py-1
-            bg-toolbar-light
-            dark:bg-toolbar-dark
-            rounded-lg
+            md:px-4
+            pt-4
+            pb-4
+            items-center
           "
-          (click)="clearAllNotifications()"
         >
-          Alle löschen
-        </button>
+          <h3
+            id="notificationShadeHeader"
+            class="font-bold text-base tracking-wide"
+          >
+            Benachrichtigungen
+          </h3>
+          <button
+            *ngIf="notifications.length"
+            @fade
+            class="text-xs px-3 py-1 bg-card-light dark:bg-card-dark rounded-lg"
+            (click)="clearAllNotifications()"
+          >
+            Alle löschen
+          </button>
+        </div>
       </div>
-      <div class="container mx-auto overflow-x-hidden">
-        <domain-notification-group
-          *ngFor="
-            let notificationGroup of notifications;
-            let i = index;
-            trackBy: trackByNotificationGroupFn
-          "
-          class="block"
-          [notificationGroup]="notificationGroup"
-          [showTopHorizontalLine]="i !== 0"
-          (deleteNotification)="deleteNotification(notificationGroup, $event)"
-          (deleteNotificationGroup)="deleteNotificationGroup($event)"
-          @shrink
-        ></domain-notification-group>
+
+      <div
+        class="
+          overflow-hidden
+          bg-card-light
+          dark:bg-card-dark
+          min-h-[calc(100%-60px)]
+        "
+      >
+        <div class="container mx-auto">
+          <domain-notification-group
+            *ngFor="
+              let notificationGroup of notifications;
+              let i = index;
+              trackBy: trackByNotificationGroupFn
+            "
+            class="block"
+            [notificationGroup]="notificationGroup"
+            [showTopHorizontalLine]="i !== 0"
+            (deleteNotification)="deleteNotification(notificationGroup, $event)"
+            (deleteNotificationGroup)="deleteNotificationGroup($event)"
+            @shrink
+          ></domain-notification-group>
+        </div>
       </div>
     </div>
   </div>

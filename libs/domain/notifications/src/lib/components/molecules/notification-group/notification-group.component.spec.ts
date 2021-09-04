@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NOTIFICATION_GROUP_MOCK } from '../../../mocks';
 import { NotificationComponent } from '../../atoms';
 import { NotificationGroupComponent } from './notification-group.component';
+import { UikitCoreModule } from '@setgo/uikit/core';
 
 describe('NotificationGroupComponent', () => {
   let component: NotificationGroupComponent;
@@ -11,7 +12,7 @@ describe('NotificationGroupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotificationGroupComponent, NotificationComponent],
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, UikitCoreModule],
     }).compileComponents();
   });
 

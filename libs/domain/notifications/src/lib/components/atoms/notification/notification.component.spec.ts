@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NotificationMessage } from '../../../types';
-
 import { NotificationComponent } from './notification.component';
+import { NotificationMessage } from '../../../types';
+import { UikitCoreModule } from '@setgo/uikit/core';
 
 describe('NotificationComponent', () => {
   let component: NotificationComponent;
@@ -10,6 +10,7 @@ describe('NotificationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NotificationComponent],
+      imports: [UikitCoreModule],
     }).compileComponents();
   });
 

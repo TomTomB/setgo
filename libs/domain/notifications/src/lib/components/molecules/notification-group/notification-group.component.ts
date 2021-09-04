@@ -8,10 +8,13 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { IconCollection } from '@setgo/uikit/core';
 import { NotificationGroup, NotificationMessage } from '../../../types';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
 import { trackByNotification } from '../../../utils';
+import iconClose from '@iconify/icons-ic/close';
+import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
 
 @Component({
   selector: 'domain-notification-group',
@@ -36,6 +39,11 @@ export class NotificationGroupComponent implements OnInit {
   deleteNotification = new EventEmitter<NotificationMessage>();
 
   trackByNotificationFn = trackByNotification;
+
+  icons: IconCollection = {
+    iconClose,
+    iconOutlineNotifications,
+  };
 
   constructor(
     private _notificationUiHandlerService: NotificationUiHandlerService,

@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IconCollection } from '@setgo/uikit/core';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
 import {
   NotificationGroup,
@@ -20,6 +21,7 @@ import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
+import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
 
 const notifications: NotificationGroup[] = [];
 
@@ -78,6 +80,10 @@ export class AppComponent implements OnInit {
   notifications = notifications;
 
   trackByNotificationGroupFn = trackByNotificationGroup;
+
+  icons: IconCollection = {
+    iconOutlineNotifications,
+  };
 
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
