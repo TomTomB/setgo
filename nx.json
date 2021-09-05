@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "YWU2NDZlZmMtZWMzNi00YTc2LWJlMjctMGNiMzIyZTYzYzgwfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -49,30 +44,22 @@
     },
     "libs-e2e-domain-notifications-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "domain-notifications"
-      ]
+      "implicitDependencies": ["domain-notifications"]
     },
     "libs-e2e-uikit-common-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "uikit-common"
-      ]
+      "implicitDependencies": ["uikit-common"]
     },
     "libs-e2e-uikit-forms-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "uikit-forms"
-      ]
+      "implicitDependencies": ["uikit-forms"]
     },
     "setgo": {
       "tags": []
     },
     "setgo-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "setgo"
-      ]
+      "implicitDependencies": ["setgo"]
     },
     "store-auth": {
       "tags": []
