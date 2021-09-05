@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-git-format-staged -f 'prettier --ignore-unknown --stdin --stdin-filepath "{}"' . && yarn affected:lint
+yarn git-format-staged --formatter "prettier --stdin-filepath "{}""  "*.ts" "*.js" "*.json" "*.html" "*.md" "*.yml" && yarn affected:lint

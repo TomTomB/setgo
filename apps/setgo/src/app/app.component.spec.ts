@@ -6,28 +6,16 @@ import { StoreTestingModule } from '@setgo/store/testing';
 import { TestBed } from '@angular/core/testing';
 import { UikitCommonModule } from '@setgo/uikit/common';
 import { UikitCoreModule } from '@setgo/uikit/core';
-import {        UikitFormsModule } from '@setgo/uikit/forms';
-
-import { environment          } from '@setgo/env';
-
-
-
-
-
-
-
-
-
-
+import { UikitFormsModule } from '@setgo/uikit/forms';
+import { environment } from '@setgo/env';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
       imports: [
-        RouterTestingModule,
-
         DomainNotificationsModule,
+        RouterTestingModule,
         StoreTestingModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: environment.production,
