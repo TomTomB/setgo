@@ -27,7 +27,7 @@ const notifications: NotificationGroup[] = [];
 
 for (let i = 0; i < 10; i++) {
   notifications.push({
-    appletName: 'Updater ' + i,
+    appletName:   `Updater (${i})`,
     id: i.toString(),
     messages: [
       {
