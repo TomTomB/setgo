@@ -1,31 +1,20 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostListener, Input, Output,} from '@angular/core';
 
 @Directive({
   selector: '[uikitCoreClickOutside]',
 })
 export class ClickOutsideDirective {
-  @Input()
-  clickOutsideIgnoreList?: string[];
+  @Input() clickOutsideIgnoreList?: string[];
 
-  @Output()
-  clickOutside: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() clickOutside: EventEmitter<MouseEvent> = new EventEmitter();
 
   @HostListener('document:mousedown', ['$event'])
   onClick(event: MouseEvent): void {
     const eventTarget = event.target;
     if (this.clickOutsideIgnoreList && eventTarget !== null) {
-      if (
-        this.clickOutsideIgnoreList.some(
-          (id) => id === (eventTarget as HTMLElement).id,
-        )
-      )
+      if (this.clickOutsideIgnoreList.some(
+              (id) => id === (eventTarget as HTMLElement).id,
+              ))
         return;
     }
 

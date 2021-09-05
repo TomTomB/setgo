@@ -1,6 +1,7 @@
+import {CallState, createTestingState} from '@tomtomb/ngrx-toolkit';
+
 import * as Actions from './auth.actions';
-import { CallState, createTestingState } from '@tomtomb/ngrx-toolkit';
-import { initialState, reducer } from './auth.reducer';
+import {initialState, reducer} from './auth.reducer';
 
 describe('AuthReducer', () => {
   describe('unknown action', () => {
@@ -17,10 +18,10 @@ describe('AuthReducer', () => {
   describe('fetchSignInMethodsForEmail.call action', () => {
     it('should update the state in an immutable way', () => {
       const action = Actions.fetchSignInMethodsForEmail.call({
-        args: { body: { email: 'test@example.com' } },
+        args: {body: {email: 'test@example.com'}},
       });
 
-      const { state, expectedState } = createTestingState({
+      const {state, expectedState} = createTestingState({
         action,
         reducer,
         initialState,

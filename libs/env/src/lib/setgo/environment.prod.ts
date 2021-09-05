@@ -1,4 +1,4 @@
-import { Environment } from '@setgo/types';
+import {Environment} from '@setgo/types';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import versionFile from '../../../../git-version.json';
@@ -11,8 +11,7 @@ export const environment: Environment = {
   firebase: {
     apiKey: 'AIzaSyCxYbpq9pBPeVJHYnUEdrQBFrHjEo6sNlk',
     authDomain: 'setgo-app.firebaseapp.com',
-    databaseURL:
-      'https://setgo-app-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: 'https://setgo-app-default-rtdb.europe-west1.firebasedatabase.app',
     projectId: 'setgo-app',
     storageBucket: 'setgo-app.appspot.com',
     messagingSenderId: '546826304751',

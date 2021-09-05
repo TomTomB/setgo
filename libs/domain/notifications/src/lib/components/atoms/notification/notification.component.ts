@@ -1,17 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
-import { IconCollection } from '@setgo/uikit/core';
-import { NotificationMessage } from '../../../types';
-import { NotificationUiHandlerService } from '../../../services';
-import { assertInputsAreProvided } from '@setgo/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation,} from '@angular/core';
 import iconClose from '@iconify/icons-ic/close';
+import {assertInputsAreProvided} from '@setgo/core';
+import {IconCollection} from '@setgo/uikit/core';
+
+import {NotificationUiHandlerService} from '../../../services';
+import {NotificationMessage} from '../../../types';
 
 @Component({
   selector: 'domain-notification, [domainNotification]',
@@ -20,20 +13,18 @@ import iconClose from '@iconify/icons-ic/close';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationComponent implements OnInit {
-  private _notificationSwipeHandlerId: string | null = null;
+  private _notificationSwipeHandlerId: string|null = null;
 
-  @Input()
-  notificationMessage!: NotificationMessage;
+  @Input() notificationMessage!: NotificationMessage;
 
-  @Output()
-  deleteNotification = new EventEmitter<NotificationMessage>();
+  @Output() deleteNotification = new EventEmitter<NotificationMessage>();
 
   icons: IconCollection = {
     iconClose,
   };
 
   constructor(
-    private _notificationUiHandlerService: NotificationUiHandlerService,
+      private _notificationUiHandlerService: NotificationUiHandlerService,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +33,7 @@ export class NotificationComponent implements OnInit {
 
   startNotificationSwipe(event: TouchEvent, element: HTMLDivElement) {
     this._notificationSwipeHandlerId =
-      this._notificationUiHandlerService.startNotificationSwipe(event, element);
+        this._notificationUiHandlerService.startNotificationSwipe(event, element);
   }
 
   updateNotificationSwipe(event: TouchEvent) {
@@ -51,8 +42,8 @@ export class NotificationComponent implements OnInit {
     }
 
     const didSwipe = this._notificationUiHandlerService.updateNotificationSwipe(
-      this._notificationSwipeHandlerId,
-      event,
+        this._notificationSwipeHandlerId,
+        event,
     );
 
     if (!didSwipe) {
@@ -65,10 +56,9 @@ export class NotificationComponent implements OnInit {
       return;
     }
 
-    const shouldRemoveNotification =
-      this._notificationUiHandlerService.endNotificationSwipe(
+    const shouldRemoveNotification = this._notificationUiHandlerService.endNotificationSwipe(
         this._notificationSwipeHandlerId,
-      );
+    );
     this._notificationSwipeHandlerId = null;
 
     if (shouldRemoveNotification) {

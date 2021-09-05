@@ -1,6 +1,6 @@
+import {ErrorMessageComponent} from './error-message/error-message.component';
 import * as Inputs from './inputs';
-import { ErrorMessageComponent } from './error-message/error-message.component';
-import { LabelComponent } from './label/label.component';
+import {LabelComponent} from './label/label.component';
 
 export * from './label/label.component';
 export * from './error-message/error-message.component';

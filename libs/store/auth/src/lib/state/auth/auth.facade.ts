@@ -1,19 +1,20 @@
+import {Injectable} from '@angular/core';
+import {Actions as ActionsNative} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
+import {FacadeBase} from '@tomtomb/ngrx-toolkit';
+
 import * as Actions from './auth.actions';
 import * as Models from './auth.models';
-import * as Selectors from './auth.selectors';
 import * as fromReducer from './auth.reducer';
-import { Actions as ActionsNative } from '@ngrx/effects';
-import { FacadeBase } from '@tomtomb/ngrx-toolkit';
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import * as Selectors from './auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthFacade extends FacadeBase {
   constructor(
-    private store: Store<fromReducer.AuthPartialState>,
-    private actions: ActionsNative,
+      private store: Store<fromReducer.AuthPartialState>,
+      private actions: ActionsNative,
   ) {
     super(store, actions, Selectors.entitySelectors);
   }
@@ -31,7 +32,7 @@ export class AuthFacade extends FacadeBase {
   }
 
   createUserWithEmailAndPassword(
-    args: Models.CreateUserWithEmailAndPasswordArgs,
+      args: Models.CreateUserWithEmailAndPasswordArgs,
   ) {
     return this.call(Actions.createUserWithEmailAndPassword, args);
   }

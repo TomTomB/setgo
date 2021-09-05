@@ -1,31 +1,21 @@
-import { NgModule } from '@angular/core';
-import { connectAuthEmulator, provideAuth } from '@angular/fire/auth';
-import {
-  connectDatabaseEmulator,
-  provideDatabase,
-} from '@angular/fire/database';
-import {
-  connectFirestoreEmulator,
-  getFirestore,
-  provideFirestore,
-} from '@angular/fire/firestore';
-import {
-  connectFunctionsEmulator,
-  provideFunctions,
-} from '@angular/fire/functions';
-import { connectStorageEmulator, provideStorage } from '@angular/fire/storage';
-import { enableIndexedDbPersistence } from 'firebase/firestore';
-import { environment } from '@setgo/env';
-import { getAnalytics } from 'firebase/analytics';
-import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
-import { getFunctions } from 'firebase/functions';
-import { getPerformance } from 'firebase/performance';
-import { getStorage } from 'firebase/storage';
-import { initializeApp } from 'firebase/app';
-import { provideAnalytics } from '@angular/fire/analytics';
-import { provideFirebaseApp } from '@angular/fire/app';
-import { providePerformance } from '@angular/fire/performance';
+import {NgModule} from '@angular/core';
+import {provideAnalytics} from '@angular/fire/analytics';
+import {provideFirebaseApp} from '@angular/fire/app';
+import {connectAuthEmulator, provideAuth} from '@angular/fire/auth';
+import {connectDatabaseEmulator, provideDatabase,} from '@angular/fire/database';
+import {connectFirestoreEmulator, getFirestore, provideFirestore,} from '@angular/fire/firestore';
+import {connectFunctionsEmulator, provideFunctions,} from '@angular/fire/functions';
+import {providePerformance} from '@angular/fire/performance';
+import {connectStorageEmulator, provideStorage} from '@angular/fire/storage';
+import {environment} from '@setgo/env';
+import {getAnalytics} from 'firebase/analytics';
+import {initializeApp} from 'firebase/app';
+import {getAuth} from 'firebase/auth';
+import {getDatabase} from 'firebase/database';
+import {enableIndexedDbPersistence} from 'firebase/firestore';
+import {getFunctions} from 'firebase/functions';
+import {getPerformance} from 'firebase/performance';
+import {getStorage} from 'firebase/storage';
 
 @NgModule({
   imports: [
@@ -70,4 +60,5 @@ import { providePerformance } from '@angular/fire/performance';
     }),
   ],
 })
-export class FirebaseModule {}
+export class FirebaseModule {
+}

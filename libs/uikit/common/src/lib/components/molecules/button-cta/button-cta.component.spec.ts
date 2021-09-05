@@ -1,15 +1,19 @@
-import { ButtonCTAComponent } from './button-cta.component';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SpinnerComponent } from '../../atoms/spinner/spinner.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {SpinnerComponent} from '../../atoms/spinner/spinner.component';
+
+import {ButtonCTAComponent} from './button-cta.component';
 
 describe('ButtonCTAComponent', () => {
   let component: ButtonCTAComponent;
   let fixture: ComponentFixture<ButtonCTAComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ButtonCTAComponent, SpinnerComponent],
-    }).compileComponents();
+    await TestBed
+        .configureTestingModule({
+          declarations: [ButtonCTAComponent, SpinnerComponent],
+        })
+        .compileComponents();
   });
 
   beforeEach(() => {

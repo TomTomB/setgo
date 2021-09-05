@@ -1,1 +1,1 @@
-export type UiTriggerAction = 'open' | 'close' | 'toggle';
+export type UiTriggerAction = 'open'|'close'|'toggle';

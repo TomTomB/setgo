@@ -1,27 +1,17 @@
-import { Animations } from '@setgo/uikit/common';
-import { AuthFacade, fetchSignInMethodsForEmail } from '@setgo/store/auth';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IconCollection } from '@setgo/uikit/core';
-import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
-import {
-  NotificationGroup,
-  NotificationMessage,
-  trackByNotificationGroup,
-} from '@setgo/domain/notifications';
-import { Observable } from 'rxjs';
-import { ServiceWorkerFacade } from '@setgo/store/service-worker';
-import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
-import { UiShellFacade } from '@setgo/store/ui/shell';
-import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
-import { environment } from '@setgo/env';
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation,} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
+import {NotificationGroup, NotificationMessage, trackByNotificationGroup,} from '@setgo/domain/notifications';
+import {environment} from '@setgo/env';
+import {AuthFacade, fetchSignInMethodsForEmail} from '@setgo/store/auth';
+import {ServiceWorkerFacade} from '@setgo/store/service-worker';
+import {UiShellFacade} from '@setgo/store/ui/shell';
+import {UiTriggerAction, UpdateAvailableEventWithData} from '@setgo/types';
+import {Animations} from '@setgo/uikit/common';
+import {IconCollection} from '@setgo/uikit/core';
+import {TextFieldComponent, ValidatorsExtra} from '@setgo/uikit/forms';
+import {MappedEntityState} from '@tomtomb/ngrx-toolkit';
+import {Observable} from 'rxjs';
 
 const notifications: NotificationGroup[] = [];
 
@@ -59,21 +49,18 @@ for (let i = 0; i < 10; i++) {
   ],
 })
 export class AppComponent implements OnInit {
-  @ViewChild(TextFieldComponent)
-  emailFieldRef?: TextFieldComponent;
+  @ViewChild(TextFieldComponent) emailFieldRef?: TextFieldComponent;
 
   version = environment.version;
 
-  fetchSignInMethodsForEmailStore?: MappedEntityState<
-    typeof fetchSignInMethodsForEmail
-  >;
+  fetchSignInMethodsForEmailStore?: MappedEntityState<typeof fetchSignInMethodsForEmail>;
 
   emailForm = new FormGroup({
     email: new FormControl(null, [ValidatorsExtra.email, Validators.required]),
   });
 
   hasAvailableUpdate$!: Observable<boolean>;
-  availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
+  availableUpdate$!: Observable<UpdateAvailableEventWithData|null>;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
@@ -90,9 +77,9 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
-    private _authFacade: AuthFacade,
-    private _serviceWorkerFacade: ServiceWorkerFacade,
-    private _uiShellFacade: UiShellFacade,
+      private _authFacade: AuthFacade,
+      private _serviceWorkerFacade: ServiceWorkerFacade,
+      private _uiShellFacade: UiShellFacade,
   ) {}
 
   ngOnInit(): void {
@@ -101,8 +88,7 @@ export class AppComponent implements OnInit {
     this.hasAvailableUpdate$ = this._serviceWorkerFacade.hasAvailableUpdate$;
     this.availableUpdate$ = this._serviceWorkerFacade.availableUpdate$;
 
-    this.notificationShadeVisibility$ =
-      this._uiShellFacade.notificationShadeVisibility$;
+    this.notificationShadeVisibility$ = this._uiShellFacade.notificationShadeVisibility$;
   }
 
   update() {
@@ -115,13 +101,12 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.fetchSignInMethodsForEmailStore =
-      this._authFacade.fetchSignInMethodsForEmail({
-        body: { email: this.emailForm.value.email },
-      });
+    this.fetchSignInMethodsForEmailStore = this._authFacade.fetchSignInMethodsForEmail({
+      body: {email: this.emailForm.value.email},
+    });
   }
 
-  setTheme(theme: 'light' | 'dark' | 'system') {
+  setTheme(theme: 'light'|'dark'|'system') {
     if (theme === 'system') {
       window.localStorage.removeItem('theme');
 
@@ -151,22 +136,22 @@ export class AppComponent implements OnInit {
   }
 
   deleteNotification(
-    notificationGroup: NotificationGroup,
-    notificationMessage: NotificationMessage,
+      notificationGroup: NotificationGroup,
+      notificationMessage: NotificationMessage,
   ) {
     notificationGroup.messages = notificationGroup.messages.filter(
-      (m) => m.id !== notificationMessage.id,
+        (m) => m.id !== notificationMessage.id,
     );
     if (!notificationGroup.messages.length) {
       this.notifications = this.notifications.filter(
-        (group) => group.id !== notificationGroup.id,
+          (group) => group.id !== notificationGroup.id,
       );
     }
   }
 
   deleteNotificationGroup(notificationGroup: NotificationGroup) {
     this.notifications = this.notifications.filter(
-      (group) => group.id !== notificationGroup.id,
+        (group) => group.id !== notificationGroup.id,
     );
   }
 }

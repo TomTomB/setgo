@@ -1,4 +1,4 @@
-import { NotificationComponent } from './notification/notification.component';
+import {NotificationComponent} from './notification/notification.component';
 
 export * from './notification/notification.component';
 

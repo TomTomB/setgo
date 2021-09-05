@@ -1,13 +1,9 @@
-import { CommonModule } from '@angular/common';
-import {
-  NavigationActionTiming,
-  RouterState,
-  StoreRouterConnectingModule,
-  routerReducer,
-} from '@ngrx/router-store';
-import { NgModule } from '@angular/core';
-import { ROUTER_FEATURE_KEY } from './state/router/router.reducer';
-import { StoreModule } from '@ngrx/store';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {NavigationActionTiming, routerReducer, RouterState, StoreRouterConnectingModule,} from '@ngrx/router-store';
+import {StoreModule} from '@ngrx/store';
+
+import {ROUTER_FEATURE_KEY} from './state/router/router.reducer';
 
 @NgModule({
   imports: [
@@ -20,4 +16,5 @@ import { StoreModule } from '@ngrx/store';
     }),
   ],
 })
-export class StoreRouterModule {}
+export class StoreRouterModule {
+}

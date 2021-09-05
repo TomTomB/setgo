@@ -1,7 +1,7 @@
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { TraceService, createErrorHandler } from '@sentry/angular';
+import {CommonModule} from '@angular/common';
+import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
+import {Router} from '@angular/router';
+import {createErrorHandler, TraceService} from '@sentry/angular';
 
 @NgModule({
   imports: [CommonModule],
@@ -26,4 +26,5 @@ import { TraceService, createErrorHandler } from '@sentry/angular';
     },
   ],
 })
-export class SentryModule {}
+export class SentryModule {
+}
