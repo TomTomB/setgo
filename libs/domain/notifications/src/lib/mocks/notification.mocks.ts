@@ -1,4 +1,4 @@
-import {NotificationMessage} from '../types';
+import { NotificationMessage } from '../types';
 
 export const NOTIFICATION_MOCK: NotificationMessage = {
   id: '1',

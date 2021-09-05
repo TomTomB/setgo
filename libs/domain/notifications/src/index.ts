@@ -6,6 +6,6 @@ export * from './lib/services';
 export * from './lib/types';
 export * from './lib/utils';
 
-export {NotificationComponent} from './lib/components/atoms';
+export { NotificationComponent } from './lib/components/atoms';
 
-export {NotificationGroupComponent} from './lib/components/molecules';
+export { NotificationGroupComponent } from './lib/components/molecules';

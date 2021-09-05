@@ -1,13 +1,20 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation,} from '@angular/core';
+import { Animations } from '@setgo/uikit/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { IconCollection } from '@setgo/uikit/core';
+import { NotificationGroup, NotificationMessage } from '../../../types';
+import { NotificationUiHandlerService } from '../../../services';
+import { assertInputsAreProvided } from '@setgo/core';
+import { trackByNotification } from '../../../utils';
 import iconClose from '@iconify/icons-ic/close';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
-import {assertInputsAreProvided} from '@setgo/core';
-import {Animations} from '@setgo/uikit/common';
-import {IconCollection} from '@setgo/uikit/core';
-
-import {NotificationUiHandlerService} from '../../../services';
-import {NotificationGroup, NotificationMessage} from '../../../types';
-import {trackByNotification} from '../../../utils';
 
 @Component({
   selector: 'domain-notification-group',
@@ -17,15 +24,19 @@ import {trackByNotification} from '../../../utils';
   animations: [Animations.shrink],
 })
 export class NotificationGroupComponent implements OnInit {
-  private _notificationGroupSwipeHandlerId: string|null = null;
+  private _notificationGroupSwipeHandlerId: string | null = null;
 
-  @Input() notificationGroup!: NotificationGroup;
+  @Input()
+  notificationGroup!: NotificationGroup;
 
-  @Input() showTopHorizontalLine = false;
+  @Input()
+  showTopHorizontalLine = false;
 
-  @Output() deleteNotificationGroup = new EventEmitter<NotificationGroup>();
+  @Output()
+  deleteNotificationGroup = new EventEmitter<NotificationGroup>();
 
-  @Output() deleteNotification = new EventEmitter<NotificationMessage>();
+  @Output()
+  deleteNotification = new EventEmitter<NotificationMessage>();
 
   trackByNotificationFn = trackByNotification;
 
@@ -35,7 +46,7 @@ export class NotificationGroupComponent implements OnInit {
   };
 
   constructor(
-      private _notificationUiHandlerService: NotificationUiHandlerService,
+    private _notificationUiHandlerService: NotificationUiHandlerService,
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +55,7 @@ export class NotificationGroupComponent implements OnInit {
 
   startNotificationGroupSwipe(event: TouchEvent, element: HTMLDivElement) {
     this._notificationGroupSwipeHandlerId =
-        this._notificationUiHandlerService.startNotificationSwipe(event, element);
+      this._notificationUiHandlerService.startNotificationSwipe(event, element);
   }
 
   updateNotificationGroupSwipe(event: TouchEvent) {
@@ -53,8 +64,8 @@ export class NotificationGroupComponent implements OnInit {
     }
 
     const didSwipe = this._notificationUiHandlerService.updateNotificationSwipe(
-        this._notificationGroupSwipeHandlerId,
-        event,
+      this._notificationGroupSwipeHandlerId,
+      event,
     );
 
     if (!didSwipe) {
@@ -67,9 +78,10 @@ export class NotificationGroupComponent implements OnInit {
       return;
     }
 
-    const shouldRemoveNotificationGroup = this._notificationUiHandlerService.endNotificationSwipe(
+    const shouldRemoveNotificationGroup =
+      this._notificationUiHandlerService.endNotificationSwipe(
         this._notificationGroupSwipeHandlerId,
-    );
+      );
     this._notificationGroupSwipeHandlerId = null;
 
     if (shouldRemoveNotificationGroup) {

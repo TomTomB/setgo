@@ -1,8 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, ViewChild, ViewEncapsulation,} from '@angular/core';
-import {FormControl} from '@angular/forms';
-
-import {slideInErrorAnimation} from '../../../../animations';
-import {TextInputComponent} from '../../../atoms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TextInputComponent } from '../../../atoms';
+import { slideInErrorAnimation } from '../../../../animations';
 
 @Component({
   selector: 'uikit-forms-field-text',
@@ -12,17 +17,24 @@ import {TextInputComponent} from '../../../atoms';
   animations: [slideInErrorAnimation],
 })
 export class TextFieldComponent {
-  @Input() inputId!: string;
+  @Input()
+  inputId!: string;
 
-  @Input() label!: string;
+  @Input()
+  label!: string;
 
-  @Input() inputType: 'text'|'password'|'email' = 'text';
+  @Input()
+  inputType: 'text' | 'password' | 'email' = 'text';
 
-  @Input() inputAutocomplete?: string;
+  @Input()
+  inputAutocomplete?: string;
 
-  @Input() inputSpellcheck = false;
+  @Input()
+  inputSpellcheck = false;
 
-  @Input() control = new FormControl();
+  @Input()
+  control = new FormControl();
 
-  @ViewChild(TextInputComponent) inputComponentRef?: TextInputComponent;
+  @ViewChild(TextInputComponent)
+  inputComponentRef?: TextInputComponent;
 }

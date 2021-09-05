@@ -1,4 +1,4 @@
-import {ButtonCTAComponent} from './button-cta/button-cta.component';
+import { ButtonCTAComponent } from './button-cta/button-cta.component';
 
 export * from './button-cta/button-cta.component';
 

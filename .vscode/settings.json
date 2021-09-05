@@ -7,11 +7,5 @@
     "setgo",
     "tomtomb"
   ],
-  "angular.view-engine": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "xaver.clang-format"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "xaver.clang-format"
-  }
+  "angular.view-engine": false
 }

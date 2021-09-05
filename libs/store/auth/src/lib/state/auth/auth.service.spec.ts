@@ -1,8 +1,7 @@
+import { getAuth, provideAuth } from '@angular/fire/auth';
 // import { AuthService } from './auth.service';
 // import { FirebaseUser } from '@setgo/types';
-import {TestBed} from '@angular/core/testing';
-import {getAuth, provideAuth} from '@angular/fire/auth';
-
+import { TestBed } from '@angular/core/testing';
 // import { of } from 'rxjs';
 
 describe('AuthEffects', () => {

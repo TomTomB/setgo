@@ -1,21 +1,25 @@
-import {componentWrapperDecorator, Meta, moduleMetadata, Story,} from '@storybook/angular';
-
-import {CardComponent} from './card.component';
+import { CardComponent } from './card.component';
+import {
+  Meta,
+  Story,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 
 export default {
   title: 'Atoms/Card',
   component: CardComponent,
-  decorators:
-      [
-        moduleMetadata({
-          imports: [],
-        }),
-        componentWrapperDecorator(
-            (story) => `<div style="margin: 3em; display:flex; justify-content:center">
+  decorators: [
+    moduleMetadata({
+      imports: [],
+    }),
+    componentWrapperDecorator(
+      (story) =>
+        `<div style="margin: 3em; display:flex; justify-content:center">
           ${story}
         </div>`,
-            ),
-      ],
+    ),
+  ],
 } as Meta<CardComponent>;
 
 const Template: Story<CardComponent> = (args) => ({

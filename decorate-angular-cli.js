@@ -1,6 +1,6 @@
 /**
- * This file decorates the Angular CLI with the Nx CLI to enable features such as computation
- * caching and faster execution of tasks.
+ * This file decorates the Angular CLI with the Nx CLI to enable features such as computation caching
+ * and faster execution of tasks.
  *
  * It does this by:
  *
@@ -11,9 +11,9 @@
  * The Nx CLI decorates the Angular CLI, so the Nx CLI is fully compatible with it.
  * Every command you run should work the same when using the Nx CLI, except faster.
  *
- * Because of symlinking you can still type `ng build/test/lint` in the terminal. The ng command, in
- * this case, will point to nx, which will perform optimizations before invoking ng. So the Angular
- * CLI is always invoked. The Nx CLI simply does some optimizations before invoking the Angular CLI.
+ * Because of symlinking you can still type `ng build/test/lint` in the terminal. The ng command, in this case,
+ * will point to nx, which will perform optimizations before invoking ng. So the Angular CLI is always invoked.
+ * The Nx CLI simply does some optimizations before invoking the Angular CLI.
  *
  * To opt out of this patch:
  * - Replace occurrences of nx with ng in your package.json
@@ -30,7 +30,7 @@ try {
   output = require('@nrwl/workspace').output;
 } catch (e) {
   console.warn(
-      'Angular CLI could not be decorated to enable computation caching. Please ensure @nrwl/workspace is installed.',
+    'Angular CLI could not be decorated to enable computation caching. Please ensure @nrwl/workspace is installed.',
   );
   process.exit(0);
 }
@@ -58,7 +58,9 @@ function symlinkNgCLItoNxCLI() {
     }
   } catch (e) {
     output.error({
-      title: 'Unable to create a symlink from the Angular CLI to the Nx CLI:' + e.message,
+      title:
+        'Unable to create a symlink from the Angular CLI to the Nx CLI:' +
+        e.message,
     });
     throw e;
   }

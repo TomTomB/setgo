@@ -1,18 +1,18 @@
-import {NgModule} from '@angular/core';
-import {provideFirebaseApp} from '@angular/fire/app';
-import {provideAuth} from '@angular/fire/auth';
-import {provideDatabase} from '@angular/fire/database';
-import {getFirestore, provideFirestore} from '@angular/fire/firestore';
-import {provideFunctions} from '@angular/fire/functions';
-import {providePerformance} from '@angular/fire/performance';
-import {provideStorage} from '@angular/fire/storage';
-import {environment} from '@setgo/env';
-import {initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
-import {getDatabase} from 'firebase/database';
-import {getFunctions} from 'firebase/functions';
-import {getPerformance} from 'firebase/performance';
-import {getStorage} from 'firebase/storage';
+import { NgModule } from '@angular/core';
+import { environment } from '@setgo/env';
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFunctions } from 'firebase/functions';
+import { getPerformance } from 'firebase/performance';
+import { getStorage } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { provideAuth } from '@angular/fire/auth';
+import { provideDatabase } from '@angular/fire/database';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { provideFunctions } from '@angular/fire/functions';
+import { providePerformance } from '@angular/fire/performance';
+import { provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   imports: [
@@ -29,5 +29,4 @@ import {getStorage} from 'firebase/storage';
     providePerformance(() => getPerformance()),
   ],
 })
-export class FirebaseModule {
-}
+export class FirebaseModule {}

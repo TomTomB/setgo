@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Actions} from '@ngrx/effects';
-import {EffectBase} from '@tomtomb/ngrx-toolkit';
-
 import * as FeatureActions from './auth.actions';
-import {AuthService} from './auth.service';
+import { Actions } from '@ngrx/effects';
+import { AuthService } from './auth.service';
+import { EffectBase } from '@tomtomb/ngrx-toolkit';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthEffects extends EffectBase {
@@ -63,8 +62,8 @@ export class AuthEffects extends EffectBase {
   });
 
   constructor(
-      private _actions$: Actions,
-      private _featureService: AuthService,
+    private _actions$: Actions,
+    private _featureService: AuthService,
   ) {
     super(_actions$, _featureService);
   }

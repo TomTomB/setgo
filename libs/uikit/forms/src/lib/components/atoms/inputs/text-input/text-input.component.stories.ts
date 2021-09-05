@@ -1,21 +1,25 @@
-import {componentWrapperDecorator, Meta, moduleMetadata, Story,} from '@storybook/angular';
-
-import {TextInputComponent} from './text-input.component';
+import {
+  Meta,
+  Story,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
+import { TextInputComponent } from './text-input.component';
 
 export default {
   title: 'Atoms/Inputs/Text',
   component: TextInputComponent,
-  decorators:
-      [
-        moduleMetadata({
-          imports: [],
-        }),
-        componentWrapperDecorator(
-            (story) => `<div style="margin: 3em; display:flex; justify-content:center">
+  decorators: [
+    moduleMetadata({
+      imports: [],
+    }),
+    componentWrapperDecorator(
+      (story) =>
+        `<div style="margin: 3em; display:flex; justify-content:center">
           ${story}
         </div>`,
-            ),
-      ],
+    ),
+  ],
 } as Meta<TextInputComponent>;
 
 const Template: Story<TextInputComponent> = (args) => ({

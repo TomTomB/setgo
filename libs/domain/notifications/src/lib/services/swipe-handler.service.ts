@@ -1,7 +1,6 @@
-import {Injectable} from '@angular/core';
-import {v4 as uuidV4} from 'uuid';
-
-import {SwipeEnd, SwipeHandler} from '../types';
+import { Injectable } from '@angular/core';
+import { SwipeEnd, SwipeHandler } from '../types';
+import { v4 as uuidV4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +32,7 @@ export class SwipeHandlerService {
 
   updateSwipe(handlerId: string, event: TouchEvent) {
     const handler = this._getSwipeHandler(handlerId);
-    const {originClientX, originClientY, isSwiping, isScrolling} = handler;
+    const { originClientX, originClientY, isSwiping, isScrolling } = handler;
 
     const currentClientX = event.targetTouches[0].clientX;
     const currentClientY = event.targetTouches[0].clientY;

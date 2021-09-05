@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation,} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'uikit-forms-label',
@@ -7,9 +12,12 @@ import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation,} from '@an
   encapsulation: ViewEncapsulation.None,
 })
 export class LabelComponent {
-  @Input() htmlFor!: string;
+  @Input()
+  htmlFor!: string;
 
-  @Input() isInvalid?: boolean;
+  @Input()
+  isInvalid?: boolean;
 
-  @Input() doFloat?: boolean;
+  @Input()
+  doFloat?: boolean;
 }

@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation,} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'uikit-common-button-cta',
@@ -7,15 +14,21 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEnc
   encapsulation: ViewEncapsulation.None,
 })
 export class ButtonCTAComponent {
-  @Input() isLoading?: boolean|null;
+  @Input()
+  isLoading?: boolean | null;
 
-  @Input() isDisabled?: boolean|null;
+  @Input()
+  isDisabled?: boolean | null;
 
-  @Input() assertLoadingMessage = 'Loading, please wait...';
+  @Input()
+  assertLoadingMessage = 'Loading, please wait...';
 
-  @Input() rounded: 'both'|'bottom'|'top' = 'both';
+  @Input()
+  rounded: 'both' | 'bottom' | 'top' = 'both';
 
-  @Input() type: 'button'|'submit'|'menu'|'reset' = 'button';
+  @Input()
+  type: 'button' | 'submit' | 'menu' | 'reset' = 'button';
 
-  @Output() buttonCTAClick = new EventEmitter();
+  @Output()
+  buttonCTAClick = new EventEmitter();
 }
