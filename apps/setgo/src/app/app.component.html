@@ -18,8 +18,11 @@
 
     <button
       *ngIf="notificationShadeVisibility$ | async as visibility"
-      class="mr-[50px]"
+      class="mr-[46px] w-8 h-8 flex justify-center items-center relative"
       id="notificationShadeToggleButton"
+      [attr.aria-label]="
+        'Du hast ' + notifications.length + ' Benachrichtigungen'
+      "
       (click)="setNotificationShadeVisibility('toggle')"
     >
       <ic-icon
@@ -27,6 +30,11 @@
         aria-hidden="true"
         [icon]="icons.iconOutlineNotifications"
       ></ic-icon>
+      <div
+        *ngIf="notifications.length"
+        @scaleOvershoot
+        class="bg-secondary rounded-full w-2.5 h-2.5 absolute top-0 right-0.5"
+      ></div>
     </button>
   </div>
 

@@ -56,6 +56,7 @@ for (let i = 0; i < 10; i++) {
     Animations.slideFromTop,
     Animations.fade,
     Animations.shrink,
+    Animations.scaleOvershoot,
   ],
 })
 export class AppComponent implements OnInit {
