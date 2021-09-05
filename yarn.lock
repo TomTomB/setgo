@@ -202,6 +202,15 @@
   dependencies:
     tslib "^2.2.0"
 
+"@angular/cdk@^12.2.4":
+  version "12.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-12.2.4.tgz#2d744413d847030f0562c568054db780473c3ef1"
+  integrity sha512-XvdMWz2iJgcSD0fMM9I29i9/XV4/1MTqSPN+c5EIESLXhjhh4o6VFOsKcj4BfrJxO6tadqA0AdGA0AJfP+de/w==
+  dependencies:
+    tslib "^2.2.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@12.2.4":
   version "12.2.4"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-12.2.4.tgz#bf624b5a7ffe6a25429ceb31a553f26195164447"
@@ -2621,6 +2630,11 @@
   version "1.1.10"
   resolved "https://registry.yarnpkg.com/@iconify/icons-ic/-/icons-ic-1.1.10.tgz#fdc3823edf98ffd69035a6968f0905c6637b4a9e"
   integrity sha512-decmjXkGbK7BocYw+T0dDZMOpHqs4JX//aN1+pNbcdjUYu/gK5pir717CoSpX771eCGKmoLWS0VGx0tIC8wqJQ==
+
+"@iconify/icons-mdi@^1.1.25":
+  version "1.1.25"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.1.25.tgz#ba6ac3ede9055bbe5e24ae83d789a4e96aa9d9de"
+  integrity sha512-fU+bXF3hhVPUQ3fNDVvQTpnZT2JGraD6aED2mZZLRPOJVlPHeQZKh6gl7kpkvuKn+eAjuYh972J/DWuko56DTw==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -16052,6 +16066,11 @@ parse5@6.0.1, parse5@^6.0.0, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parseqs@0.0.6:
   version "0.0.6"

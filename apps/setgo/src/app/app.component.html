@@ -13,13 +13,34 @@
     transition-colors
   "
 >
-  <div class="container mx-auto px-3 py-3 md:px-4 flex justify-between">
+  <div
+    class="
+      container
+      mx-auto
+      px-3
+      py-3
+      md:px-4
+      flex
+      justify-between
+      items-center
+    "
+  >
     <span class="tracking-wider text-2xl font-black">SET.GO.</span>
 
     <button
       *ngIf="notificationShadeVisibility$ | async as visibility"
-      class="mr-[46px] w-8 h-8 flex justify-center items-center relative"
+      class="
+        md:mr-[43px]
+        w-10
+        h-10
+        flex
+        justify-center
+        items-center
+        relative
+        rounded-full
+      "
       id="notificationShadeToggleButton"
+      uikitCoreRipple
       [attr.aria-label]="
         'Du hast ' + notifications.length + ' Benachrichtigungen'
       "
@@ -33,7 +54,7 @@
       <div
         *ngIf="notifications.length"
         @scaleOvershoot
-        class="bg-secondary rounded-full w-2.5 h-2.5 absolute top-0 right-0.5"
+        class="bg-secondary rounded-full w-2.5 h-2.5 absolute top-1.5 right-2"
       ></div>
     </button>
   </div>
@@ -60,8 +81,8 @@
       md:w-[350px]
       absolute
       md:left-[unset] md:right-3
-      top-[56px]
-      md:top-[71px]
+      top-[64px]
+      md:top-[78px]
       left-0
       z-20
       origin-top-right
@@ -104,7 +125,7 @@
       class="
         overflow-auto
         md:overflow-overlay
-        h-[calc(100vh-56px)]
+        h-[calc(100vh-64px)]
         md:max-h-[500px] md:min-h-[500px] md:rounded-lg
         transition-colors
         md:shadow-md
@@ -158,10 +179,32 @@
           overflow-hidden
           bg-card-light
           dark:bg-card-dark
-          min-h-[calc(100%-60px)]
+          min-h-[calc(100%-56px)]
+          relative
         "
       >
-        <div class="container mx-auto">
+        <div
+          *ngIf="!notifications.length"
+          class="
+            flex
+            justify-center
+            items-center
+            flex-col
+            absolute
+            top-1/2
+            w-full
+            -translate-y-1/2
+          "
+        >
+          <ic-icon
+            class="text-4xl pointer-events-none block mb-1"
+            aria-hidden="true"
+            [icon]="icons.iconPartyPopper"
+          ></ic-icon>
+          <p>Alles erledigt, gut gemacht!</p>
+        </div>
+
+        <div class="container mx-auto" *ngIf="notifications.length">
           <domain-notification-group
             *ngFor="
               let notificationGroup of notifications;
