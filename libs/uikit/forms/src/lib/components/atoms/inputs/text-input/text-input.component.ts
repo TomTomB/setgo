@@ -1,5 +1,12 @@
-import {ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, ViewEncapsulation,} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'uikit-forms-input-text',
@@ -8,15 +15,21 @@ import {FormControl} from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class TextInputComponent {
-  @Input() inputId!: string;
+  @Input()
+  inputId!: string;
 
-  @Input() inputType: 'text'|'password'|'email' = 'text';
+  @Input()
+  inputType: 'text' | 'password' | 'email' = 'text';
 
-  @Input() inputAutocomplete?: string;
+  @Input()
+  inputAutocomplete?: string;
 
-  @Input() inputSpellcheck = false;
+  @Input()
+  inputSpellcheck = false;
 
-  @Input() control = new FormControl();
+  @Input()
+  control = new FormControl();
 
-  @ViewChild('inputRef') nativeInputRef?: ElementRef<HTMLInputElement>;
+  @ViewChild('inputRef')
+  nativeInputRef?: ElementRef<HTMLInputElement>;
 }

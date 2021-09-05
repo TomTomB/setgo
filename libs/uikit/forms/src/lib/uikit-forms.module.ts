@@ -1,9 +1,8 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
-
-import {Atoms, Molecules} from './components';
-import {PIPES} from './pipes';
+import { Atoms, Molecules } from './components';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { PIPES } from './pipes';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule],
@@ -15,5 +14,4 @@ import {PIPES} from './pipes';
     ...PIPES,
   ],
 })
-export class UikitFormsModule {
-}
+export class UikitFormsModule {}

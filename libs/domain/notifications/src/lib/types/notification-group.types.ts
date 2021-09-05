@@ -1,4 +1,4 @@
-import {NotificationMessage} from './notification.types';
+import { NotificationMessage } from './notification.types';
 
 export interface NotificationGroup {
   appletName: string;

@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {NotificationConstants} from '../constants';
-import {SwipeHandlerService} from '.';
+import { Injectable } from '@angular/core';
+import { NotificationConstants } from '../constants';
+import { SwipeHandlerService } from '.';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,9 @@ export class NotificationUiHandlerService {
   }
 
   updateNotificationSwipe(handlerId: string, event: TouchEvent) {
-    const {isScrolling, movementX} = this._swipeHandlerService.updateSwipe(
-        handlerId,
-        event,
+    const { isScrolling, movementX } = this._swipeHandlerService.updateSwipe(
+      handlerId,
+      event,
     );
     const notificationElement = this._getNotificationSwipeElement(handlerId);
 
@@ -39,15 +39,20 @@ export class NotificationUiHandlerService {
   }
 
   endNotificationSwipe(handlerId: string) {
-    const {movementX, pixelPerSecondX} = this._swipeHandlerService.endSwipe(handlerId);
+    const { movementX, pixelPerSecondX } =
+      this._swipeHandlerService.endSwipe(handlerId);
     const notificationElement = this._getNotificationSwipeElement(handlerId);
 
     notificationElement.classList.add('transition-all');
 
-    if (movementX > NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
-        movementX < -NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
-        pixelPerSecondX > NotificationConstants.MIN_VELOCITY_TO_DELETE) {
-      notificationElement.style.transform = `translateX(${movementX < 0 ? '-' : ''}100%)`;
+    if (
+      movementX > NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
+      movementX < -NotificationConstants.MIN_SWIPE_TO_DELETE_LENGTH ||
+      pixelPerSecondX > NotificationConstants.MIN_VELOCITY_TO_DELETE
+    ) {
+      notificationElement.style.transform = `translateX(${
+        movementX < 0 ? '-' : ''
+      }100%)`;
       return true;
     }
 
@@ -61,7 +66,7 @@ export class NotificationUiHandlerService {
 
     if (!handler) {
       throw new Error(
-          `The notification swipe handler with id ${[handlerId]} was not found`,
+        `The notification swipe handler with id ${[handlerId]} was not found`,
       );
     }
 
