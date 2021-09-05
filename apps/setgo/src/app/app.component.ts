@@ -22,6 +22,7 @@ import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
+import iconPartyPopper from '@iconify/icons-mdi/party-popper';
 
 const notifications: NotificationGroup[] = [];
 
@@ -84,6 +85,7 @@ export class AppComponent implements OnInit {
 
   icons: IconCollection = {
     iconOutlineNotifications,
+    iconPartyPopper,
   };
 
   get emailControl() {
