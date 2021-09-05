@@ -1,25 +1,21 @@
-import { LabelComponent } from './label.component';
-import {
-  Meta,
-  Story,
-  componentWrapperDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
+import {componentWrapperDecorator, Meta, moduleMetadata, Story,} from '@storybook/angular';
+
+import {LabelComponent} from './label.component';
 
 export default {
   title: 'Atoms/Label',
   component: LabelComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [],
-    }),
-    componentWrapperDecorator(
-      (story) =>
-        `<div style="margin: 3em; display:flex; justify-content:center">
+  decorators:
+      [
+        moduleMetadata({
+          imports: [],
+        }),
+        componentWrapperDecorator(
+            (story) => `<div style="margin: 3em; display:flex; justify-content:center">
           ${story}
         </div>`,
-    ),
-  ],
+            ),
+      ],
 } as Meta<LabelComponent>;
 
 const Template: Story<LabelComponent> = (args) => ({

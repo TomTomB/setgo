@@ -1,19 +1,23 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NOTIFICATION_GROUP_MOCK } from '../../../mocks';
-import { NotificationComponent } from '../../atoms';
-import { NotificationGroupComponent } from './notification-group.component';
-import { UikitCoreModule } from '@setgo/uikit/core';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {UikitCoreModule} from '@setgo/uikit/core';
+
+import {NOTIFICATION_GROUP_MOCK} from '../../../mocks';
+import {NotificationComponent} from '../../atoms';
+
+import {NotificationGroupComponent} from './notification-group.component';
 
 describe('NotificationGroupComponent', () => {
   let component: NotificationGroupComponent;
   let fixture: ComponentFixture<NotificationGroupComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [NotificationGroupComponent, NotificationComponent],
-      imports: [BrowserAnimationsModule, UikitCoreModule],
-    }).compileComponents();
+    await TestBed
+        .configureTestingModule({
+          declarations: [NotificationGroupComponent, NotificationComponent],
+          imports: [BrowserAnimationsModule, UikitCoreModule],
+        })
+        .compileComponents();
   });
 
   beforeEach(() => {

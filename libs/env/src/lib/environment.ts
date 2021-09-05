@@ -1,4 +1,4 @@
-import { Environment } from '@setgo/types';
+import {Environment} from '@setgo/types';
 
 export const environment: Environment = {
   production: false,

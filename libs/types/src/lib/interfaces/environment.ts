@@ -1,5 +1,5 @@
-import { FirebaseConfig } from './firebase';
-import { Version } from './version';
+import {FirebaseConfig} from './firebase';
+import {Version} from './version';
 
 export interface Environment {
   production: boolean;

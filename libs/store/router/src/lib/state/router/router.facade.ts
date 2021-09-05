@@ -1,11 +1,12 @@
-import * as Selectors from './router.selectors';
-import * as fromReducer from './router.reducer';
-import { BehaviorSubject } from 'rxjs';
-import { Data, Params } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {Injectable} from '@angular/core';
+import {Data, Params} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {BehaviorSubject} from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+import * as fromReducer from './router.reducer';
+import * as Selectors from './router.selectors';
+
+@Injectable({providedIn: 'root'})
 export class RouterFacade {
   private _data$ = new BehaviorSubject<Data>({});
   private _navigationId$ = new BehaviorSubject<number>(-1);

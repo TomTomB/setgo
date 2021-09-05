@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation,} from '@angular/core';
 
 @Component({
   selector: 'uikit-forms-error-message',
@@ -10,4 +6,5 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ErrorMessageComponent {}
+export class ErrorMessageComponent {
+}

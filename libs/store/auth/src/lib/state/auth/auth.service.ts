@@ -1,68 +1,61 @@
-import * as Models from './auth.models';
-import {
-  Auth,
-  authInstance$,
-  createUserWithEmailAndPassword,
-  fetchSignInMethodsForEmail,
-  sendEmailVerification,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  updateEmail,
-  updatePassword,
-} from '@angular/fire/auth';
-import { FirebaseError, FirebaseUser } from '@setgo/types';
-import { Injectable } from '@angular/core';
-import { User, UserCredential } from 'firebase/auth';
-import { from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {Auth, authInstance$, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateEmail, updatePassword,} from '@angular/fire/auth';
+import {FirebaseError, FirebaseUser} from '@setgo/types';
+import {User, UserCredential} from 'firebase/auth';
+import {from} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+import * as Models from './auth.models';
+
+@Injectable({providedIn: 'root'})
 export class AuthService {
   private get _firebaseUser() {
     return authInstance$.pipe(
-      map((user) => {
-        if (!user.currentUser) {
-          const error: FirebaseError = {
-            code: 'auth/not-signed-in',
-            isError: true,
-            message: 'Currently no user is signed in',
-          };
-          throw error;
-        }
-        return user.currentUser;
-      }),
+        map((user) => {
+          if (!user.currentUser) {
+            const error: FirebaseError = {
+              code: 'auth/not-signed-in',
+              isError: true,
+              message: 'Currently no user is signed in',
+            };
+            throw error;
+          }
+          return user.currentUser;
+        }),
     );
   }
 
   constructor(private _firebaseAuth: Auth) {}
 
-  signInWithEmailAndPassword({ body }: Models.SignInWithEmailAndPasswordArgs) {
+  signInWithEmailAndPassword({body}: Models.SignInWithEmailAndPasswordArgs) {
     return from(
-      signInWithEmailAndPassword(this._firebaseAuth, body.email, body.password),
-    ).pipe(
-      map((userCredential) =>
-        this._mapUserCredentialToFirebaseUser(userCredential),
-      ),
-    );
+               signInWithEmailAndPassword(this._firebaseAuth, body.email, body.password),
+               )
+        .pipe(
+            map(
+                (userCredential) => this._mapUserCredentialToFirebaseUser(userCredential),
+                ),
+        );
   }
 
-  fetchSignInMethodsForEmail({ body }: Models.FetchSignInMethodsForEmailArgs) {
+  fetchSignInMethodsForEmail({body}: Models.FetchSignInMethodsForEmailArgs) {
     return from(
-      fetchSignInMethodsForEmail(this._firebaseAuth, body.email),
-    ).pipe(
-      map((methods) => {
-        if (methods.length) {
-          return methods;
-        }
+               fetchSignInMethodsForEmail(this._firebaseAuth, body.email),
+               )
+        .pipe(
+            map((methods) => {
+              if (methods.length) {
+                return methods;
+              }
 
-        const error: FirebaseError = {
-          code: 'auth/user-has-no-sign-in-methods',
-          isError: true,
-          message: 'The user does not have any sign in methods',
-        };
-        throw error;
-      }),
-    );
+              const error: FirebaseError = {
+                code: 'auth/user-has-no-sign-in-methods',
+                isError: true,
+                message: 'The user does not have any sign in methods',
+              };
+              throw error;
+            }),
+        );
   }
 
   signOut() {
@@ -73,65 +66,66 @@ export class AuthService {
     body,
   }: Models.CreateUserWithEmailAndPasswordArgs) {
     return from(
-      createUserWithEmailAndPassword(
-        this._firebaseAuth,
-        body.email,
-        body.password,
-      ),
-    ).pipe(
-      map((userCredential) =>
-        this._mapUserCredentialToFirebaseUser(userCredential),
-      ),
-    );
+               createUserWithEmailAndPassword(
+                   this._firebaseAuth,
+                   body.email,
+                   body.password,
+                   ),
+               )
+        .pipe(
+            map(
+                (userCredential) => this._mapUserCredentialToFirebaseUser(userCredential),
+                ),
+        );
   }
 
-  sendPasswordResetEmail({ body }: Models.SendPasswordResetEmailArgs) {
-    return from(sendPasswordResetEmail(this._firebaseAuth, body.email)).pipe(
-      map(() => null),
-    );
+  sendPasswordResetEmail({body}: Models.SendPasswordResetEmailArgs) {
+    return from(sendPasswordResetEmail(this._firebaseAuth, body.email))
+        .pipe(
+            map(() => null),
+        );
   }
 
   deleteUser() {
     return this._firebaseUser.pipe(
-      switchMap((u) => u.delete()),
-      map(() => null),
+        switchMap((u) => u.delete()),
+        map(() => null),
     );
   }
 
-  getUserIdToken({ body }: Models.GetUserIdTokenArgs) {
+  getUserIdToken({body}: Models.GetUserIdTokenArgs) {
     return this._firebaseUser.pipe(
-      switchMap((u) => u.getIdToken(body.forceRefresh)),
+        switchMap((u) => u.getIdToken(body.forceRefresh)),
     );
   }
 
   reloadUser() {
     return this._firebaseUser.pipe(
-      switchMap((u) => u.reload()),
-      switchMap(() =>
-        this._firebaseUser.pipe(
-          map((user) => this._mapUserToFirebaseUser(user)),
-        ),
-      ),
+        switchMap((u) => u.reload()),
+        switchMap(
+            () => this._firebaseUser.pipe(
+                map((user) => this._mapUserToFirebaseUser(user)),
+                ),
+            ),
     );
   }
 
   sendUserEmailVerification() {
-    return this._firebaseUser
-      .pipe(switchMap((u) => sendEmailVerification(u)))
-      .pipe(map(() => null));
+    return this._firebaseUser.pipe(switchMap((u) => sendEmailVerification(u)))
+        .pipe(map(() => null));
   }
 
-  updateUserEmail({ body }: Models.UpdateUserEmailArgs) {
+  updateUserEmail({body}: Models.UpdateUserEmailArgs) {
     return this._firebaseUser.pipe(
-      switchMap((u) => updateEmail(u, body.email)),
-      map(() => null),
+        switchMap((u) => updateEmail(u, body.email)),
+        map(() => null),
     );
   }
 
-  updateUserPassword({ body }: Models.UpdateUserPasswordArgs) {
+  updateUserPassword({body}: Models.UpdateUserPasswordArgs) {
     return this._firebaseUser.pipe(
-      switchMap((u) => updatePassword(u, body.password)),
-      map(() => null),
+        switchMap((u) => updatePassword(u, body.password)),
+        map(() => null),
     );
   }
 
