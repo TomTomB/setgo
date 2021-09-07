@@ -10,11 +10,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconCollection } from '@setgo/uikit/core';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
-import {
-  NotificationGroup,
-  NotificationMessage,
-  trackByNotificationGroup,
-} from '@setgo/domain/notifications';
+import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '@setgo/domain/notifications';
 import { Observable } from 'rxjs';
 import { ServiceWorkerFacade } from '@setgo/store/service-worker';
 import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
@@ -22,30 +18,6 @@ import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
-import iconPartyPopper from '@iconify/icons-mdi/party-popper';
-
-const notifications: NotificationGroup[] = [];
-
-for (let i = 0; i < 10; i++) {
-  notifications.push({
-    appletName: `Updater (${i})`,
-    id: i.toString(),
-    messages: [
-      {
-        timestamp: Date.now(),
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        title: 'Ein Update steht zur Verfügung',
-        id: `${i}_0`,
-      },
-      {
-        timestamp: Date.now(),
-        body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        title: 'Update installiert',
-        id: `${i}_1`,
-      },
-    ],
-  });
-}
 
 @Component({
   selector: 'setgo-root',
@@ -54,10 +26,8 @@ for (let i = 0; i < 10; i++) {
   encapsulation: ViewEncapsulation.None,
   animations: [
     Animations.growShrink,
-    Animations.slideFromTop,
-    Animations.fade,
-    Animations.shrink,
     Animations.scaleOvershoot,
+    Animations.awaitInner,
   ],
 })
 export class AppComponent implements OnInit {
@@ -79,14 +49,10 @@ export class AppComponent implements OnInit {
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
-  notifications = notifications;
-
-  trackByNotificationGroupFn = trackByNotificationGroup;
-
   icons: IconCollection = {
     iconOutlineNotifications,
-    iconPartyPopper,
   };
+  notifications = NOTIFICATION_GROUP_WITH_MESSAGES_MOCK;
 
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
@@ -106,6 +72,10 @@ export class AppComponent implements OnInit {
 
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;
+  }
+
+  setNotificationShadeVisibility(uiAction: UiTriggerAction) {
+    this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
   }
 
   update() {
@@ -142,34 +112,5 @@ export class AppComponent implements OnInit {
         document.documentElement.classList.remove('dark');
       }
     }
-  }
-
-  setNotificationShadeVisibility(uiAction: UiTriggerAction) {
-    this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
-  }
-
-  clearAllNotifications() {
-    this.notifications = [];
-    this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
-  }
-
-  deleteNotification(
-    notificationGroup: NotificationGroup,
-    notificationMessage: NotificationMessage,
-  ) {
-    notificationGroup.messages = notificationGroup.messages.filter(
-      (m) => m.id !== notificationMessage.id,
-    );
-    if (!notificationGroup.messages.length) {
-      this.notifications = this.notifications.filter(
-        (group) => group.id !== notificationGroup.id,
-      );
-    }
-  }
-
-  deleteNotificationGroup(notificationGroup: NotificationGroup) {
-    this.notifications = this.notifications.filter(
-      (group) => group.id !== notificationGroup.id,
-    );
   }
 }

@@ -1,0 +1,164 @@
+<div class="md:container w-full mx-auto relative">
+  <div
+    *ngIf="(notificationShadeVisibility$ | async) === 'open'"
+    @slideFromTop
+    class="
+      w-full
+      md:w-[350px]
+      absolute
+      md:left-[unset] md:right-3
+      top-[64px]
+      md:top-[78px]
+      left-0
+      z-20
+      origin-top-right
+    "
+    role="dialog"
+    aria-labelledby="notificationShadeHeader"
+    uikitCoreClickOutside
+    (clickOutside)="setNotificationShadeVisibility('close')"
+    [clickOutsideIgnoreList]="['notificationShadeToggleButton']"
+    cdkTrapFocus
+  >
+    <div
+      class="
+        w-8
+        overflow-hidden
+        hidden
+        md:inline-block
+        absolute
+        top-[-18px]
+        right-12
+      "
+      aria-hidden="true"
+    >
+      <div
+        class="
+          h-5
+          w-5
+          bg-toolbar-light
+          dark:bg-toolbar-dark
+          rotate-45
+          transform
+          origin-bottom-left
+          rounded-md
+          bg-opacity-90
+          dark:bg-opacity-90
+        "
+      ></div>
+    </div>
+
+    <div
+      class="
+        overflow-auto
+        md:overflow-overlay
+        h-[calc(100vh-64px)]
+        md:max-h-[500px] md:min-h-[500px] md:rounded-lg
+        transition-colors
+        md:shadow-md
+      "
+    >
+      <div
+        class="
+          bg-toolbar-light
+          dark:bg-toolbar-dark
+          bg-opacity-90
+          dark:bg-opacity-90
+          backdrop-blur-md
+          top-0
+          sticky
+          z-10
+          overflow-hidden
+        "
+      >
+        <div
+          class="
+            container
+            mx-auto
+            grid grid-cols-[1fr,auto]
+            gap-2
+            px-3
+            md:px-4
+            pt-4
+            pb-4
+            items-center
+          "
+        >
+          <h3
+            id="notificationShadeHeader"
+            class="font-bold text-base tracking-wide"
+          >
+            Benachrichtigungen
+          </h3>
+          <button
+            *ngIf="notifications.length"
+            @fade
+            class="
+              text-xs
+              px-3
+              py-1
+              bg-card-light
+              dark:bg-card-dark
+              rounded-lg
+              hover:brightness-110
+              focus-visible:brightness-110
+              active:brightness-90
+              transition-all
+            "
+            aria-label="Alle Benachrichigungen löschen"
+            (click)="clearAllNotifications()"
+          >
+            Alle löschen
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="
+          overflow-hidden
+          bg-card-light
+          dark:bg-card-dark
+          min-h-[calc(100%-56px)]
+          relative
+        "
+      >
+        <div
+          *ngIf="!notifications.length"
+          class="
+            flex
+            justify-center
+            items-center
+            flex-col
+            absolute
+            top-1/2
+            w-full
+            -translate-y-1/2
+          "
+        >
+          <ic-icon
+            class="text-4xl pointer-events-none block mb-1"
+            aria-hidden="true"
+            [icon]="icons.iconPartyPopper"
+          ></ic-icon>
+          <p>Alles erledigt, gut gemacht!</p>
+        </div>
+
+        <div class="container mx-auto" *ngIf="notifications.length">
+          <domain-notification-group
+            *ngFor="
+              let notificationGroup of notifications;
+              let i = index;
+              trackBy: trackByNotificationGroupFn
+            "
+            class="block"
+            [notificationGroup]="notificationGroup"
+            [showTopHorizontalLine]="i !== 0"
+            (deleteNotification)="deleteNotification(notificationGroup, $event)"
+            (deleteNotificationGroup)="deleteNotificationGroup($event)"
+            @shrink
+          ></domain-notification-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

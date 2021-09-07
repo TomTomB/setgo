@@ -2,10 +2,12 @@ import { Animations } from '@setgo/uikit/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { IconCollection } from '@setgo/uikit/core';
@@ -37,6 +39,9 @@ export class NotificationGroupComponent implements OnInit {
 
   @Output()
   deleteNotification = new EventEmitter<NotificationMessage>();
+
+  @ViewChild('deleteBtn')
+  deleteBtnRef?: ElementRef<HTMLButtonElement>;
 
   trackByNotificationFn = trackByNotification;
 
@@ -87,6 +92,14 @@ export class NotificationGroupComponent implements OnInit {
     if (shouldRemoveNotificationGroup) {
       this.deleteNotificationGroup.emit(this.notificationGroup);
     }
+  }
+
+  focusDelete() {
+    if (!this.deleteBtnRef?.nativeElement) {
+      throw new Error('Notification group delete button ref is falsy');
+    }
+
+    this.deleteBtnRef.nativeElement.focus();
   }
 
   private _assertInputsAreProvided() {

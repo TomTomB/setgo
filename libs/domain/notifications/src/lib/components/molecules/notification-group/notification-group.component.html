@@ -34,8 +34,15 @@
         focus-visible:opacity-100
         transition-opacity
       "
-      aria-label="Alle Benachrichigung der Gruppe löschen"
+      [attr.aria-label]="
+        'Alle Benachrichigungen (' +
+        notificationGroup.messages.length +
+        ') in der Gruppe (' +
+        notificationGroup.appletName +
+        ') löschen'
+      "
       (click)="deleteNotificationGroup.emit(notificationGroup)"
+      #deleteBtn
     >
       <ic-icon aria-hidden="true" [icon]="icons.iconClose"></ic-icon>
     </button>

@@ -9,3 +9,5 @@ export * from './lib/utils';
 export { NotificationComponent } from './lib/components/atoms';
 
 export { NotificationGroupComponent } from './lib/components/molecules';
+
+export { NotificationShadeComponent } from './lib/components/organisms';

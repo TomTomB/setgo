@@ -1,11 +1,12 @@
+import { A11yModule } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import { DIRECTIVES } from './directives';
 import { IconModule } from '@visurel/iconify-angular';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-  imports: [CommonModule, IconModule],
+  imports: [A11yModule, CommonModule, IconModule],
   declarations: [...DIRECTIVES],
-  exports: [...DIRECTIVES, IconModule],
+  exports: [...DIRECTIVES, A11yModule, IconModule],
 })
 export class UikitCoreModule {}
