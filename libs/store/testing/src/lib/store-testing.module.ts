@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
@@ -48,6 +49,14 @@ import { provideStorage } from '@angular/fire/storage';
       return performance;
     }),
     CommonModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+
     EffectsModule.forRoot([]),
     StoreModule.forRoot(
       {},
