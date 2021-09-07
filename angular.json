@@ -74,7 +74,8 @@
               "libs/core/src/**/*.ts",
               "libs/core/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -115,7 +116,8 @@
               "libs/domain/notifications/src/**/*.ts",
               "libs/domain/notifications/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -187,7 +189,8 @@
               "libs/env/src/**/*.ts",
               "libs/env/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -231,7 +234,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/firebase/**/*.ts"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -266,7 +270,8 @@
             "lintFilePatterns": [
               "apps/libs-e2e/domain/notifications-e2e/**/*.{js,ts}"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -291,7 +296,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/libs-e2e/uikit/common-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -316,7 +322,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/libs-e2e/uikit/forms-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -420,7 +427,8 @@
               "apps/setgo/src/**/*.ts",
               "apps/setgo/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -529,7 +537,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/setgo-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -570,7 +579,8 @@
               "libs/store/auth/src/**/*.ts",
               "libs/store/auth/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -611,7 +621,8 @@
               "libs/store/router/src/**/*.ts",
               "libs/store/router/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -652,7 +663,8 @@
               "libs/store/service-worker/src/**/*.ts",
               "libs/store/service-worker/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -693,7 +705,8 @@
               "libs/store/testing/src/**/*.ts",
               "libs/store/testing/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -734,7 +747,8 @@
               "libs/store/ui/shell/src/**/*.ts",
               "libs/store/ui/shell/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -775,7 +789,8 @@
               "libs/types/src/**/*.ts",
               "libs/types/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -816,7 +831,8 @@
               "libs/uikit/common/src/**/*.ts",
               "libs/uikit/common/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",
@@ -888,7 +904,8 @@
               "libs/uikit/core/src/**/*.ts",
               "libs/uikit/core/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -929,7 +946,8 @@
               "libs/uikit/forms/src/**/*.ts",
               "libs/uikit/forms/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
           "builder": "@nrwl/storybook:storybook",

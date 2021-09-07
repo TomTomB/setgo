@@ -1,5 +1,5 @@
 {
-  "name": "@setgo/uikit-forms",
+  "name": "@setgo/uikit/forms",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",
