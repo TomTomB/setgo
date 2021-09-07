@@ -38,6 +38,9 @@
         items-center
         relative
         rounded-full
+        focus-visible:bg-ripple-light
+        dark:focus-visible:bg-ripple-dark
+        transition-colors
       "
       id="notificationShadeToggleButton"
       uikitCoreRipple
@@ -54,7 +57,16 @@
       <div
         *ngIf="notifications.length"
         @scaleOvershoot
-        class="bg-secondary rounded-full w-2.5 h-2.5 absolute top-1.5 right-2"
+        class="
+          bg-secondary
+          rounded-full
+          w-2.5
+          h-2.5
+          absolute
+          top-1.5
+          right-2
+          pointer-events-none
+        "
       ></div>
     </button>
   </div>

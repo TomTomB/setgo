@@ -11,9 +11,11 @@ import { DomainNotificationsModule } from '@setgo/domain/notifications';
 import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UikitAssetsModule } from '@setgo/uikit/assets';
 import { UikitCommonModule } from '@setgo/uikit/common';
 import { UikitCoreModule } from '@setgo/uikit/core';
 import { UikitFormsModule } from '@setgo/uikit/forms';
+import { UikitStylesModule } from '@setgo/uikit/styles';
 import { environment } from '@setgo/env';
 
 @NgModule({
@@ -27,9 +29,11 @@ import { environment } from '@setgo/env';
     NgRxModule,
     NgRxToolkitModule,
     SentryModule,
+    UikitAssetsModule,
     UikitCommonModule,
     UikitCoreModule,
     UikitFormsModule,
+    UikitStylesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
