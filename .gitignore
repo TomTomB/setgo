@@ -43,3 +43,4 @@ docker-sa.json
 .firebase
 migrations.json
 ngsw-config.json
+.eslintcache
