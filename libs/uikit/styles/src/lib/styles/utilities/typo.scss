@@ -4,48 +4,56 @@
     font-weight: unset;
   }
 }
+
 .font-extralight {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 200;
     font-weight: unset;
   }
 }
+
 .font-light {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 300;
     font-weight: unset;
   }
 }
+
 .font-normal {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 400;
     font-weight: unset;
   }
 }
+
 .font-medium {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 500;
     font-weight: unset;
   }
 }
+
 .font-semibold {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 600;
     font-weight: unset;
   }
 }
+
 .font-bold {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 700;
     font-weight: unset;
   }
 }
+
 .font-extrabold {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 800;
     font-weight: unset;
   }
 }
+
 .font-black {
   @supports (font-variation-settings: normal) {
     font-variation-settings: 'wght' 900;
