@@ -79,6 +79,9 @@
     "types": {
       "tags": []
     },
+    "uikit-assets": {
+      "tags": []
+    },
     "uikit-common": {
       "tags": []
     },
@@ -86,6 +89,9 @@
       "tags": []
     },
     "uikit-forms": {
+      "tags": []
+    },
+    "uikit-styles": {
       "tags": []
     }
   }

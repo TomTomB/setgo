@@ -60,6 +60,10 @@ module.exports = {
           dark: 'hsla(0, 0%, 100%, 0.3)',
           'dark-hover': '#fff',
         },
+        ripple: {
+          light: 'rgba(155, 155, 155, 0.1)',
+          dark: 'rgba(145, 145, 145, 0.1)',
+        },
       },
     },
   },

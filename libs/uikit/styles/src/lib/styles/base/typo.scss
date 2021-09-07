@@ -1,0 +1,28 @@
+body {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  @apply text-black dark:text-white;
+}
+
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: 'Raleway VF', Arial, Helvetica, sans-serif;
+  }
+}
+
+h1 {
+  @apply text-3xl uppercase tracking-wider font-black transition-colors;
+}
+h2 {
+  @apply text-xl transition-colors;
+}
+h3 {
+  @apply text-lg transition-colors;
+}
+a {
+  @apply underline;
+}
+
+p {
+  @apply max-w-prose transition-colors ;
+}
+

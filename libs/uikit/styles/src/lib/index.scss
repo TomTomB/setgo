@@ -1,0 +1,20 @@
+@tailwind base;
+
+@layer base {
+  @import './styles/base/font-faces';
+  @import './styles/base/typo';
+  @import './styles/base/scrolling';
+}
+
+@import './styles/base/reset';
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer utilities {
+  @import './styles/utilities/typo';
+  @import './styles/utilities/scrolling';
+}
+
+@import './styles/components/native/ripple';

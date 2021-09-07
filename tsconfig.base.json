@@ -26,9 +26,11 @@
       "@setgo/store/testing": ["libs/store/testing/src/index.ts"],
       "@setgo/store/ui/shell": ["libs/store/ui/shell/src/index.ts"],
       "@setgo/types": ["libs/types/src/index.ts"],
+      "@setgo/uikit/assets": ["libs/uikit/assets/src/index.ts"],
       "@setgo/uikit/common": ["libs/uikit/common/src/index.ts"],
       "@setgo/uikit/core": ["libs/uikit/core/src/index.ts"],
-      "@setgo/uikit/forms": ["libs/uikit/forms/src/index.ts"]
+      "@setgo/uikit/forms": ["libs/uikit/forms/src/index.ts"],
+      "@setgo/uikit/styles": ["libs/uikit/styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

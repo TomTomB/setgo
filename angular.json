@@ -345,12 +345,18 @@
             "tsConfig": "apps/setgo/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/setgo/src/favicon.ico",
-              "apps/setgo/src/assets",
-              "apps/setgo/src/robots.txt",
-              "apps/setgo/src/manifest.webmanifest"
+              {
+                "glob": "**/*",
+                "input": "./libs/uikit/assets/src/lib/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./libs/uikit/assets/src/lib/root",
+                "output": "/"
+              }
             ],
-            "styles": ["apps/setgo/src/styles.scss"],
+            "styles": ["libs/uikit/styles/src/lib/index.scss"],
             "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "apps/setgo/ngsw-config.json"
@@ -794,6 +800,47 @@
         }
       }
     },
+    "uikit-assets": {
+      "projectType": "library",
+      "root": "libs/uikit/assets",
+      "sourceRoot": "libs/uikit/assets/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/uikit/assets"],
+          "options": {
+            "project": "libs/uikit/assets/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/uikit/assets/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/uikit/assets/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/uikit/assets"],
+          "options": {
+            "jestConfig": "libs/uikit/assets/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/uikit/assets/src/**/*.ts",
+              "libs/uikit/assets/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "uikit-common": {
       "projectType": "library",
       "root": "libs/uikit/common",
@@ -978,6 +1025,47 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      }
+    },
+    "uikit-styles": {
+      "projectType": "library",
+      "root": "libs/uikit/styles",
+      "sourceRoot": "libs/uikit/styles/src",
+      "prefix": "uikit-styles",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/uikit/styles"],
+          "options": {
+            "project": "libs/uikit/styles/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/uikit/styles/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/uikit/styles/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/uikit/styles"],
+          "options": {
+            "jestConfig": "libs/uikit/styles/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/uikit/styles/src/**/*.ts",
+              "libs/uikit/styles/src/**/*.html"
+            ]
           }
         }
       }
