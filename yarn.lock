@@ -4617,10 +4617,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@trellisorg/ngrx-universal-rehydrate@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@trellisorg/ngrx-universal-rehydrate/-/ngrx-universal-rehydrate-0.0.7.tgz#3e807378f25e4d0e700a4d4a820ec7ba7cebbac5"
-  integrity sha512-xW+mcg0i9PJfAk2rdT120jBlpsgp4WhZKxrD/4mnXRmirtbvt24QYuHM/bbpDi86Q6j0O6EMWVn0GFRcelttfQ==
+"@trellisorg/ngrx-universal-rehydrate@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@trellisorg/ngrx-universal-rehydrate/-/ngrx-universal-rehydrate-0.0.10.tgz#a1fb27015e7c9895637d0a48b37f49eb9112c87c"
+  integrity sha512-QlAacPCRo7ytONZ4GTp9MS62CywCf82iy1lNDLmh3g1lg9YFBrD8kQHoaevZg7RSl+uc07A081CZScNhJdFVtQ==
   dependencies:
     tslib "^2.0.0"
 
