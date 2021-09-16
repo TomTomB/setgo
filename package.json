@@ -133,7 +133,7 @@
     "inquirer": "^8.1.2",
     "inquirer-autocomplete-prompt": "^1.4.0",
     "jest": "^27.1.0",
-    "jest-preset-angular": "9.0.7",
+    "jest-preset-angular": "10.0.0",
     "jsonc-parser": "^3.0.0",
     "ng-packagr": "12.2.1",
     "open": "^8.2.1",
