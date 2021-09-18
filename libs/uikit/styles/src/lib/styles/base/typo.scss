@@ -1,6 +1,6 @@
 body {
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  @apply text-black dark:text-white;
+  @apply text-text-light-1 dark:text-text-dark-1;
 }
 
 @supports (font-variation-settings: normal) {
@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  @apply text-3xl uppercase tracking-wider font-black transition-colors;
+  @apply text-3xl tracking-wider font-black transition-colors text-text-light-1 dark:text-text-dark-1;
 }
 h2 {
   @apply text-xl transition-colors;

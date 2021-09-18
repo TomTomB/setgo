@@ -4,6 +4,10 @@
   @import './styles/base/font-faces';
   @import './styles/base/typo';
   @import './styles/base/scrolling';
+
+  hr {
+    @apply border-border-light dark:border-border-dark;
+  }
 }
 
 @import './styles/base/reset';

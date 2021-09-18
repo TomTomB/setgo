@@ -6,7 +6,7 @@
   #notification
 >
   <div class="grid grid-cols-[1fr,auto]">
-    <p class="text-xs dark:text-gray-400">
+    <p class="text-xs text-text-light-2 dark:text-text-dark-2">
       {{ notificationMessage.timestamp | date }}
     </p>
     <button
@@ -17,7 +17,6 @@
         text-xs
         group-hover:opacity-100
         focus-visible:opacity-100
-        dark:text-gray-400
         transition-opacity
       "
       aria-label="Benachrichigung löschen"

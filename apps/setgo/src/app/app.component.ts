@@ -103,6 +103,10 @@ export class AppComponent implements OnInit {
       } else {
         document.documentElement.classList.remove('dark');
       }
+
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', this._themeEventHandler);
     } else {
       window.localStorage.setItem('theme', theme);
 
@@ -111,6 +115,20 @@ export class AppComponent implements OnInit {
       } else {
         document.documentElement.classList.remove('dark');
       }
+    }
+  }
+
+  private _themeEventHandler(event: MediaQueryListEvent) {
+    const currentHardTheme = window.localStorage.getItem('theme');
+
+    if (currentHardTheme) {
+      return;
+    }
+
+    if (event.matches) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }
 }

@@ -11,6 +11,17 @@ function guessProductionMode() {
 
 process.env.TAILWIND_MODE = guessProductionMode() ? 'build' : 'watch';
 
+const BRAND_PRIMARY_HUE = 215;
+const BRAND_PRIMARY_SATURATION = 100;
+const BRAND_PRIMARY_LIGHTNESS = 50;
+
+const BRAND_ACCENT_HUE = 20;
+const BRAND_ACCENT_SATURATION = 100;
+const BRAND_ACCENT_LIGHTNESS = 50;
+
+const makeHsl = (hue, saturation, lightness) =>
+  `hsl(${hue} ${saturation}% ${lightness}%)`;
+
 module.exports = {
   mode: 'jit',
   purge: ['./apps/**/*.html', './libs/**/*.html'],
@@ -18,51 +29,121 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#42ced5',
-          light: '#7fffff',
-          dark: '#009ca4',
+        brand: {
+          primary: {
+            light: {
+              DEFAULT: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION,
+                BRAND_PRIMARY_LIGHTNESS,
+              ),
+              dark: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION,
+                BRAND_PRIMARY_LIGHTNESS - 20,
+              ),
+              light: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION,
+                BRAND_PRIMARY_LIGHTNESS + 25,
+              ),
+            },
+            dark: {
+              DEFAULT: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION - 33,
+                BRAND_PRIMARY_LIGHTNESS,
+              ),
+              dark: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION - 33,
+                BRAND_PRIMARY_LIGHTNESS - 15,
+              ),
+              light: makeHsl(
+                BRAND_PRIMARY_HUE,
+                BRAND_PRIMARY_SATURATION - 33,
+                BRAND_PRIMARY_LIGHTNESS + 15,
+              ),
+            },
+          },
+          accent: {
+            light: {
+              DEFAULT: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION,
+                BRAND_ACCENT_LIGHTNESS,
+              ),
+              dark: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION,
+                BRAND_ACCENT_LIGHTNESS - 20,
+              ),
+              light: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION,
+                BRAND_ACCENT_LIGHTNESS + 25,
+              ),
+            },
+            dark: {
+              DEFAULT: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION - 15,
+                BRAND_ACCENT_LIGHTNESS + 15,
+              ),
+              dark: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION - 33,
+                BRAND_ACCENT_LIGHTNESS + 5,
+              ),
+              light: makeHsl(
+                BRAND_ACCENT_HUE,
+                BRAND_ACCENT_SATURATION - 33,
+                BRAND_ACCENT_LIGHTNESS + 25,
+              ),
+            },
+          },
         },
-        secondary: {
-          DEFAULT: '#e91e63',
-          light: '#ff6090',
-          dark: '#b0003a',
+        surface: {
+          light: {
+            1: makeHsl(BRAND_PRIMARY_HUE, 25, 85),
+            2: makeHsl(BRAND_PRIMARY_HUE, 30, 95),
+            3: makeHsl(BRAND_PRIMARY_HUE, 25, 97.5),
+            4: makeHsl(BRAND_PRIMARY_HUE, 100, 100),
+            5: makeHsl(BRAND_PRIMARY_HUE, 0, 100),
+          },
+          dark: {
+            1: makeHsl(BRAND_PRIMARY_HUE, 10, 12),
+            2: makeHsl(BRAND_PRIMARY_HUE, 10, 15),
+            3: makeHsl(BRAND_PRIMARY_HUE, 10, 17.5),
+            4: makeHsl(BRAND_PRIMARY_HUE, 10, 20),
+            5: makeHsl(BRAND_PRIMARY_HUE, 10, 25),
+          },
+        },
+        text: {
+          light: {
+            1: makeHsl(BRAND_PRIMARY_HUE, BRAND_PRIMARY_SATURATION, 10),
+            2: makeHsl(BRAND_PRIMARY_HUE, 10, 30),
+          },
+          dark: {
+            1: makeHsl(BRAND_PRIMARY_HUE, 15, 85),
+            2: makeHsl(BRAND_PRIMARY_HUE, 5, 65),
+          },
         },
         error: {
           light: '#b00020',
           dark: '#cf6679',
         },
-        background: {
-          light: '#ececec',
-          dark: '#303030',
-        },
-        toolbar: {
-          light: '#f5f5f5',
-          dark: '#212121',
-        },
-        card: {
-          light: '#fff',
-          dark: '#424242',
-          'light-border': '#fdfdfd',
-          'dark-border': '#383838',
-        },
-        footer: {
-          light: '#ececec',
-          dark: '#2b2b2b',
-        },
-        chip: {
-          light: '#ececec',
-          dark: '#5a5a5a',
-        },
         border: {
           light: 'rgba(0, 0, 0, 0.12)',
           'light-hover': 'rgba(0, 0, 0, 0.87)',
-          dark: 'hsla(0, 0%, 100%, 0.3)',
+          dark: 'hsla(0, 0%, 100%, 0.1)',
           'dark-hover': '#fff',
         },
-        ripple: {
-          light: 'rgba(155, 155, 155, 0.1)',
-          dark: 'rgba(145, 145, 145, 0.1)',
+        elements: {
+          ripple: {
+            light: 'rgba(155, 155, 155, 0.1)',
+            dark: 'rgba(145, 145, 145, 0.1)',
+          },
         },
       },
     },

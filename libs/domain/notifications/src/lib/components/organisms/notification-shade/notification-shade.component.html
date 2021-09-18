@@ -19,6 +19,7 @@
     (clickOutside)="setNotificationShadeVisibility('close')"
     [clickOutsideIgnoreList]="['notificationShadeToggleButton']"
     cdkTrapFocus
+    #notificationShade
   >
     <div
       class="
@@ -36,8 +37,8 @@
         class="
           h-5
           w-5
-          bg-toolbar-light
-          dark:bg-toolbar-dark
+          bg-surface-light-2
+          dark:bg-surface-dark-2
           rotate-45
           transform
           origin-bottom-left
@@ -60,8 +61,8 @@
     >
       <div
         class="
-          bg-toolbar-light
-          dark:bg-toolbar-dark
+          bg-surface-light-2
+          dark:bg-surface-dark-2
           bg-opacity-90
           dark:bg-opacity-90
           backdrop-blur-md
@@ -97,8 +98,8 @@
               text-xs
               px-3
               py-1
-              bg-card-light
-              dark:bg-card-dark
+              bg-surface-light-3
+              dark:bg-surface-dark-3
               rounded-lg
               hover:brightness-110
               focus-visible:brightness-110
@@ -116,8 +117,8 @@
       <div
         class="
           overflow-hidden
-          bg-card-light
-          dark:bg-card-dark
+          bg-surface-light-3
+          dark:bg-surface-dark-3
           min-h-[calc(100%-56px)]
           relative
         "
@@ -143,7 +144,7 @@
           <p>Alles erledigt, gut gemacht!</p>
         </div>
 
-        <div class="container mx-auto" *ngIf="notifications.length">
+        <div class="container mx-auto pb-8" *ngIf="notifications.length">
           <domain-notification-group
             *ngFor="
               let notificationGroup of notifications;
@@ -158,6 +159,29 @@
             @shrink
           ></domain-notification-group>
         </div>
+
+        <button
+          type="button"
+          aria-label="Benachrichtigungscenter schließen"
+          class="
+            p-2
+            fixed
+            bottom-3
+            w-[75%]
+            max-w-[300px]
+            left-1/2
+            -translate-x-1/2
+            md:sr-only
+            active:scale-90
+            transition-transform
+          "
+          (touchstart)="startHandleSwipe($event)"
+          (touchmove)="updateHandleSwipe($event)"
+          (touchend)="endHandleSwipe()"
+          (click)="setNotificationShadeVisibility('close')"
+        >
+          <div class="bg-black dark:bg-white h-1 w-full rounded-full"></div>
+        </button>
       </div>
     </div>
   </div>

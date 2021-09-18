@@ -26,11 +26,11 @@ const Template: Story<CardComponent> = (args) => ({
   props: args,
   template: `
     <uikit-common-card> 
-      <ng-container card-header> 
+      <ng-container cardHeader> 
         <h1>Some Card Header</h1>
         <p>Some Card lorem content</p>
       </ng-container>
-      <ng-container card-body> 
+      <ng-container cardBody> 
         <p style="padding: 2rem 0">Here comes the body</p>
       </ng-container> 
     </uikit-common-card>
