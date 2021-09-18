@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   HostBinding,
   Input,
-  Output,
   ViewEncapsulation,
 } from '@angular/core';
 

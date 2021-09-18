@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
-import { NgrxUniversalRehydrateModule } from '@trellisorg/ngrx-universal-rehydrate';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterModule } from '@setgo/store/router';
@@ -27,7 +26,6 @@ import { TransferState } from '@angular/platform-browser';
       },
     ),
     EffectsModule.forRoot([]),
-    NgrxUniversalRehydrateModule.forRoot({}),
     StoreAuthModule,
     StoreRouterModule,
     StoreServiceWorkerModule,
