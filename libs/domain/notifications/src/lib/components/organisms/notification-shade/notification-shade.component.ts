@@ -2,9 +2,11 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   HostListener,
   OnInit,
   QueryList,
+  ViewChild,
   ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
@@ -14,6 +16,7 @@ import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '../../../mocks';
 import { NotificationGroup, NotificationMessage } from '../../../types';
 import { NotificationGroupComponent } from '../../molecules';
 import { Observable } from 'rxjs';
+import { SwipeHandlerService } from '../../../services/swipe-handler.service';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction } from '@setgo/types';
 import { trackByNotificationGroup } from '../../../utils';
@@ -27,6 +30,8 @@ import iconPartyPopper from '@iconify/icons-mdi/party-popper';
   animations: [Animations.slideFromTop, Animations.fade, Animations.shrink],
 })
 export class NotificationShadeComponent implements OnInit, AfterViewInit {
+  private _swipeHandlerId: string | null = null;
+
   icons: IconCollection = {
     iconPartyPopper,
   };
@@ -39,7 +44,13 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   @ViewChildren(NotificationGroupComponent)
   notificationGroups?: QueryList<NotificationGroupComponent>;
 
-  constructor(private _uiShellFacade: UiShellFacade) {}
+  @ViewChild('notificationShade')
+  notificationShadeElementRef?: ElementRef<HTMLDivElement>;
+
+  constructor(
+    private _uiShellFacade: UiShellFacade,
+    private _swipeHandlerService: SwipeHandlerService,
+  ) {}
 
   ngOnInit(): void {
     this.notificationShadeVisibility$ =
@@ -84,6 +95,62 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     this.notifications = this.notifications.filter(
       (group) => group.id !== notificationGroup.id,
     );
+  }
+
+  startHandleSwipe(event: TouchEvent) {
+    if (!this.notificationShadeElementRef?.nativeElement) {
+      return;
+    }
+
+    this._swipeHandlerId = this._swipeHandlerService.startSwipe(event);
+    this.notificationShadeElementRef.nativeElement.classList.remove(
+      'transition-all',
+    );
+  }
+
+  updateHandleSwipe(event: TouchEvent) {
+    if (
+      !this.notificationShadeElementRef?.nativeElement ||
+      !this._swipeHandlerId
+    ) {
+      return;
+    }
+
+    const { movementY } = this._swipeHandlerService.updateSwipe(
+      this._swipeHandlerId,
+      event,
+    );
+    event.preventDefault();
+
+    if (movementY < 0) {
+      return;
+    }
+
+    this.notificationShadeElementRef.nativeElement.style.transform = `translateY(${
+      movementY * -1
+    }px)`;
+  }
+
+  endHandleSwipe() {
+    if (
+      !this.notificationShadeElementRef?.nativeElement ||
+      !this._swipeHandlerId
+    ) {
+      return;
+    }
+
+    const { movementY, pixelPerSecondY } = this._swipeHandlerService.endSwipe(
+      this._swipeHandlerId,
+    );
+
+    if (movementY > 250 || pixelPerSecondY > 50) {
+      this.setNotificationShadeVisibility('close');
+    } else {
+      this.notificationShadeElementRef.nativeElement.classList.add(
+        'transition-all',
+      );
+      this.notificationShadeElementRef.nativeElement.style.transform = `translateY(0)`;
+    }
   }
 
   private _setupFocus() {

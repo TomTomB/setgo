@@ -12,3 +12,7 @@ p.firebase-emulator-warning {
 html.dark {
   color-scheme: dark;
 }
+
+.cdk-visually-hidden {
+  @apply sr-only;
+}

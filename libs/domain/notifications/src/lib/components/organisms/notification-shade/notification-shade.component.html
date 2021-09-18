@@ -19,6 +19,7 @@
     (clickOutside)="setNotificationShadeVisibility('close')"
     [clickOutsideIgnoreList]="['notificationShadeToggleButton']"
     cdkTrapFocus
+    #notificationShade
   >
     <div
       class="
@@ -143,7 +144,7 @@
           <p>Alles erledigt, gut gemacht!</p>
         </div>
 
-        <div class="container mx-auto" *ngIf="notifications.length">
+        <div class="container mx-auto pb-8" *ngIf="notifications.length">
           <domain-notification-group
             *ngFor="
               let notificationGroup of notifications;
@@ -158,6 +159,29 @@
             @shrink
           ></domain-notification-group>
         </div>
+
+        <button
+          type="button"
+          aria-label="Benachrichtigungscenter schließen"
+          class="
+            p-2
+            fixed
+            bottom-3
+            w-[75%]
+            max-w-[300px]
+            left-1/2
+            -translate-x-1/2
+            md:sr-only
+            active:scale-90
+            transition-transform
+          "
+          (touchstart)="startHandleSwipe($event)"
+          (touchmove)="updateHandleSwipe($event)"
+          (touchend)="endHandleSwipe()"
+          (click)="setNotificationShadeVisibility('close')"
+        >
+          <div class="bg-black dark:bg-white h-1 w-full rounded-full"></div>
+        </button>
       </div>
     </div>
   </div>
