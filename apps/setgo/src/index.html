@@ -32,13 +32,15 @@
     />
   </head>
   <body
-    class="h-full dark:bg-background-dark bg-background-light transition-colors"
+    class="h-full dark:bg-surface-dark-1 bg-surface-light-1 transition-colors"
   >
     <setgo-root class="block h-full"></setgo-root>
     <noscript>
       <div
         class="
           z-[1000]
+          dark:bg-background-dark
+          bg-background-light
           fixed
           left-0
           top-0
@@ -47,8 +49,7 @@
           justify-center
           w-full
           h-full
-          dark:bg-background-dark
-          bg-background-light bg-opacity-90
+          bg-opacity-90
           dark:bg-opacity-90
           backdrop-blur-sm
         "
@@ -65,15 +66,15 @@
           <button
             type="submit"
             class="
+              bg-primary
+              active:bg-primary-dark
+              hover:bg-primary-light
+              focus-visible:bg-primary-light
               px-4
               py-3
               text-white
               font-bold
               tracking-wider
-              bg-primary
-              active:bg-primary-dark
-              hover:bg-primary-light
-              focus-visible:bg-primary-light
               rounded-xl
               uppercase
               active:scale-95

@@ -2,8 +2,6 @@
   class="
     cursor-text
     group-focus-within:translate-y-[-110%] group-focus-within:scale-75
-    dark:text-gray-300
-    text-gray-500
     font-medium
     transition-all
     origin-left
@@ -15,7 +13,7 @@
   "
   [ngClass]="{
     'text-error-light dark:text-error-dark': isInvalid,
-    'dark:text-gray-300 text-gray-500 group-focus-within:text-primary':
+    'text-text-light-1 dark:text-text-dark-1 group-focus-within:text-brand-primary-light dark:group-focus-within:text-brand-primary-dark':
       !isInvalid,
     'translate-y-[-110%] scale-75': doFloat,
     '-translate-y-1/2': !doFloat

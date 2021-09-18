@@ -1,7 +1,7 @@
 <header
   class="
-    bg-toolbar-light
-    dark:bg-toolbar-dark
+    bg-surface-light-2
+    dark:bg-surface-dark-2
     bg-opacity-90
     dark:bg-opacity-90
     fixed
@@ -25,7 +25,36 @@
       items-center
     "
   >
-    <span class="tracking-wider text-2xl font-black">SET.GO.</span>
+    <span class="relative tracking-wider text-2xl font-black">
+      <span>SET</span>
+      <span
+        class="
+          w-[5px]
+          h-[5px]
+          rounded-sm
+          relative
+          bg-brand-accent-light
+          dark:bg-brand-accent-dark
+          inline-block
+          mr-[3px]
+          -left-px
+        "
+        aria-hidden="true"
+      ></span>
+      <span>GO</span>
+      <span
+        class="
+          w-[5px]
+          h-[5px]
+          rounded-sm
+          relative
+          bg-brand-accent-light
+          dark:bg-brand-accent-dark
+          inline-block
+        "
+        aria-hidden="true"
+      ></span>
+    </span>
 
     <button
       *ngIf="notificationShadeVisibility$ | async as visibility"
@@ -58,7 +87,8 @@
         *ngIf="notifications.length"
         @scaleOvershoot
         class="
-          bg-secondary
+          bg-brand-accent-light
+          dark:bg-brand-accent-dark
           rounded-full
           w-2.5
           h-2.5
@@ -109,9 +139,10 @@
             aria-hidden="true"
             class="
               inline-block
-              w-2
-              h-2
-              bg-secondary
+              w-1.5
+              h-1.5
+              bg-brand-accent-light
+              dark:bg-brand-accent-dark
               relative
               left-0.5
               bottom-[-2px]
@@ -119,7 +150,7 @@
             "
           ></span>
         </h1>
-        <p class="mb-4 md:mb-6 dark:text-gray-200">
+        <p class="mb-4 md:mb-6">
           Logge dich direkt ein, um auf alle SET.GO. Services zugreifen zu
           können.
         </p>
@@ -148,79 +179,53 @@
           {{ error.message }}
         </p>
       </div>
-      <ng-container card-body>
-        <div card-body class="pb-5 md:pb-6">
-          <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
-            <uikit-forms-field-text
-              [control]="emailControl"
-              inputType="email"
-              inputAutocomplete="username"
-              inputId="email"
-              label="E-Mail-Adresse"
-            >
-            </uikit-forms-field-text>
-          </form>
-        </div>
-      </ng-container>
+      <div card-body class="pb-5 md:pb-6">
+        <form [formGroup]="emailForm" (ngSubmit)="checkEmail()">
+          <uikit-forms-field-text
+            [control]="emailControl"
+            inputType="email"
+            inputAutocomplete="username"
+            inputId="email"
+            label="E-Mail-Adresse"
+          >
+          </uikit-forms-field-text>
+        </form>
+      </div>
 
-      <uikit-common-button-cta
+      <button
         card-actions
-        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
+        uikit-common-button-cta
         rounded="bottom"
         type="submit"
+        assertLoadingMessage="Die eingegebene E-Mail-Adresse wird überprüft. Bitte warten."
         [isLoading]="fetchSignInMethodsForEmailStore?.isLoading$ | async"
-        (buttonCTAClick)="checkEmail()"
+        (click)="checkEmail()"
       >
         Weiter
-      </uikit-common-button-cta>
+      </button>
     </uikit-common-card>
 
     <div class="mt-12 -mb-12">
-      <hr class="border-border-light dark:border-border-dark mb-6" />
+      <hr class="mb-6" />
       <ul class="grid gap-2">
         <li>
           <a
             class="
-              dark:text-gray-300
               no-underline
               relative
-              hover:after:scale-x-100
+              hover:after:scale-x-100 hover:text-black
+              focus-visible:text-black
               dark:hover:text-white dark:focus-visible:text-white
               focus-visible:ring-1
               focus-visible:ring-offset-2
               focus-visible:after:hidden
               rounded
-              outline-none
-              after:transition-transform
-              after:absolute
-              after:rounded-sm
-              after:left-0
-              after:bottom-[-3px]
-              after:w-full
-              after:h-0.5
-              after:scale-x-[25%]
-              after:origin-left
-              after:bg-gradient-to-r
-              after:from-primary
-              after:to-secondary-light
-            "
-            href="#"
-          >
-            Account erstellen
-          </a>
-        </li>
-        <li>
-          <a
-            class="
-              dark:text-gray-300
-              no-underline
-              relative
-              hover:after:scale-x-100
-              dark:hover:text-white dark:focus-visible:text-white
-              focus-visible:ring-1
-              focus-visible:ring-offset-2
-              focus-visible:after:hidden
-              rounded
+              after:from-brand-primary-light-light
+              after:via-brand-primary-light
+              after:to-brand-primary-light-dark
+              dark:after:from-brand-primary-dark-light
+              dark:after:via-brand-primary-dark
+              dark:after:to-brand-primary-dark-dark
               outline-none
               transition-colors
               after:transition-transform
@@ -233,21 +238,55 @@
               after:scale-x-[25%]
               after:origin-left
               after:bg-gradient-to-r
-              after:from-primary
-              after:to-secondary-light
+            "
+            href="#"
+          >
+            Account erstellen
+          </a>
+        </li>
+        <li>
+          <a
+            class="
+              no-underline
+              relative
+              hover:after:scale-x-100 hover:text-black
+              focus-visible:text-black
+              dark:hover:text-white dark:focus-visible:text-white
+              focus-visible:ring-1
+              focus-visible:ring-offset-2
+              focus-visible:after:hidden
+              rounded
+              after:from-brand-primary-light-light
+              after:via-brand-primary-light
+              after:to-brand-primary-light-dark
+              dark:after:from-brand-primary-dark-light
+              dark:after:via-brand-primary-dark
+              dark:after:to-brand-primary-dark-dark
+              outline-none
+              transition-colors
+              after:transition-transform
+              after:absolute
+              after:rounded-sm
+              after:left-0
+              after:bottom-[-3px]
+              after:w-full
+              after:h-0.5
+              after:scale-x-[25%]
+              after:origin-left
+              after:bg-gradient-to-r
             "
             href="#"
             >Passwort zurücksetzen</a
           >
         </li>
-        <li class="dark:text-gray-300 text-xs mt-6">
+        <li class="text-xs mt-6 text-text-light-2 dark:text-text-dark-2">
           <ul class="flex gap-1">
             <li>
               <a
                 class="
-                  dark:text-gray-300
-                  dark:hover:text-white
-                  dark:focus-visible:text-white
+                  hover:text-black
+                  focus-visible:text-black
+                  dark:hover:text-white dark:focus-visible:text-white
                   focus-visible:ring-1
                   focus-visible:ring-offset-2
                   focus-visible:no-underline
@@ -265,9 +304,9 @@
             <li>
               <a
                 class="
-                  dark:text-gray-300
-                  dark:hover:text-white
-                  dark:focus-visible:text-white
+                  hover:text-black
+                  focus-visible:text-black
+                  dark:hover:text-white dark:focus-visible:text-white
                   focus-visible:ring-1
                   focus-visible:ring-offset-2
                   focus-visible:no-underline
@@ -292,7 +331,15 @@
     </div>
   </div>
 
-  <p class="text-xs text-center absolute bottom-4">
+  <p
+    class="
+      text-xs text-center
+      absolute
+      bottom-4
+      text-text-light-2
+      dark:text-text-dark-2
+    "
+  >
     <button class="underline" (click)="setTheme('light')">Light</button> |
     <button class="underline" (click)="setTheme('dark')">Dark</button> |
     <button class="underline" (click)="setTheme('system')">System</button>

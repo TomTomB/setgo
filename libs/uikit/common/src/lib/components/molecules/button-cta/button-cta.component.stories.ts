@@ -40,28 +40,21 @@ export default {
       options: ['both', 'top', 'bottom'],
       defaultValue: 'both',
     },
-    type: {
-      control: {
-        type: 'inline-radio',
-      },
-      options: ['button', 'submit', 'menu', 'reset'],
-      defaultValue: 'button',
-    },
   },
 } as Meta<ButtonCTAComponent>;
 
 const Template: Story<ButtonCTAComponent> = (args) => ({
   props: args,
   template: `
-    <uikit-common-button-cta 
+    <button 
+      uikit-common-button-cta
       [isLoading]="isLoading" 
       [isDisabled]="isDisabled"
       [assertLoadingMessage]="assertLoadingMessage"
       [rounded]="rounded"
-      [type]="type"
     >
       Login
-    </uikit-common-button-cta>
+    </button>
 `,
 });
 
