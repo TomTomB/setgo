@@ -104,7 +104,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
 
     this._swipeHandlerId = this._swipeHandlerService.startSwipe(event);
     this.notificationShadeElementRef.nativeElement.classList.remove(
-      'transition-all',
+      'transition-transform',
     );
   }
 
@@ -147,7 +147,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
       this.setNotificationShadeVisibility('close');
     } else {
       this.notificationShadeElementRef.nativeElement.classList.add(
-        'transition-all',
+        'transition-transform',
       );
       this.notificationShadeElementRef.nativeElement.style.transform = `translateY(0)`;
     }
