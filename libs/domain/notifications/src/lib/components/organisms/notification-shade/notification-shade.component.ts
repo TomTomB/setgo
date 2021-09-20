@@ -15,6 +15,7 @@ import { IconCollection } from '@setgo/uikit/core';
 import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '../../../mocks';
 import { NotificationGroup, NotificationMessage } from '../../../types';
 import { NotificationGroupComponent } from '../../molecules';
+import { NotificationShadeConstants } from '../../../constants';
 import { Observable } from 'rxjs';
 import { SwipeHandlerService } from '../../../services/swipe-handler.service';
 import { UiShellFacade } from '@setgo/store/ui/shell';
@@ -109,6 +110,8 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   }
 
   updateHandleSwipe(event: TouchEvent) {
+    event.preventDefault();
+
     if (
       !this.notificationShadeElementRef?.nativeElement ||
       !this._swipeHandlerId
@@ -120,7 +123,6 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
       this._swipeHandlerId,
       event,
     );
-    event.preventDefault();
 
     if (movementY < 0) {
       return;
@@ -143,7 +145,10 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
       this._swipeHandlerId,
     );
 
-    if (movementY > 250 || pixelPerSecondY > 50) {
+    if (
+      movementY > NotificationShadeConstants.MIN_SWIPE_TO_CLOSE_LENGTH ||
+      pixelPerSecondY > NotificationShadeConstants.MIN_VELOCITY_TO_CLOSE
+    ) {
       this.setNotificationShadeVisibility('close');
     } else {
       this.notificationShadeElementRef.nativeElement.classList.add(
