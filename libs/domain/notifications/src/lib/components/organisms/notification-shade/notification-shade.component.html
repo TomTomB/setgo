@@ -180,6 +180,7 @@
             active:scale-90
             transition-transform
           "
+          style="touch-action: none"
           (touchstart)="startHandleSwipe($event)"
           (touchmove)="updateHandleSwipe($event)"
           (touchend)="endHandleSwipe()"
