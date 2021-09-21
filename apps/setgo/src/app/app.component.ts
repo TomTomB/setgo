@@ -18,6 +18,7 @@ import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction, UpdateAvailableEventWithData } from '@setgo/types';
 import { environment } from '@setgo/env';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
+import iconOutlineSettings from '@iconify/icons-ic/outline-settings';
 
 @Component({
   selector: 'setgo-root',
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
 
   icons: IconCollection = {
     iconOutlineNotifications,
+    iconOutlineSettings,
   };
   notifications = NOTIFICATION_GROUP_WITH_MESSAGES_MOCK;
 
