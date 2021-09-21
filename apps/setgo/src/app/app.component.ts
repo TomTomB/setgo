@@ -45,6 +45,8 @@ export class AppComponent implements OnInit {
     email: new FormControl(null, [ValidatorsExtra.email, Validators.required]),
   });
 
+  themeCtrl = new FormControl(null);
+
   hasAvailableUpdate$!: Observable<boolean>;
   availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
 
@@ -74,6 +76,12 @@ export class AppComponent implements OnInit {
 
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;
+
+    const currentHardTheme = window.localStorage.getItem('theme');
+
+    this.themeCtrl.setValue(currentHardTheme ?? 'system');
+
+    this.themeCtrl.valueChanges.subscribe((v) => this.setTheme(v));
   }
 
   setNotificationShadeVisibility(uiAction: UiTriggerAction) {

@@ -1,3 +1,25 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+.mat-menu-below {
+  &.mat-menu-before {
+    transform-origin: top right;
+  }
+
+  &.mat-menu-after {
+    transform-origin: top left;
+  }
+}
+
+.mat-menu-above {
+  &.mat-menu-before {
+    transform-origin: bottom right;
+  }
+
+  &.mat-menu-after {
+    transform-origin: bottom left;
+  }
+}
+
 @tailwind base;
 
 @layer base {
