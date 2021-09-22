@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
 
   themeCtrl = new FormControl(null);
 
-  hasAvailableUpdate$!: Observable<boolean>;
   availableUpdate$!: Observable<UpdateAvailableEventWithData | null>;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
@@ -77,9 +76,6 @@ export class AppComponent implements OnInit {
 
     this.notifications$ = this._notificationsFacade.notifications$;
 
-    this.hasAvailableUpdate$ = this._serviceWorkerFacade.hasAvailableUpdate$;
-    this.availableUpdate$ = this._serviceWorkerFacade.availableUpdate$;
-
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;
 
@@ -88,6 +84,16 @@ export class AppComponent implements OnInit {
     this.themeCtrl.setValue(currentHardTheme ?? 'system');
 
     this.themeCtrl.valueChanges.subscribe((v) => this.setTheme(v));
+
+    this._serviceWorkerFacade.availableUpdate$.subscribe((v) => {
+      if (v) {
+        this._notificationsFacade.addNotificationMessage({
+          appletName: 'SET.GO. Updater',
+          body: v.available.appData.update.notes,
+          title: `Aktualisierung verfügbar (v${v.available.appData.update.version.semver.version}) `,
+        });
+      }
+    });
   }
 
   setNotificationShadeVisibility(uiAction: UiTriggerAction) {
