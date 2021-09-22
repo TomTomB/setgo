@@ -11,7 +11,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconCollection } from '@setgo/uikit/core';
-import { NotificationGroup, NotificationMessage } from '../../../types';
+import {
+  NotificationGroup,
+  NotificationMessage,
+} from '@setgo/store/notifications';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
 import { trackByNotification } from '../../../utils';

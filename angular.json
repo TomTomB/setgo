@@ -590,6 +590,47 @@
         }
       }
     },
+    "store-notifications": {
+      "projectType": "library",
+      "root": "libs/store/notifications",
+      "sourceRoot": "libs/store/notifications/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/store/notifications"],
+          "options": {
+            "project": "libs/store/notifications/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/store/notifications/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/store/notifications/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/store/notifications"],
+          "options": {
+            "jestConfig": "libs/store/notifications/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/store/notifications/src/**/*.ts",
+              "libs/store/notifications/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "store-router": {
       "projectType": "library",
       "root": "libs/store/router",

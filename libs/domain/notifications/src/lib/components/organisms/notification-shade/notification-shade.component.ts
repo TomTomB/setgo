@@ -12,8 +12,11 @@ import {
 } from '@angular/core';
 import { Animations } from '@setgo/uikit/common';
 import { IconCollection, LayoutService } from '@setgo/uikit/core';
-import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '../../../mocks';
-import { NotificationGroup, NotificationMessage } from '../../../types';
+import {
+  NotificationGroup,
+  NotificationMessage,
+  NotificationsFacade,
+} from '@setgo/store/notifications';
 import { NotificationGroupComponent } from '../../molecules';
 import { NotificationShadeConstants } from '../../../constants';
 import { Observable } from 'rxjs';
@@ -38,7 +41,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     iconPartyPopper,
   };
 
-  notifications = NOTIFICATION_GROUP_WITH_MESSAGES_MOCK;
+  notifications$!: Observable<NotificationGroup[]>;
   trackByNotificationGroupFn = trackByNotificationGroup;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
@@ -55,6 +58,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     private _uiShellFacade: UiShellFacade,
     private _swipeHandlerService: SwipeHandlerService,
     private _layoutService: LayoutService,
+    private _notificationsFacade: NotificationsFacade,
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +66,8 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
       this._uiShellFacade.notificationShadeVisibility$;
 
     this.isMobile$ = this._layoutService.isMobile$;
+
+    this.notifications$ = this._notificationsFacade.notifications$;
   }
 
   ngAfterViewInit(): void {
@@ -80,7 +86,6 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   }
 
   clearAllNotifications() {
-    this.notifications = [];
     this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
   }
 
@@ -88,20 +93,16 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     notificationGroup: NotificationGroup,
     notificationMessage: NotificationMessage,
   ) {
-    notificationGroup.messages = notificationGroup.messages.filter(
-      (m) => m.id !== notificationMessage.id,
-    );
-    if (!notificationGroup.messages.length) {
-      this.notifications = this.notifications.filter(
-        (group) => group.id !== notificationGroup.id,
-      );
-    }
+    this._notificationsFacade.removeNotification({
+      notificationGroupId: notificationGroup.id,
+      notificationId: notificationMessage.id,
+    });
   }
 
   deleteNotificationGroup(notificationGroup: NotificationGroup) {
-    this.notifications = this.notifications.filter(
-      (group) => group.id !== notificationGroup.id,
-    );
+    this._notificationsFacade.removeNotificationGroup({
+      notificationGroupId: notificationGroup.id,
+    });
   }
 
   startHandleSwipe(event: TouchEvent) {

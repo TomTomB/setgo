@@ -1,4 +1,7 @@
-<div class="md:container w-full mx-auto relative">
+<div
+  *ngIf="notifications$ | async as notifications"
+  class="md:container w-full mx-auto relative"
+>
   <div
     *ngIf="(notificationShadeVisibility$ | async) === 'open'"
     [@animateNotificationShade]="(isMobile$ | async) ? 'slide' : 'expand'"

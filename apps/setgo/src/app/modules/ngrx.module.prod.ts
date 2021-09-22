@@ -3,6 +3,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreModule } from '@ngrx/store';
+import { StoreNotificationsModule } from '@setgo/store/notifications';
 import { StoreRouterModule } from '@setgo/store/router';
 import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
 import { StoreUiShellModule } from '@setgo/store/ui/shell';
@@ -30,6 +31,7 @@ import { TransferState } from '@angular/platform-browser';
     StoreRouterModule,
     StoreServiceWorkerModule,
     StoreUiShellModule,
+    StoreNotificationsModule,
   ],
   providers: [TransferState],
 })

@@ -10,7 +10,10 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IconCollection } from '@setgo/uikit/core';
 import { MappedEntityState } from '@tomtomb/ngrx-toolkit';
-import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '@setgo/domain/notifications';
+import {
+  NotificationGroup,
+  NotificationsFacade,
+} from '@setgo/store/notifications';
 import { Observable } from 'rxjs';
 import { ServiceWorkerFacade } from '@setgo/store/service-worker';
 import { TextFieldComponent, ValidatorsExtra } from '@setgo/uikit/forms';
@@ -56,7 +59,7 @@ export class AppComponent implements OnInit {
     iconOutlineNotifications,
     iconOutlineSettings,
   };
-  notifications = NOTIFICATION_GROUP_WITH_MESSAGES_MOCK;
+  notifications$!: Observable<NotificationGroup[]>;
 
   get emailControl() {
     return this.emailForm.controls.email as FormControl;
@@ -66,10 +69,13 @@ export class AppComponent implements OnInit {
     private _authFacade: AuthFacade,
     private _serviceWorkerFacade: ServiceWorkerFacade,
     private _uiShellFacade: UiShellFacade,
+    private _notificationsFacade: NotificationsFacade,
   ) {}
 
   ngOnInit(): void {
     this._serviceWorkerFacade.startPolling();
+
+    this.notifications$ = this._notificationsFacade.notifications$;
 
     this.hasAvailableUpdate$ = this._serviceWorkerFacade.hasAvailableUpdate$;
     this.availableUpdate$ = this._serviceWorkerFacade.availableUpdate$;

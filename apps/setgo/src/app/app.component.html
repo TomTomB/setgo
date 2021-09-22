@@ -43,46 +43,52 @@
     </span>
 
     <div class="grid grid-cols-2 gap-1">
-      <button
-        *ngIf="notificationShadeVisibility$ | async as visibility"
-        class="
-          w-10
-          h-10
-          flex
-          justify-center
-          items-center
-          relative
-          rounded-full
-          focus-visible:bg-elements-ripple-light
-          dark:focus-visible:bg-elements-ripple-dark
-          transition-colors
-        "
-        id="notificationShadeToggleButton"
-        uikitCoreRipple
-        [title]="'Du hast ' + notifications.length + ' Benachrichtigungen'"
-        (click)="setNotificationShadeVisibility('toggle')"
-      >
-        <ic-icon
-          class="text-2xl pointer-events-none block"
-          aria-hidden="true"
-          [icon]="icons.iconOutlineNotifications"
-        ></ic-icon>
-        <div
-          *ngIf="notifications.length"
-          @scaleOvershoot
+      <ng-container *ngIf="notifications$ | async as notifications">
+        <button
+          *ngIf="notificationShadeVisibility$ | async as visibility"
           class="
-            bg-brand-accent-light
-            dark:bg-brand-accent-dark
+            w-10
+            h-10
+            flex
+            justify-center
+            items-center
+            relative
             rounded-full
-            w-2.5
-            h-2.5
-            absolute
-            top-1.5
-            right-2
-            pointer-events-none
+            focus-visible:bg-elements-ripple-light
+            dark:focus-visible:bg-elements-ripple-dark
+            transition-colors
           "
-        ></div>
-      </button>
+          id="notificationShadeToggleButton"
+          uikitCoreRipple
+          [title]="
+            'Du hast ' +
+            (notifications.length || 'keine') +
+            ' Benachrichtigungen'
+          "
+          (click)="setNotificationShadeVisibility('toggle')"
+        >
+          <ic-icon
+            class="text-2xl pointer-events-none block"
+            aria-hidden="true"
+            [icon]="icons.iconOutlineNotifications"
+          ></ic-icon>
+          <div
+            *ngIf="notifications.length"
+            @scaleOvershoot
+            class="
+              bg-brand-accent-light
+              dark:bg-brand-accent-dark
+              rounded-full
+              w-2.5
+              h-2.5
+              absolute
+              top-1.5
+              right-2
+              pointer-events-none
+            "
+          ></div>
+        </button>
+      </ng-container>
 
       <button
         class="
