@@ -19,9 +19,7 @@ describe('NotificationGroupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationGroupComponent);
     component = fixture.componentInstance;
-
     component.notificationGroup = NOTIFICATION_GROUP_MOCK;
-
     fixture.detectChanges();
   });
 
