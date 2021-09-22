@@ -115,18 +115,6 @@
       </button>
     </div>
   </div>
-
-  <button
-    *ngIf="hasAvailableUpdate$ | async"
-    class="bg-primary px-3 py-3 text-center w-full"
-    (click)="update()"
-  >
-    <div class="container mx-auto">
-      Update installieren ({{
-        (availableUpdate$ | async)?.available?.appData?.update?.version?.raw
-      }})
-    </div>
-  </button>
 </header>
 
 <uikit-common-menu #menu>

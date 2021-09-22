@@ -8,7 +8,7 @@
 >
   <div class="grid grid-cols-[1fr,auto]">
     <p class="text-xs text-text-light-2 dark:text-text-dark-2">
-      {{ notificationMessage.timestamp | date }}
+      {{ notificationMessage.timestamp | date: 'd.MM HH:mm' }}
     </p>
     <button
       class="
