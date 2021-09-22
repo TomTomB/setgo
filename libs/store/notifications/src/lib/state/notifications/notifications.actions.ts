@@ -15,19 +15,23 @@ export const getFoo = createHttpActionGroup({
   }>(),
 });
 
-export const addNotification = createAction(
-  '[Notifications] Add Notification',
-  props<Models.AddNotificationArgs>(),
+export const addNotificationMessage = createAction(
+  '[Notifications] Add Notification Message',
+  props<Models.AddNotificationMessageArgs>(),
 );
 
-export const removeNotification = createAction(
-  '[Notifications] Remove Notification',
-  props<Models.RemoveNotificationArgs>(),
+export const removeNotificationMessage = createAction(
+  '[Notifications] Remove Notification Message',
+  props<Models.RemoveNotificationMessageArgs>(),
 );
 
 export const removeNotificationGroup = createAction(
   '[Notifications] Remove Notification Group',
   props<Models.RemoveNotificationGroupArgs>(),
+);
+
+export const removeAllNotifications = createAction(
+  '[Notifications] Remove All Notifications',
 );
 
 export const NOTIFICATIONS_ACTIONS = { getFoo };

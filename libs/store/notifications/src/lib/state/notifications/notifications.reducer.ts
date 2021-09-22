@@ -29,7 +29,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
       initialStateExtra,
     },
     on(
-      Actions.addNotification,
+      Actions.addNotificationMessage,
       (state, { appletName, body, title, timestamp }) => {
         const existingGroup = state.notifications.find(
           (n) => n.appletName === appletName,
@@ -40,7 +40,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
             JSON.stringify(existingGroup),
           ) as NotificationGroup;
 
-          groupCopy.messages.push({
+          groupCopy.messages.unshift({
             body,
             timestamp: timestamp ?? Date.now(),
             title,
@@ -72,15 +72,15 @@ export const { reducerSlice, reducerAdapters, initialState } =
       },
     ),
     on(
-      Actions.removeNotification,
-      (state, { notificationGroupId, notificationId }) => {
+      Actions.removeNotificationMessage,
+      (state, { notificationGroupId, notificationMessageId }) => {
         const existingGroup = state.notifications.find(
           (n) => n.id === notificationGroupId,
         );
 
         if (
           !existingGroup ||
-          !existingGroup.messages.some((m) => m.id === notificationId)
+          !existingGroup.messages.some((m) => m.id === notificationMessageId)
         ) {
           return state;
         }
@@ -90,7 +90,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
         ) as NotificationGroup;
 
         groupCopy.messages = groupCopy.messages.filter(
-          (m) => m.id !== notificationId,
+          (m) => m.id !== notificationMessageId,
         );
 
         if (!groupCopy.messages.length) {
@@ -117,6 +117,12 @@ export const { reducerSlice, reducerAdapters, initialState } =
         notifications: state.notifications.filter(
           (g) => g.id !== notificationGroupId,
         ),
+      };
+    }),
+    on(Actions.removeAllNotifications, (state) => {
+      return {
+        ...state,
+        notifications: [],
       };
     }),
   );

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NOTIFICATION_MOCK } from '@setgo/store/notifications';
 import { NotificationComponent } from './notification.component';
-import { NotificationMessage } from '../../../types';
 import { UikitCoreModule } from '@setgo/uikit/core';
 
 describe('NotificationComponent', () => {
@@ -18,14 +18,7 @@ describe('NotificationComponent', () => {
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
 
-    const notification: NotificationMessage = {
-      id: '1',
-      body: 'Test',
-      timestamp: Date.now(),
-      title: 'Test',
-    };
-
-    component.notificationMessage = notification;
+    component.notificationMessage = NOTIFICATION_MOCK;
 
     fixture.detectChanges();
   });

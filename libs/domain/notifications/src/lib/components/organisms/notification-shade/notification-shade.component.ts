@@ -68,6 +68,14 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     this.isMobile$ = this._layoutService.isMobile$;
 
     this.notifications$ = this._notificationsFacade.notifications$;
+
+    setTimeout(() => {
+      this._notificationsFacade.addNotificationMessage({
+        appletName: 'Updater (1)',
+        body: 'New message body',
+        title: 'New Message',
+      });
+    }, 2500);
   }
 
   ngAfterViewInit(): void {
@@ -87,19 +95,21 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
 
   clearAllNotifications() {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
+
+    this._notificationsFacade.removeAllNotifications();
   }
 
-  deleteNotification(
+  removeNotificationMessage(
     notificationGroup: NotificationGroup,
     notificationMessage: NotificationMessage,
   ) {
-    this._notificationsFacade.removeNotification({
+    this._notificationsFacade.removeNotificationMessage({
       notificationGroupId: notificationGroup.id,
-      notificationId: notificationMessage.id,
+      notificationMessageId: notificationMessage.id,
     });
   }
 
-  deleteNotificationGroup(notificationGroup: NotificationGroup) {
+  removeNotificationGroup(notificationGroup: NotificationGroup) {
     this._notificationsFacade.removeNotificationGroup({
       notificationGroupId: notificationGroup.id,
     });

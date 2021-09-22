@@ -1,5 +1,6 @@
 import { AppComponent } from './app.component';
 import { DomainNotificationsModule } from '@setgo/domain/notifications';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreTestingModule } from '@setgo/store/testing';
 import { TestBed } from '@angular/core/testing';
@@ -15,6 +16,7 @@ describe('AppComponent', () => {
         DomainNotificationsModule,
         RouterTestingModule,
         StoreTestingModule,
+        HttpClientTestingModule,
         UikitCoreModule,
         UikitCommonModule,
         UikitFormsModule,

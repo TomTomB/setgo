@@ -22,15 +22,19 @@ export class NotificationsFacade extends FacadeBase {
     return this.call(Actions.getFoo, args);
   }
 
-  addNotification(args: Models.AddNotificationArgs) {
-    return this.store.dispatch(Actions.addNotification(args));
+  addNotificationMessage(args: Models.AddNotificationMessageArgs) {
+    return this.store.dispatch(Actions.addNotificationMessage(args));
   }
 
-  removeNotification(args: Models.RemoveNotificationArgs) {
-    return this.store.dispatch(Actions.removeNotification(args));
+  removeNotificationMessage(args: Models.RemoveNotificationMessageArgs) {
+    return this.store.dispatch(Actions.removeNotificationMessage(args));
   }
 
   removeNotificationGroup(args: Models.RemoveNotificationGroupArgs) {
     return this.store.dispatch(Actions.removeNotificationGroup(args));
+  }
+
+  removeAllNotifications() {
+    return this.store.dispatch(Actions.removeAllNotifications());
   }
 }
