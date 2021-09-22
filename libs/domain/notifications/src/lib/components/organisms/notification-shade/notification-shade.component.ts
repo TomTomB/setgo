@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Animations } from '@setgo/uikit/common';
-import { IconCollection } from '@setgo/uikit/core';
+import { IconCollection, LayoutService } from '@setgo/uikit/core';
 import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '../../../mocks';
 import { NotificationGroup, NotificationMessage } from '../../../types';
 import { NotificationGroupComponent } from '../../molecules';
@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { SwipeHandlerService } from '../../../services/swipe-handler.service';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction } from '@setgo/types';
+import { animateNotificationShade } from '../../../animations';
 import { trackByNotificationGroup } from '../../../utils';
 import iconPartyPopper from '@iconify/icons-mdi/party-popper';
 
@@ -28,7 +29,7 @@ import iconPartyPopper from '@iconify/icons-mdi/party-popper';
   templateUrl: './notification-shade.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [Animations.slideFromTop, Animations.fade, Animations.shrink],
+  animations: [animateNotificationShade, Animations.shrink, Animations.fade],
 })
 export class NotificationShadeComponent implements OnInit, AfterViewInit {
   private _swipeHandlerId: string | null = null;
@@ -48,14 +49,19 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   @ViewChild('notificationShade')
   notificationShadeElementRef?: ElementRef<HTMLDivElement>;
 
+  isMobile$!: Observable<boolean>;
+
   constructor(
     private _uiShellFacade: UiShellFacade,
     private _swipeHandlerService: SwipeHandlerService,
+    private _layoutService: LayoutService,
   ) {}
 
   ngOnInit(): void {
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;
+
+    this.isMobile$ = this._layoutService.isMobile$;
   }
 
   ngAfterViewInit(): void {
