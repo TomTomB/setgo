@@ -17,9 +17,7 @@ describe('NotificationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
-
     component.notificationMessage = NOTIFICATION_MOCK;
-
     fixture.detectChanges();
   });
 
