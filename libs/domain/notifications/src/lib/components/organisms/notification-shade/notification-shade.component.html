@@ -1,7 +1,7 @@
 <div class="md:container w-full mx-auto relative">
   <div
     *ngIf="(notificationShadeVisibility$ | async) === 'open'"
-    @slideFromTop
+    [@animateNotificationShade]="(isMobile$ | async) ? 'slide' : 'expand'"
     class="
       w-full
       md:w-[350px]
@@ -11,10 +11,9 @@
       md:top-[60px]
       left-0
       z-20
-      origin-top-right
       transition-transform
     "
-    style="will-change: transform"
+    style="will-change: transform; transform-origin: 80% 0%"
     role="dialog"
     aria-labelledby="notificationShadeHeader"
     uikitCoreClickOutside
@@ -150,8 +149,8 @@
         </div>
 
         <div
-          class="container mx-auto pb-8 md:pb-0"
           *ngIf="notifications.length"
+          class="container mx-auto pb-8 md:pb-0"
         >
           <domain-notification-group
             *ngFor="
