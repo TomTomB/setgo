@@ -64,6 +64,9 @@
     "store-auth": {
       "tags": []
     },
+    "store-notifications": {
+      "tags": []
+    },
     "store-router": {
       "tags": []
     },

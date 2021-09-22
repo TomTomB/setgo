@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IconCollection } from '@setgo/uikit/core';
-import { NotificationMessage } from '../../../types';
+import { NotificationMessage } from '@setgo/store/notifications';
 import { NotificationUiHandlerService } from '../../../services';
 import { assertInputsAreProvided } from '@setgo/core';
 import iconClose from '@iconify/icons-ic/close';

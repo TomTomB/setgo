@@ -21,6 +21,7 @@
       "@setgo/domain/notifications": ["libs/domain/notifications/src/index.ts"],
       "@setgo/env": ["libs/env/src/index.ts"],
       "@setgo/store/auth": ["libs/store/auth/src/index.ts"],
+      "@setgo/store/notifications": ["libs/store/notifications/src/index.ts"],
       "@setgo/store/router": ["libs/store/router/src/index.ts"],
       "@setgo/store/service-worker": ["libs/store/service-worker/src/index.ts"],
       "@setgo/store/testing": ["libs/store/testing/src/index.ts"],

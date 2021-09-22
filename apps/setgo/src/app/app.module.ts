@@ -8,6 +8,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DomainNotificationsModule } from '@setgo/domain/notifications';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -26,6 +27,7 @@ import { environment } from '@setgo/env';
     BrowserAnimationsModule,
     DomainNotificationsModule,
     FirebaseModule,
+    HttpClientModule,
     NgRxModule,
     NgRxToolkitModule,
     SentryModule,

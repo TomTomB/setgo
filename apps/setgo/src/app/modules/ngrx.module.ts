@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { StoreAuthModule } from '@setgo/store/auth';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { StoreNotificationsModule } from '@setgo/store/notifications';
 import { StoreRouterModule } from '@setgo/store/router';
 import { StoreServiceWorkerModule } from '@setgo/store/service-worker';
 import { StoreUiShellModule } from '@setgo/store/ui/shell';
@@ -29,6 +30,7 @@ import { TransferState } from '@angular/platform-browser';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
     StoreAuthModule,
+    StoreNotificationsModule,
     StoreRouterModule,
     StoreServiceWorkerModule,
     StoreUiShellModule,

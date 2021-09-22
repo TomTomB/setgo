@@ -1,4 +1,4 @@
-import { NotificationGroup } from '../types';
+import { NotificationGroup } from '../state';
 
 export const NOTIFICATION_GROUP_MOCK: NotificationGroup = {
   appletName: 'Test',
