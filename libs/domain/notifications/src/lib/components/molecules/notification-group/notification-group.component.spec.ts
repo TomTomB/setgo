@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NOTIFICATION_GROUP_MOCK } from '../../../mocks';
+import { NOTIFICATION_GROUP_MOCK } from '@setgo/store/notifications';
 import { NotificationComponent } from '../../atoms';
 import { NotificationGroupComponent } from './notification-group.component';
 import { UikitCoreModule } from '@setgo/uikit/core';

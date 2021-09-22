@@ -10,16 +10,16 @@ export interface GetFooArgs {
   };
 }
 
-export interface RemoveNotificationArgs {
+export interface RemoveNotificationMessageArgs {
   notificationGroupId: string;
-  notificationId: string;
+  notificationMessageId: string;
 }
 
 export interface RemoveNotificationGroupArgs {
   notificationGroupId: string;
 }
 
-export interface AddNotificationArgs {
+export interface AddNotificationMessageArgs {
   appletName: string;
   title: string;
   body: string;

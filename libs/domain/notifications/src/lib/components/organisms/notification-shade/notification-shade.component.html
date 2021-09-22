@@ -164,8 +164,10 @@
             class="block"
             [notificationGroup]="notificationGroup"
             [showTopHorizontalLine]="i !== 0"
-            (deleteNotification)="deleteNotification(notificationGroup, $event)"
-            (deleteNotificationGroup)="deleteNotificationGroup($event)"
+            (deleteNotification)="
+              removeNotificationMessage(notificationGroup, $event)
+            "
+            (deleteNotificationGroup)="removeNotificationGroup($event)"
             @shrink
           ></domain-notification-group>
         </div>
