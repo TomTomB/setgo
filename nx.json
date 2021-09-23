@@ -36,6 +36,9 @@
     "domain-notifications": {
       "tags": []
     },
+    "domain-shell": {
+      "tags": []
+    },
     "env": {
       "tags": []
     },
