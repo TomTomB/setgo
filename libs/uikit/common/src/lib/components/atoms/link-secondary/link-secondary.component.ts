@@ -14,5 +14,14 @@ import {
 })
 export class LinkSecondaryComponent {
   @HostBinding('class')
-  classes = `inline-block`;
+  classes = `
+    hover:text-black
+    focus-visible:text-black
+    dark:hover:text-white dark:focus-visible:text-white
+    focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:no-underline
+    rounded
+    transition-colors
+    underline
+    text-xs
+  `;
 }

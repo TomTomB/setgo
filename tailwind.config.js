@@ -24,7 +24,12 @@ const makeHsl = (hue, saturation, lightness) =>
 
 module.exports = {
   mode: 'jit',
-  purge: ['./apps/**/*.html', './libs/**/*.html'],
+  purge: [
+    './apps/**/*.html',
+    './libs/**/*.html',
+    './apps/**/*.component.ts',
+    './libs/**/*.component.ts',
+  ],
   darkMode: 'class',
   theme: {
     extend: {

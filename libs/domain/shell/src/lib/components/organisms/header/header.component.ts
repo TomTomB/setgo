@@ -12,6 +12,7 @@ import {
   NotificationsFacade,
 } from '@setgo/store/notifications';
 import { Observable } from 'rxjs';
+import { PlatformService } from '@setgo/core';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction } from '@setgo/types';
 import iconOutlineNotifications from '@iconify/icons-ic/outline-notifications';
@@ -38,6 +39,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private _notificationsFacade: NotificationsFacade,
     private _uiShellFacade: UiShellFacade,
+    private _platformService: PlatformService,
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +48,9 @@ export class HeaderComponent implements OnInit {
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;
 
-    const currentHardTheme = window.localStorage.getItem('theme');
+    const currentHardTheme = this._platformService.isPlatformBrowser
+      ? window.localStorage.getItem('theme')
+      : 'system';
 
     this.themeCtrl.setValue(currentHardTheme ?? 'system');
 
@@ -58,6 +62,10 @@ export class HeaderComponent implements OnInit {
   }
 
   setTheme(theme: 'light' | 'dark' | 'system') {
+    if (this._platformService.isPlatformServer) {
+      return;
+    }
+
     if (theme === 'system') {
       window.localStorage.removeItem('theme');
 
