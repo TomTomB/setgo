@@ -91,10 +91,14 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
 
   setNotificationShadeVisibility(uiAction: UiTriggerAction) {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
+
+    if (uiAction === 'close') {
+      document.getElementById('notificationShadeToggleButton')?.focus();
+    }
   }
 
   clearAllNotifications() {
-    this._uiShellFacade.dispatchSetNotificationShadeVisibility('close');
+    this.setNotificationShadeVisibility('close');
 
     this._notificationsFacade.removeAllNotifications();
   }
