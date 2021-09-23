@@ -1,159 +1,4 @@
-<header class="fixed top-0 w-full z-30">
-  <div
-    class="
-      container
-      mx-auto
-      px-3
-      py-3
-      md:px-4
-      flex
-      justify-between
-      items-center
-    "
-  >
-    <span class="relative tracking-wider text-2xl font-black">
-      <span>SET</span>
-      <span
-        class="
-          w-[5px]
-          h-[5px]
-          rounded-sm
-          relative
-          bg-brand-accent-light
-          dark:bg-brand-accent-dark
-          inline-block
-          mr-[3px]
-          -left-px
-        "
-        aria-hidden="true"
-      ></span>
-      <span>GO</span>
-      <span
-        class="
-          w-[5px]
-          h-[5px]
-          rounded-sm
-          relative
-          bg-brand-accent-light
-          dark:bg-brand-accent-dark
-          inline-block
-        "
-        aria-hidden="true"
-      ></span>
-    </span>
-
-    <div class="grid grid-cols-2 gap-1">
-      <ng-container *ngIf="notifications$ | async as notifications">
-        <button
-          *ngIf="notificationShadeVisibility$ | async as visibility"
-          class="
-            w-10
-            h-10
-            flex
-            justify-center
-            items-center
-            relative
-            rounded-full
-            focus-visible:bg-elements-ripple-light
-            dark:focus-visible:bg-elements-ripple-dark
-            transition-colors
-          "
-          id="notificationShadeToggleButton"
-          uikitCoreRipple
-          [title]="
-            'Du hast ' +
-            (notifications.length || 'keine') +
-            ' Benachrichtigungen'
-          "
-          (click)="setNotificationShadeVisibility('toggle')"
-        >
-          <ic-icon
-            class="text-2xl pointer-events-none block"
-            aria-hidden="true"
-            [icon]="icons.iconOutlineNotifications"
-          ></ic-icon>
-          <div
-            *ngIf="notifications.length"
-            @scaleOvershoot
-            class="
-              bg-brand-accent-light
-              dark:bg-brand-accent-dark
-              rounded-full
-              w-2.5
-              h-2.5
-              absolute
-              top-1.5
-              right-2
-              pointer-events-none
-            "
-          ></div>
-        </button>
-      </ng-container>
-
-      <button
-        class="
-          w-10
-          h-10
-          flex
-          justify-center
-          items-center
-          relative
-          rounded-full
-          focus-visible:bg-elements-ripple-light
-          dark:focus-visible:bg-elements-ripple-dark
-          transition-colors
-        "
-        uikitCoreRipple
-        [uikitCommonMenuTriggerFor]="menu"
-        title="Einstellungen"
-      >
-        <ic-icon
-          class="text-2xl pointer-events-none block"
-          aria-hidden="true"
-          [icon]="icons.iconOutlineSettings"
-        ></ic-icon>
-      </button>
-    </div>
-  </div>
-</header>
-
-<uikit-common-menu #menu>
-  <div uikit-common-menu-item>
-    <h3 class="mb-3">Theme</h3>
-    <label class="block mb-2">
-      <input
-        type="radio"
-        class="inline-block mr-1"
-        [formControl]="themeCtrl"
-        value="system"
-      />
-      System
-    </label>
-    <label class="block mb-2">
-      <input
-        type="radio"
-        class="inline-block mr-1"
-        [formControl]="themeCtrl"
-        value="light"
-      />
-      Light
-    </label>
-    <label class="block">
-      <input
-        type="radio"
-        class="inline-block mr-1"
-        [formControl]="themeCtrl"
-        value="dark"
-      />
-      Dark
-    </label>
-  </div>
-</uikit-common-menu>
-
-<domain-notification-shade
-  *ngIf="(notificationShadeVisibility$ | async) === 'open'"
-  @awaitInner
-></domain-notification-shade>
+<domain-header></domain-header>
 
 <div
   class="
@@ -173,8 +18,6 @@
     viewBox="0 0 200 200"
     xmlns="http://www.w3.org/2000/svg"
     class="
-      absolute
-      top-0
       text-brand-primary-light
       dark:text-brand-primary-dark
       text-opacity-5
@@ -182,6 +25,7 @@
       z-[-1]
       col-span-1
       row-span-1
+      translate-x-1/2 translate-y-[5%]
       min-w-[1500px]
       scale-125
     "
@@ -197,8 +41,6 @@
     viewBox="0 0 200 200"
     xmlns="http://www.w3.org/2000/svg"
     class="
-      absolute
-      top-0
       text-brand-primary-light
       dark:text-brand-primary-dark
       text-opacity-5
@@ -207,36 +49,14 @@
       col-span-1
       row-span-1
       min-w-[1500px]
-      scale-125
+      scale-150
+      -translate-x-1/4
+      translate-y-[-10%]
     "
   >
     <path
       fill="currentColor"
       d="M29.6,-50.1C38.8,-45.9,47.1,-38.9,52.5,-30.1C57.8,-21.3,60.3,-10.7,65.3,2.9C70.3,16.5,78,32.9,72.4,41.4C66.8,49.9,48.1,50.4,33.8,50.6C19.6,50.9,9.8,50.9,-2.5,55.2C-14.8,59.6,-29.6,68.2,-42.4,67.1C-55.1,66,-65.9,55.1,-74.7,42.3C-83.6,29.5,-90.6,14.7,-90.2,0.2C-89.9,-14.4,-82.2,-28.7,-74.3,-43.1C-66.4,-57.5,-58.1,-71.9,-45.7,-74.3C-33.2,-76.7,-16.6,-67.1,-3.2,-61.5C10.2,-55.9,20.3,-54.4,29.6,-50.1Z"
-      transform="translate(100 100)"
-    />
-  </svg>
-
-  <svg
-    viewBox="0 0 200 200"
-    xmlns="http://www.w3.org/2000/svg"
-    class="
-      absolute
-      top-1/2
-      text-brand-primary-light
-      dark:text-brand-primary-dark
-      text-opacity-5
-      dark:text-opacity-5
-      z-[-1]
-      col-span-1
-      row-span-1
-      min-w-[1500px]
-      scale-110
-    "
-  >
-    <path
-      fill="currentColor"
-      d="M32.7,-50.9C47.1,-48.4,66.6,-49,75.1,-41.1C83.6,-33.1,81,-16.6,74.5,-3.8C67.9,9,57.4,18,51.5,30.5C45.6,42.9,44.4,58.9,36.6,63C28.8,67.1,14.4,59.4,-0.6,60.5C-15.6,61.5,-31.2,71.3,-43.5,69.7C-55.8,68.2,-64.7,55.4,-69.3,41.9C-73.9,28.4,-74.2,14.2,-74.9,-0.4C-75.6,-15,-76.8,-30,-69,-37.9C-61.1,-45.8,-44.2,-46.6,-31.2,-49.8C-18.2,-53.1,-9.1,-58.8,0,-58.9C9.2,-59,18.4,-53.3,32.7,-50.9Z"
       transform="translate(100 100)"
     />
   </svg>
@@ -332,116 +152,19 @@
       <hr class="mb-6" />
       <ul class="grid gap-2">
         <li>
-          <a
-            class="
-              no-underline
-              relative
-              hover:after:scale-x-100 hover:text-black
-              focus-visible:text-black
-              dark:hover:text-white dark:focus-visible:text-white
-              focus-visible:ring-1
-              focus-visible:ring-offset-2
-              focus-visible:after:hidden
-              rounded
-              after:from-brand-primary-light-light
-              after:via-brand-primary-light
-              after:to-brand-primary-light-dark
-              dark:after:from-brand-primary-dark-light
-              dark:after:via-brand-primary-dark
-              dark:after:to-brand-primary-dark-dark
-              outline-none
-              transition-colors
-              after:transition-transform
-              after:absolute
-              after:rounded-sm
-              after:left-0
-              after:bottom-[-3px]
-              after:w-full
-              after:h-0.5
-              after:scale-x-[25%]
-              after:origin-left
-              after:bg-gradient-to-r
-            "
-            href="#"
-          >
-            Account erstellen
-          </a>
+          <a uikit-common-link-primary href="#"> Account erstellen </a>
         </li>
         <li>
-          <a
-            class="
-              no-underline
-              relative
-              hover:after:scale-x-100 hover:text-black
-              focus-visible:text-black
-              dark:hover:text-white dark:focus-visible:text-white
-              focus-visible:ring-1
-              focus-visible:ring-offset-2
-              focus-visible:after:hidden
-              rounded
-              after:from-brand-primary-light-light
-              after:via-brand-primary-light
-              after:to-brand-primary-light-dark
-              dark:after:from-brand-primary-dark-light
-              dark:after:via-brand-primary-dark
-              dark:after:to-brand-primary-dark-dark
-              outline-none
-              transition-colors
-              after:transition-transform
-              after:absolute
-              after:rounded-sm
-              after:left-0
-              after:bottom-[-3px]
-              after:w-full
-              after:h-0.5
-              after:scale-x-[25%]
-              after:origin-left
-              after:bg-gradient-to-r
-            "
-            href="#"
-            >Passwort zurücksetzen</a
-          >
+          <a uikit-common-link-primary href="#">Passwort zurücksetzen</a>
         </li>
         <li class="text-xs mt-6 text-text-light-2 dark:text-text-dark-2">
           <ul class="flex gap-1">
             <li>
-              <a
-                class="
-                  hover:text-black
-                  focus-visible:text-black
-                  dark:hover:text-white dark:focus-visible:text-white
-                  focus-visible:ring-1
-                  focus-visible:ring-offset-2
-                  focus-visible:no-underline
-                  rounded
-                  transition-colors
-                  underline
-                  text-xs
-                "
-                href="#"
-              >
-                Datenschutz</a
-              >
+              <a uikit-common-link-secondary href="#"> Datenschutz</a>
               <span aria-hidden="true"> &bull;</span>
             </li>
             <li>
-              <a
-                class="
-                  hover:text-black
-                  focus-visible:text-black
-                  dark:hover:text-white dark:focus-visible:text-white
-                  focus-visible:ring-1
-                  focus-visible:ring-offset-2
-                  focus-visible:no-underline
-                  rounded
-                  transition-colors
-                  underline
-                  text-xs
-                "
-                href="#"
-              >
-                Impressum</a
-              >
+              <a uikit-common-link-secondary href="#"> Impressum</a>
               <span aria-hidden="true"> &bull;</span>
             </li>
             <li>

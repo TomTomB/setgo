@@ -8,6 +8,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { DomainNotificationsModule } from '@setgo/domain/notifications';
+import { DomainShellModule } from '@setgo/domain/shell';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgRxToolkitModule } from '@tomtomb/ngrx-toolkit';
@@ -26,6 +27,7 @@ import { environment } from '@setgo/env';
     AppRoutingModule,
     BrowserAnimationsModule,
     DomainNotificationsModule,
+    DomainShellModule,
     FirebaseModule,
     HttpClientModule,
     NgRxModule,

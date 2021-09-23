@@ -19,6 +19,7 @@
     "paths": {
       "@setgo/core": ["libs/core/src/index.ts"],
       "@setgo/domain/notifications": ["libs/domain/notifications/src/index.ts"],
+      "@setgo/domain/shell": ["libs/domain/shell/src/index.ts"],
       "@setgo/env": ["libs/env/src/index.ts"],
       "@setgo/store/auth": ["libs/store/auth/src/index.ts"],
       "@setgo/store/notifications": ["libs/store/notifications/src/index.ts"],
