@@ -8,8 +8,13 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot(
       [
         {
+          path: 'auth',
+          loadChildren: () =>
+            import('@setgo/domain/auth').then((m) => m.DomainAuthModule),
+        },
+        {
           path: '**',
-          redirectTo: '/',
+          redirectTo: 'auth',
         },
       ],
       {

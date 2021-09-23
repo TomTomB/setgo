@@ -1,32 +1,29 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeaderComponent } from './header.component';
+import { IdentifierTemplateComponent } from '../../templates';
+import { IdentifierViewComponent } from './identifier.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreTestingModule } from '@setgo/store/testing';
 import { UikitCommonModule } from '@setgo/uikit/common';
-import { UikitCoreModule } from '@setgo/uikit/core';
 import { UikitFormsModule } from '@setgo/uikit/forms';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('IdentifierViewComponent', () => {
+  let component: IdentifierViewComponent;
+  let fixture: ComponentFixture<IdentifierViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent],
+      declarations: [IdentifierViewComponent, IdentifierTemplateComponent],
       imports: [
         StoreTestingModule,
         RouterTestingModule,
-        BrowserAnimationsModule,
         UikitCommonModule,
-        UikitCoreModule,
         UikitFormsModule,
       ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(IdentifierViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
