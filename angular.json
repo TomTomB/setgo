@@ -79,6 +79,47 @@
         }
       }
     },
+    "domain-auth": {
+      "projectType": "library",
+      "root": "libs/domain/auth",
+      "sourceRoot": "libs/domain/auth/src",
+      "prefix": "domain",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/domain/auth"],
+          "options": {
+            "project": "libs/domain/auth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/domain/auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/domain/auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/domain/auth"],
+          "options": {
+            "jestConfig": "libs/domain/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/domain/auth/src/**/*.ts",
+              "libs/domain/auth/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "domain-notifications": {
       "projectType": "library",
       "root": "libs/domain/notifications",

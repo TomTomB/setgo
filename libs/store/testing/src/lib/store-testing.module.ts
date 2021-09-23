@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreAuthModule } from '@setgo/store/auth';
@@ -74,6 +75,9 @@ import { provideStorage } from '@angular/fire/storage';
       },
     ),
     StoreDevtoolsModule.instrument(),
+
+    HttpClientTestingModule,
+
     StoreAuthModule,
     StoreNotificationsModule,
     StoreRouterModule,

@@ -1,0 +1,12 @@
+<domain-identifier-template
+  [version]="version"
+  [emailForm]="emailForm"
+  [emailControl]="emailControl"
+  [fetchSignInMethodsForEmailStoreError]="
+    fetchSignInMethodsForEmailStore?.error$ | async
+  "
+  [fetchSignInMethodsForEmailStoreIsLoading]="
+    fetchSignInMethodsForEmailStore?.isLoading$ | async
+  "
+  (identifierSubmit)="fetchSignInMethodsForEmail($event)"
+></domain-identifier-template>
