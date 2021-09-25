@@ -10,6 +10,7 @@ import { IconCollection } from '@setgo/uikit/core';
 import {
   NotificationGroup,
   NotificationMessage,
+  NotificationMessageWithGroup,
   NotificationsFacade,
 } from '@setgo/store/notifications';
 import { Observable } from 'rxjs';
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
   };
 
   notifications$!: Observable<NotificationGroup[]>;
-  floatingNotificationMessages$!: Observable<NotificationMessage[]>;
+  floatingNotificationMessages$!: Observable<NotificationMessageWithGroup[]>;
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
   constructor(

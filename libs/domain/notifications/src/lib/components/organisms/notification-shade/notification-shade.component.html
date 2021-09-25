@@ -3,19 +3,16 @@
     class="absolute top-[64px] right-0 z-30 w-full md:w-[425px]"
     *ngIf="(notificationShadeVisibility$ | async) === 'close'"
   >
-    <div class="container mx-auto px-3 md:px-4">
-      <domain-notification
-        *ngFor="let message of floatingNotificationMessages$ | async"
-        class="
-          bg-surface-light-3
-          dark:bg-surface-dark-3
-          block
-          mb-2
-          last-of-type:mb-0
-          rounded-lg
+    <div class="container mx-auto px-3 md:px-4 grid gap-2">
+      <domain-float-notification
+        *ngFor="
+          let message of floatingNotificationMessages$ | async;
+          trackBy: trackByNotificationFn
         "
         [notificationMessage]="message"
-      ></domain-notification>
+        (deleteNotification)="removeNotificationMessage($event.group, $event)"
+        (floatTimeExpired)="hideNotificationMessage($event.group, $event)"
+      ></domain-float-notification>
     </div>
   </div>
 

@@ -15,6 +15,11 @@ export interface RemoveNotificationMessageArgs {
   notificationMessageId: string;
 }
 
+export interface HideNotificationMessageArgs {
+  notificationGroupId: string;
+  notificationMessageId: string;
+}
+
 export interface RemoveNotificationGroupArgs {
   notificationGroupId: string;
 }
@@ -33,6 +38,15 @@ export interface NotificationMessage {
   body: string;
   isFloating: boolean;
   id: string;
+}
+
+export interface NotificationMessageWithGroup {
+  timestamp: number;
+  title: string;
+  body: string;
+  isFloating: boolean;
+  id: string;
+  group: NotificationGroup;
 }
 
 export interface NotificationGroup {

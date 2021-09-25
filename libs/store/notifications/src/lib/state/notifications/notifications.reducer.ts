@@ -29,6 +29,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
       key: NOTIFICATIONS_FEATURE_KEY,
       initialStateExtra,
     },
+
     on(
       Actions.addNotificationMessage,
       (state, { appletName, body, title, timestamp, isFloating }) => {
@@ -66,6 +67,38 @@ export const { reducerSlice, reducerAdapters, initialState } =
         };
 
         return { ...state, notifications: [newGroup, ...state.notifications] };
+      },
+    ),
+    on(
+      Actions.hideNotificationMessage,
+      (state, { notificationGroupId, notificationMessageId }) => {
+        const existingGroup = state.notifications.find(
+          (n) => n.id === notificationGroupId,
+        );
+
+        const notification = existingGroup?.messages.find(
+          (m) => m.id === notificationMessageId,
+        );
+
+        if (!existingGroup || !notification) {
+          return state;
+        }
+
+        const groupCopy = JSON.parse(
+          JSON.stringify(existingGroup),
+        ) as NotificationGroup;
+
+        groupCopy.messages[
+          groupCopy.messages.findIndex((m) => m.id === notificationMessageId)
+        ].isFloating = false;
+
+        const notificationsCopy = [...state.notifications];
+
+        notificationsCopy[
+          notificationsCopy.findIndex((g) => g.id === notificationGroupId)
+        ] = groupCopy;
+
+        return { ...state, notifications: notificationsCopy };
       },
     ),
     on(
