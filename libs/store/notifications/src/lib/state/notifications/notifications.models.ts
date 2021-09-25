@@ -23,6 +23,7 @@ export interface AddNotificationMessageArgs {
   appletName: string;
   title: string;
   body: string;
+  isFloating?: boolean;
   timestamp?: number;
 }
 
@@ -30,6 +31,7 @@ export interface NotificationMessage {
   timestamp: number;
   title: string;
   body: string;
+  isFloating: boolean;
   id: string;
 }
 

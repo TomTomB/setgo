@@ -5,4 +5,5 @@ export const NOTIFICATION_MOCK: NotificationMessage = {
   body: 'Test',
   timestamp: Date.now(),
   title: 'Test',
+  isFloating: true,
 };

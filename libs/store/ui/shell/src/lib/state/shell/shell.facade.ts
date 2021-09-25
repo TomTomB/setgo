@@ -7,17 +7,17 @@ import { UiTriggerAction } from '@setgo/types';
 
 @Injectable({ providedIn: 'root' })
 export class UiShellFacade {
-  notificationShadeVisibility$ = this.store.select(
+  notificationShadeVisibility$ = this._store.select(
     Selectors.getNotificationShadeVisibility,
   );
 
-  constructor(private store: Store<fromReducer.UiShellPartialState>) {}
+  constructor(private _store: Store<fromReducer.UiShellPartialState>) {}
 
   dispatchSetNotificationShadeVisibility(uiAction: UiTriggerAction) {
     this._dispatch(Actions.setNotificationShadeVisibility({ uiAction }));
   }
 
   private _dispatch(action: Action) {
-    this.store.dispatch(action);
+    this._store.dispatch(action);
   }
 }

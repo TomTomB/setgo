@@ -12,10 +12,10 @@ import { Store } from '@ngrx/store';
 })
 export class AuthFacade extends FacadeBase {
   constructor(
-    private store: Store<fromReducer.AuthPartialState>,
-    private actions: ActionsNative,
+    private _store: Store<fromReducer.AuthPartialState>,
+    private _actions: ActionsNative,
   ) {
-    super(store, actions, Selectors.entitySelectors);
+    super(_store, _actions, Selectors.entitySelectors);
   }
 
   fetchSignInMethodsForEmail(args: Models.FetchSignInMethodsForEmailArgs) {

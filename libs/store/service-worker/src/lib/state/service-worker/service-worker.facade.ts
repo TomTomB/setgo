@@ -8,34 +8,34 @@ import { first } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceWorkerFacade {
-  activatedUpdate$ = this.store.select(
+  activatedUpdate$ = this._store.select(
     Selectors.getServiceWorkerActivatedUpdate,
   );
-  availableUpdate$ = this.store.select(
+  availableUpdate$ = this._store.select(
     Selectors.getServiceWorkerAvailableUpdate,
   );
-  hasActivatedUpdate$ = this.store.select(
+  hasActivatedUpdate$ = this._store.select(
     Selectors.getServiceWorkerHasActivatedUpdate,
   );
-  hasAvailableUpdate$ = this.store.select(
+  hasAvailableUpdate$ = this._store.select(
     Selectors.getServiceWorkerHasAvailableUpdate,
   );
 
   constructor(
-    private appRef: ApplicationRef,
-    private store: Store<fromReducer.ServiceWorkerPartialState>,
-    private zone: NgZone,
+    private _appRef: ApplicationRef,
+    private _store: Store<fromReducer.ServiceWorkerPartialState>,
+    private _zone: NgZone,
   ) {}
 
   startPolling() {
-    const appIsStable$ = this.appRef.isStable.pipe(
+    const appIsStable$ = this._appRef.isStable.pipe(
       first((isStable) => isStable === true),
     );
     const everySixHours$ = interval(6 * 60 * 60 * 1000);
     const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 
     everySixHoursOnceAppIsStable$.subscribe(() =>
-      this.zone.run(this.dispatchCheckForUpdate, this),
+      this._zone.run(this.dispatchCheckForUpdate, this),
     );
   }
 
@@ -48,6 +48,6 @@ export class ServiceWorkerFacade {
   }
 
   private _dispatch(action: Action) {
-    this.store.dispatch(action);
+    this._store.dispatch(action);
   }
 }
