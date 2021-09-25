@@ -2,6 +2,7 @@ import * as Actions from './notifications.actions';
 import { Action, on } from '@ngrx/store';
 import { NOTIFICATION_GROUP_WITH_MESSAGES_MOCK } from '../../mocks';
 import { NotificationGroup } from './notifications.models';
+import { NotificationMessage } from './notifications.models';
 import { createReducerSlice } from '@tomtomb/ngrx-toolkit';
 import { v4 as uuidV4 } from 'uuid';
 
@@ -30,22 +31,25 @@ export const { reducerSlice, reducerAdapters, initialState } =
     },
     on(
       Actions.addNotificationMessage,
-      (state, { appletName, body, title, timestamp }) => {
+      (state, { appletName, body, title, timestamp, isFloating }) => {
         const existingGroup = state.notifications.find(
           (n) => n.appletName === appletName,
         );
+
+        const newMessage: NotificationMessage = {
+          body,
+          timestamp: timestamp ?? Date.now(),
+          title,
+          id: uuidV4(),
+          isFloating: isFloating ?? false,
+        };
 
         if (existingGroup) {
           const groupCopy = JSON.parse(
             JSON.stringify(existingGroup),
           ) as NotificationGroup;
 
-          groupCopy.messages.unshift({
-            body,
-            timestamp: timestamp ?? Date.now(),
-            title,
-            id: uuidV4(),
-          });
+          groupCopy.messages.unshift(newMessage);
 
           const filteredGroups = state.notifications.filter(
             (g) => g.appletName !== appletName,
@@ -58,14 +62,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
         const newGroup: NotificationGroup = {
           appletName,
           id: uuidV4(),
-          messages: [
-            {
-              body,
-              id: uuidV4(),
-              timestamp: timestamp ?? Date.now(),
-              title,
-            },
-          ],
+          messages: [newMessage],
         };
 
         return { ...state, notifications: [newGroup, ...state.notifications] };

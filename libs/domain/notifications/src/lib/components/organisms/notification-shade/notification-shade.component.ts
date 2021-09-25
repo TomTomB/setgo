@@ -42,6 +42,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   };
 
   notifications$!: Observable<NotificationGroup[]>;
+  floatingNotificationMessages$!: Observable<NotificationMessage[]>;
   trackByNotificationGroupFn = trackByNotificationGroup;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
@@ -68,12 +69,15 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     this.isMobile$ = this._layoutService.isMobile$;
 
     this.notifications$ = this._notificationsFacade.notifications$;
+    this.floatingNotificationMessages$ =
+      this._notificationsFacade.floatingNotificationMessages$;
 
     setTimeout(() => {
       this._notificationsFacade.addNotificationMessage({
         appletName: 'Updater (1)',
         body: 'New message body',
         title: 'New Message',
+        isFloating: true,
       });
     }, 2500);
   }

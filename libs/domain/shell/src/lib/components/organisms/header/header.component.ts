@@ -9,6 +9,7 @@ import { FormControl } from '@angular/forms';
 import { IconCollection } from '@setgo/uikit/core';
 import {
   NotificationGroup,
+  NotificationMessage,
   NotificationsFacade,
 } from '@setgo/store/notifications';
 import { Observable } from 'rxjs';
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit {
   };
 
   notifications$!: Observable<NotificationGroup[]>;
+  floatingNotificationMessages$!: Observable<NotificationMessage[]>;
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
   constructor(
@@ -44,6 +46,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.notifications$ = this._notificationsFacade.notifications$;
+    this.floatingNotificationMessages$ =
+      this._notificationsFacade.floatingNotificationMessages$;
 
     this.notificationShadeVisibility$ =
       this._uiShellFacade.notificationShadeVisibility$;

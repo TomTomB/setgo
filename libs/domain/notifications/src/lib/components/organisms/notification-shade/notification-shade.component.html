@@ -1,7 +1,22 @@
-<div
-  *ngIf="notifications$ | async as notifications"
-  class="md:container w-full mx-auto relative"
->
+<ng-container *ngIf="notifications$ | async as notifications">
+  <div
+    class="absolute top-[60px] right-0 z-30 w-full px-3 md:px-4 md:w-[425px]"
+    *ngIf="(notificationShadeVisibility$ | async) === 'close'"
+  >
+    <domain-notification
+      *ngFor="let message of floatingNotificationMessages$ | async"
+      class="
+        bg-surface-light-3
+        dark:bg-surface-dark-3
+        block
+        mb-2
+        last-of-type:mb-0
+        rounded-lg
+      "
+      [notificationMessage]="message"
+    ></domain-notification>
+  </div>
+
   <div
     *ngIf="(notificationShadeVisibility$ | async) === 'open'"
     [@animateNotificationShade]="(isMobile$ | async) ? 'slide' : 'expand'"
@@ -125,7 +140,7 @@
           overflow-hidden
           bg-surface-light-3
           dark:bg-surface-dark-3
-          min-h-full
+          min-h-[calc(100%-120px)]
           md:min-h-[calc(100%-56px)]
           relative
         "
@@ -198,4 +213,4 @@
       </div>
     </div>
   </div>
-</div>
+</ng-container>

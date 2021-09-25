@@ -6,16 +6,22 @@ import { Actions as ActionsNative } from '@ngrx/effects';
 import { FacadeBase } from '@tomtomb/ngrx-toolkit';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { UiShellFacade } from '@setgo/store/ui/shell';
+import { take, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsFacade extends FacadeBase {
-  notifications$ = this.store.select(Selectors.getNotifications);
+  notifications$ = this._store.select(Selectors.getNotifications);
+  floatingNotificationMessages$ = this._store.select(
+    Selectors.getFloatingNotificationMessages,
+  );
 
   constructor(
-    private store: Store<fromReducer.NotificationsPartialState>,
-    private actions: ActionsNative,
+    private _store: Store<fromReducer.NotificationsPartialState>,
+    private _actions: ActionsNative,
+    private _uiShellFacade: UiShellFacade,
   ) {
-    super(store, actions, Selectors.entitySelectors);
+    super(_store, _actions, Selectors.entitySelectors);
   }
 
   getFoo(args: Models.GetFooArgs) {
@@ -23,18 +29,37 @@ export class NotificationsFacade extends FacadeBase {
   }
 
   addNotificationMessage(args: Models.AddNotificationMessageArgs) {
-    return this.store.dispatch(Actions.addNotificationMessage(args));
+    if (args.isFloating === undefined) {
+      this._uiShellFacade.notificationShadeVisibility$
+        .pipe(
+          tap((visibility) => {
+            if (visibility === 'open') {
+              this._store.dispatch(
+                Actions.addNotificationMessage({ ...args, isFloating: false }),
+              );
+            } else {
+              this._store.dispatch(
+                Actions.addNotificationMessage({ ...args, isFloating: true }),
+              );
+            }
+          }),
+          take(1),
+        )
+        .subscribe();
+    } else {
+      this._store.dispatch(Actions.addNotificationMessage(args));
+    }
   }
 
   removeNotificationMessage(args: Models.RemoveNotificationMessageArgs) {
-    return this.store.dispatch(Actions.removeNotificationMessage(args));
+    this._store.dispatch(Actions.removeNotificationMessage(args));
   }
 
   removeNotificationGroup(args: Models.RemoveNotificationGroupArgs) {
-    return this.store.dispatch(Actions.removeNotificationGroup(args));
+    this._store.dispatch(Actions.removeNotificationGroup(args));
   }
 
   removeAllNotifications() {
-    return this.store.dispatch(Actions.removeAllNotifications());
+    this._store.dispatch(Actions.removeAllNotifications());
   }
 }

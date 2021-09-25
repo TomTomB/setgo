@@ -13,11 +13,11 @@ export class RouterFacade {
   private _queryParams$ = new BehaviorSubject<Params>({});
   private _url$ = new BehaviorSubject<string>('');
 
-  data$ = this.store.select(Selectors.getData);
-  navigationId$ = this.store.select(Selectors.getNavigationId);
-  params$ = this.store.select(Selectors.getParams);
-  queryParams$ = this.store.select(Selectors.getQueryParams);
-  url$ = this.store.select(Selectors.getUrl);
+  data$ = this._store.select(Selectors.getData);
+  navigationId$ = this._store.select(Selectors.getNavigationId);
+  params$ = this._store.select(Selectors.getParams);
+  queryParams$ = this._store.select(Selectors.getQueryParams);
+  url$ = this._store.select(Selectors.getUrl);
 
   get data() {
     return this._data$.value;
@@ -39,7 +39,7 @@ export class RouterFacade {
     return this._url$.value;
   }
 
-  constructor(private store: Store<fromReducer.RouterPartialState>) {
+  constructor(private _store: Store<fromReducer.RouterPartialState>) {
     this.data$.subscribe(this._data$);
     this.navigationId$.subscribe(this._navigationId$);
     this.params$.subscribe(this._params$);
@@ -48,10 +48,10 @@ export class RouterFacade {
   }
 
   selectParam(key: string) {
-    return this.store.select(Selectors.getParam(key));
+    return this._store.select(Selectors.getParam(key));
   }
 
   selectQueryParam(key: string) {
-    return this.store.select(Selectors.getQueryParam(key));
+    return this._store.select(Selectors.getQueryParam(key));
   }
 }
