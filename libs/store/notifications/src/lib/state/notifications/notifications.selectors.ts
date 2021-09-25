@@ -1,5 +1,5 @@
 import * as fromReducer from './notifications.reducer';
-import { NotificationMessage } from './notifications.models';
+import { NotificationMessageWithGroup } from './notifications.models';
 import { createEntitySelectors } from '@tomtomb/ngrx-toolkit';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
@@ -21,10 +21,12 @@ export const getNotifications = createSelector(
 export const getFloatingNotificationMessages = createSelector(
   getNotifications,
   (notifications) => {
-    const floatingNotificationMessages: NotificationMessage[] = [];
+    const floatingNotificationMessages: NotificationMessageWithGroup[] = [];
     for (const group of notifications) {
       floatingNotificationMessages.push(
-        ...group.messages.filter((m) => m.isFloating),
+        ...group.messages
+          .filter((m) => m.isFloating)
+          .map((m) => ({ ...m, group })),
       );
 
       if (floatingNotificationMessages.length === 3) {

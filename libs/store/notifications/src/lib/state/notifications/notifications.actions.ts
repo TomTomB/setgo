@@ -20,6 +20,11 @@ export const addNotificationMessage = createAction(
   props<Models.AddNotificationMessageArgs>(),
 );
 
+export const hideNotificationMessage = createAction(
+  '[Notifications] Hide Notification Message',
+  props<Models.HideNotificationMessageArgs>(),
+);
+
 export const removeNotificationMessage = createAction(
   '[Notifications] Remove Notification Message',
   props<Models.RemoveNotificationMessageArgs>(),

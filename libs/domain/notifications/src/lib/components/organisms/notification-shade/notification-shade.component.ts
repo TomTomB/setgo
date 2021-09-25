@@ -15,6 +15,7 @@ import { IconCollection, LayoutService } from '@setgo/uikit/core';
 import {
   NotificationGroup,
   NotificationMessage,
+  NotificationMessageWithGroup,
   NotificationsFacade,
 } from '@setgo/store/notifications';
 import { NotificationGroupComponent } from '../../molecules';
@@ -24,7 +25,7 @@ import { SwipeHandlerService } from '../../../services/swipe-handler.service';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction } from '@setgo/types';
 import { animateNotificationShade } from '../../../animations';
-import { trackByNotificationGroup } from '../../../utils';
+import { trackByNotification, trackByNotificationGroup } from '../../../utils';
 import iconPartyPopper from '@iconify/icons-mdi/party-popper';
 
 @Component({
@@ -42,8 +43,9 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
   };
 
   notifications$!: Observable<NotificationGroup[]>;
-  floatingNotificationMessages$!: Observable<NotificationMessage[]>;
+  floatingNotificationMessages$!: Observable<NotificationMessageWithGroup[]>;
   trackByNotificationGroupFn = trackByNotificationGroup;
+  trackByNotificationFn = trackByNotification;
 
   notificationShadeVisibility$!: Observable<UiTriggerAction>;
 
@@ -73,6 +75,7 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
       this._notificationsFacade.floatingNotificationMessages$;
 
     setTimeout(() => {
+      // TODO (TRB): Remove
       this._notificationsFacade.addNotificationMessage({
         appletName: 'Updater (1)',
         body: 'New message body',
@@ -105,6 +108,16 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
     this.setNotificationShadeVisibility('close');
 
     this._notificationsFacade.removeAllNotifications();
+  }
+
+  hideNotificationMessage(
+    notificationGroup: NotificationGroup,
+    notificationMessage: NotificationMessage,
+  ) {
+    this._notificationsFacade.hideNotificationMessage({
+      notificationGroupId: notificationGroup.id,
+      notificationMessageId: notificationMessage.id,
+    });
   }
 
   removeNotificationMessage(
