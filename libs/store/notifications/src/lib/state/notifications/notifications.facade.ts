@@ -55,6 +55,10 @@ export class NotificationsFacade extends FacadeBase {
     this._store.dispatch(Actions.hideNotificationMessage(args));
   }
 
+  hideAllNotificationMessages() {
+    this._store.dispatch(Actions.hideAllNotificationMessages());
+  }
+
   removeNotificationMessage(args: Models.RemoveNotificationMessageArgs) {
     this._store.dispatch(Actions.removeNotificationMessage(args));
   }

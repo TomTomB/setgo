@@ -66,6 +66,10 @@ export class HeaderComponent implements OnInit {
     this._uiShellFacade.dispatchSetNotificationShadeVisibility(uiAction);
   }
 
+  hideAllFloatingNotificationMessages() {
+    this._notificationsFacade.hideAllNotificationMessages();
+  }
+
   setTheme(theme: 'light' | 'dark' | 'system') {
     if (this._platformService.isPlatformServer) {
       return;

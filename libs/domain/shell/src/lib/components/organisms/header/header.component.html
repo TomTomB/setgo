@@ -69,7 +69,10 @@
             (notifications.length || 'keine') +
             ' Benachrichtigungen'
           "
-          (click)="setNotificationShadeVisibility('toggle')"
+          (click)="
+            setNotificationShadeVisibility('toggle');
+            hideAllFloatingNotificationMessages()
+          "
         >
           <ic-icon
             class="text-2xl pointer-events-none block"

@@ -24,7 +24,10 @@ import { Observable } from 'rxjs';
 import { SwipeHandlerService } from '../../../services/swipe-handler.service';
 import { UiShellFacade } from '@setgo/store/ui/shell';
 import { UiTriggerAction } from '@setgo/types';
-import { animateNotificationShade } from '../../../animations';
+import {
+  animateFloatingNotification,
+  animateNotificationShade,
+} from '../../../animations';
 import { trackByNotification, trackByNotificationGroup } from '../../../utils';
 import iconPartyPopper from '@iconify/icons-mdi/party-popper';
 
@@ -33,7 +36,12 @@ import iconPartyPopper from '@iconify/icons-mdi/party-popper';
   templateUrl: './notification-shade.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [animateNotificationShade, Animations.shrink, Animations.fade],
+  animations: [
+    animateNotificationShade,
+    animateFloatingNotification,
+    Animations.shrink,
+    Animations.fade,
+  ],
 })
 export class NotificationShadeComponent implements OnInit, AfterViewInit {
   private _swipeHandlerId: string | null = null;
@@ -80,7 +88,6 @@ export class NotificationShadeComponent implements OnInit, AfterViewInit {
         appletName: 'Updater (1)',
         body: 'New message body',
         title: 'New Message',
-        isFloating: true,
       });
     }, 2500);
   }

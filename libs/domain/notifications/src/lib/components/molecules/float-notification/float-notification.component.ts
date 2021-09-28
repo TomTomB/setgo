@@ -31,7 +31,7 @@ export class FloatNotificationComponent implements OnInit {
 
     setTimeout(() => {
       this.floatTimeExpired.emit(this.notificationMessage);
-    }, 2500);
+    }, 5000);
   }
 
   private _assertInputsAreProvided() {

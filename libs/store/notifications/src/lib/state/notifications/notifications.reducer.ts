@@ -101,6 +101,17 @@ export const { reducerSlice, reducerAdapters, initialState } =
         return { ...state, notifications: notificationsCopy };
       },
     ),
+    on(Actions.hideAllNotificationMessages, (state) => {
+      const updatedNotifications = state.notifications.map((group) => ({
+        ...group,
+        messages: group.messages.map((message) => ({
+          ...message,
+          isFloating: false,
+        })),
+      }));
+
+      return { ...state, notifications: updatedNotifications };
+    }),
     on(
       Actions.removeNotificationMessage,
       (state, { notificationGroupId, notificationMessageId }) => {

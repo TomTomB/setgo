@@ -18,14 +18,14 @@ for (let i = 0; i < 10; i++) {
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         title: 'Ein Update steht zur Verfügung',
         id: `${i}_0`,
-        isFloating: true,
+        isFloating: false,
       },
       {
         timestamp: Date.now(),
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
         title: 'Update installiert',
         id: `${i}_1`,
-        isFloating: true,
+        isFloating: false,
       },
     ],
   });
