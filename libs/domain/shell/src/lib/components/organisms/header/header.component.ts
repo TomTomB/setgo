@@ -9,7 +9,6 @@ import { FormControl } from '@angular/forms';
 import { IconCollection } from '@setgo/uikit/core';
 import {
   NotificationGroup,
-  NotificationMessage,
   NotificationMessageWithGroup,
   NotificationsFacade,
 } from '@setgo/store/notifications';
