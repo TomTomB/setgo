@@ -56,8 +56,8 @@ jobs:
       - name: Lint
         run: yarn affected:lint
 
-      - name: Build all apps
-        run: yarn affected:build:all
+      - name: Build all affected apps
+        run: yarn affected:build
 
       - name: Test
         run: firebase emulators:exec 'yarn affected:test'
