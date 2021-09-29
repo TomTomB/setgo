@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IdentifierTemplateComponent } from '../../templates';
 import { IdentifierViewComponent } from './identifier.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreTestingModule } from '@setgo/store/testing';
@@ -12,7 +11,7 @@ describe('IdentifierViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IdentifierViewComponent, IdentifierTemplateComponent],
+      declarations: [IdentifierViewComponent],
       imports: [
         StoreTestingModule,
         RouterTestingModule,

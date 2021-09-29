@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { DomainAuthRoutingModule } from './domain-auth-routing.module';
 import { NgModule } from '@angular/core';
-import { Templates, Views } from './components';
 import { UikitCommonModule } from '@setgo/uikit/common';
 import { UikitCoreModule } from '@setgo/uikit/core';
 import { UikitFormsModule } from '@setgo/uikit/forms';
+import { Views } from './components';
 
 @NgModule({
   imports: [
@@ -14,6 +14,6 @@ import { UikitFormsModule } from '@setgo/uikit/forms';
     UikitCoreModule,
     UikitFormsModule,
   ],
-  declarations: [...Views.COMPONENTS, ...Templates.COMPONENTS],
+  declarations: [...Views.COMPONENTS],
 })
 export class DomainAuthModule {}
