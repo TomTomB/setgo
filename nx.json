@@ -60,6 +60,9 @@
       "tags": [],
       "implicitDependencies": ["uikit-forms"]
     },
+    "mocks": {
+      "tags": []
+    },
     "setgo": {
       "tags": []
     },

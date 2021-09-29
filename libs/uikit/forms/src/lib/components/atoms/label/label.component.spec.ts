@@ -14,6 +14,7 @@ describe('LabelComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LabelComponent);
     component = fixture.componentInstance;
+    component.htmlFor = 'test-id';
     fixture.detectChanges();
   });
 
