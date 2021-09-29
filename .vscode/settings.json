@@ -1,5 +1,4 @@
 {
   "cSpell.words": ["setgo", "Uikit"],
-  "angular.view-engine": false,
-  "jest.jestCommandLine": "yarn jest"
+  "angular.view-engine": false
 }
