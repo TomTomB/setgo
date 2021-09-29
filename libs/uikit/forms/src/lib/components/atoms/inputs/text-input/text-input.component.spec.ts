@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TextInputComponent } from './text-input.component';
 
 describe('TextInputComponent', () => {
@@ -16,6 +16,8 @@ describe('TextInputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
+    component.inputId = 'abc';
+    component.control = new FormControl();
     fixture.detectChanges();
   });
 

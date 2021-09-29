@@ -409,6 +409,47 @@
         }
       }
     },
+    "mocks": {
+      "projectType": "library",
+      "root": "libs/mocks",
+      "sourceRoot": "libs/mocks/src",
+      "prefix": "setgo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/mocks"],
+          "options": {
+            "project": "libs/mocks/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/mocks/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/mocks/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mocks"],
+          "options": {
+            "jestConfig": "libs/mocks/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mocks/src/**/*.ts",
+              "libs/mocks/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "setgo": {
       "projectType": "application",
       "root": "apps/setgo",

@@ -43,7 +43,8 @@
     "build:ssr:client": "nx build",
     "build:ssr:server": "nx run setgo:server",
     "prerender": "nx run setgo:prerender",
-    "git-format-staged": "git-format-staged"
+    "git-format-staged": "git-format-staged",
+    "jest": "jest"
   },
   "dependencies": {
     "@angular/animations": "12.2.7",
