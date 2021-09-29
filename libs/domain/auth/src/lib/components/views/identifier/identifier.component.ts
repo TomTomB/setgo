@@ -10,12 +10,12 @@ import { ValidatorsExtra } from '@setgo/uikit/forms';
 import { environment } from '@setgo/env';
 
 @Component({
-  selector: 'domain-identifier-view',
+  selector: 'domain-identifier',
   templateUrl: './identifier.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IdentifierViewComponent {
+export class IdentifierComponent {
   version = environment.version;
 
   fetchSignInMethodsForEmailStore?: MappedEntityState<

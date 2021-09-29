@@ -33,7 +33,8 @@
     "@schematics/angular:component": {
       "style": "none",
       "changeDetection": "OnPush",
-      "viewEncapsulation": "None"
+      "viewEncapsulation": "None",
+      "skipImport": true
     }
   },
   "projects": {

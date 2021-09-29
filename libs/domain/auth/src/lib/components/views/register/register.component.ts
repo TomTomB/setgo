@@ -5,9 +5,9 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'domain-auth-host',
-  templateUrl: './auth-host.component.html',
+  selector: 'domain-register',
+  templateUrl: './register.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthHostComponent {}
+export class RegisterComponent {}
