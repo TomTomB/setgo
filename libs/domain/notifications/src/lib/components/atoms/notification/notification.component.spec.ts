@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NOTIFICATION_MOCK } from '@setgo/store/notifications';
+import { NOTIFICATION_MESSAGE_MOCK } from '@setgo/store/notifications';
 import { NotificationComponent } from './notification.component';
 import { UikitCoreModule } from '@setgo/uikit/core';
 
@@ -17,7 +17,7 @@ describe('NotificationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
-    component.notificationMessage = NOTIFICATION_MOCK;
+    component.notificationMessage = NOTIFICATION_MESSAGE_MOCK;
     fixture.detectChanges();
   });
 

@@ -40,12 +40,12 @@ export class NotificationComponent implements OnInit {
     this._assertInputsAreProvided();
   }
 
-  startNotificationSwipe(event: TouchEvent, element: HTMLDivElement) {
+  startNotificationMessageSwipe(event: TouchEvent, element: HTMLDivElement) {
     this._notificationSwipeHandlerId =
       this._notificationUiHandlerService.startNotificationSwipe(event, element);
   }
 
-  updateNotificationSwipe(event: TouchEvent) {
+  updateNotificationMessageSwipe(event: TouchEvent) {
     if (!this._notificationSwipeHandlerId) {
       return;
     }
@@ -60,7 +60,7 @@ export class NotificationComponent implements OnInit {
     }
   }
 
-  endNotificationSwipe() {
+  endNotificationMessageSwipe() {
     if (!this._notificationSwipeHandlerId) {
       return;
     }
@@ -76,9 +76,8 @@ export class NotificationComponent implements OnInit {
     }
   }
 
-  private _assertInputsAreProvided() {
+  private _assertInputsAreProvided = () =>
     assertInputsAreProvided({
       notificationData: this.notificationMessage,
     });
-  }
 }

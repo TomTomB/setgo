@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -12,6 +13,7 @@ import { Error } from '@tomtomb/ngrx-toolkit';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TextFieldComponent } from '@setgo/uikit/forms';
 import { Version } from '@setgo/types';
+import { assertInputsAreProvided } from '@setgo/core';
 
 @Component({
   selector: 'domain-identifier-template',
@@ -20,7 +22,7 @@ import { Version } from '@setgo/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [Animations.growShrink],
 })
-export class IdentifierTemplateComponent {
+export class IdentifierTemplateComponent implements OnInit {
   @Input()
   fetchSignInMethodsForEmailStoreIsLoading: boolean | null = false;
 
@@ -42,6 +44,10 @@ export class IdentifierTemplateComponent {
   @ViewChild(TextFieldComponent)
   emailFieldRef?: TextFieldComponent;
 
+  ngOnInit(): void {
+    this._assertInputsAreProvided();
+  }
+
   emitCheckEmail(email: string) {
     if (this.emailForm.invalid) {
       this.emailFieldRef?.inputComponentRef?.nativeInputRef?.nativeElement.focus();
@@ -50,4 +56,15 @@ export class IdentifierTemplateComponent {
 
     this.identifierSubmit.emit(email);
   }
+
+  private _assertInputsAreProvided = () =>
+    assertInputsAreProvided({
+      fetchSignInMethodsForEmailStoreIsLoading:
+        this.fetchSignInMethodsForEmailStoreIsLoading,
+      fetchSignInMethodsForEmailStoreError:
+        this.fetchSignInMethodsForEmailStoreError,
+      emailControl: this.emailControl,
+      emailForm: this.emailForm,
+      version: this.version,
+    });
 }

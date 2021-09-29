@@ -11,7 +11,7 @@ import { take, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationsFacade extends FacadeBase {
-  notifications$ = this._store.select(Selectors.getNotifications);
+  notifications$ = this._store.select(Selectors.getNotificationGroups);
   floatingNotificationMessages$ = this._store.select(
     Selectors.getFloatingNotificationMessages,
   );

@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { assertInputsAreProvided } from '@setgo/core';
 
 @Component({
   selector: 'uikit-forms-label',
@@ -11,7 +13,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class LabelComponent {
+export class LabelComponent implements OnInit {
   @Input()
   htmlFor!: string;
 
@@ -20,4 +22,13 @@ export class LabelComponent {
 
   @Input()
   doFloat?: boolean;
+
+  ngOnInit(): void {
+    this._assertInputsAreProvided();
+  }
+
+  private _assertInputsAreProvided = () =>
+    assertInputsAreProvided({
+      htmlFor: this.htmlFor,
+    });
 }

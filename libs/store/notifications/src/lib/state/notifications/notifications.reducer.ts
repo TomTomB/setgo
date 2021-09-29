@@ -11,11 +11,11 @@ export const NOTIFICATIONS_FEATURE_KEY = 'notifications';
 export type State = typeof initialState;
 
 export interface StateExtra {
-  notifications: NotificationGroup[];
+  notificationGroups: NotificationGroup[];
 }
 
 const initialStateExtra: StateExtra = {
-  notifications: [...NOTIFICATION_GROUP_WITH_MESSAGES_MOCK],
+  notificationGroups: [...NOTIFICATION_GROUP_WITH_MESSAGES_MOCK],
 };
 
 export interface NotificationsPartialState {
@@ -33,7 +33,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
     on(
       Actions.addNotificationMessage,
       (state, { appletName, body, title, timestamp, isFloating }) => {
-        const existingGroup = state.notifications.find(
+        const existingGroup = state.notificationGroups.find(
           (n) => n.appletName === appletName,
         );
 
@@ -52,12 +52,12 @@ export const { reducerSlice, reducerAdapters, initialState } =
 
           groupCopy.messages.unshift(newMessage);
 
-          const filteredGroups = state.notifications.filter(
+          const filteredGroups = state.notificationGroups.filter(
             (g) => g.appletName !== appletName,
           );
           filteredGroups.unshift(groupCopy);
 
-          return { ...state, notifications: filteredGroups };
+          return { ...state, notificationGroups: filteredGroups };
         }
 
         const newGroup: NotificationGroup = {
@@ -66,13 +66,16 @@ export const { reducerSlice, reducerAdapters, initialState } =
           messages: [newMessage],
         };
 
-        return { ...state, notifications: [newGroup, ...state.notifications] };
+        return {
+          ...state,
+          notificationGroups: [newGroup, ...state.notificationGroups],
+        };
       },
     ),
     on(
       Actions.hideNotificationMessage,
       (state, { notificationGroupId, notificationMessageId }) => {
-        const existingGroup = state.notifications.find(
+        const existingGroup = state.notificationGroups.find(
           (n) => n.id === notificationGroupId,
         );
 
@@ -92,17 +95,17 @@ export const { reducerSlice, reducerAdapters, initialState } =
           groupCopy.messages.findIndex((m) => m.id === notificationMessageId)
         ].isFloating = false;
 
-        const notificationsCopy = [...state.notifications];
+        const notificationsCopy = [...state.notificationGroups];
 
         notificationsCopy[
           notificationsCopy.findIndex((g) => g.id === notificationGroupId)
         ] = groupCopy;
 
-        return { ...state, notifications: notificationsCopy };
+        return { ...state, notificationGroups: notificationsCopy };
       },
     ),
     on(Actions.hideAllNotificationMessages, (state) => {
-      const updatedNotifications = state.notifications.map((group) => ({
+      const updatedNotifications = state.notificationGroups.map((group) => ({
         ...group,
         messages: group.messages.map((message) => ({
           ...message,
@@ -110,12 +113,12 @@ export const { reducerSlice, reducerAdapters, initialState } =
         })),
       }));
 
-      return { ...state, notifications: updatedNotifications };
+      return { ...state, notificationGroups: updatedNotifications };
     }),
     on(
       Actions.removeNotificationMessage,
       (state, { notificationGroupId, notificationMessageId }) => {
-        const existingGroup = state.notifications.find(
+        const existingGroup = state.notificationGroups.find(
           (n) => n.id === notificationGroupId,
         );
 
@@ -137,25 +140,25 @@ export const { reducerSlice, reducerAdapters, initialState } =
         if (!groupCopy.messages.length) {
           return {
             ...state,
-            notifications: state.notifications.filter(
+            notificationGroups: state.notificationGroups.filter(
               (g) => g.id !== notificationGroupId,
             ),
           };
         }
 
-        const notificationsCopy = [...state.notifications];
+        const notificationsCopy = [...state.notificationGroups];
 
         notificationsCopy[
           notificationsCopy.findIndex((g) => g.id === notificationGroupId)
         ] = groupCopy;
 
-        return { ...state, notifications: notificationsCopy };
+        return { ...state, notificationGroups: notificationsCopy };
       },
     ),
     on(Actions.removeNotificationGroup, (state, { notificationGroupId }) => {
       return {
         ...state,
-        notifications: state.notifications.filter(
+        notificationGroups: state.notificationGroups.filter(
           (g) => g.id !== notificationGroupId,
         ),
       };
@@ -163,7 +166,7 @@ export const { reducerSlice, reducerAdapters, initialState } =
     on(Actions.removeAllNotifications, (state) => {
       return {
         ...state,
-        notifications: [],
+        notificationGroups: [],
       };
     }),
   );
