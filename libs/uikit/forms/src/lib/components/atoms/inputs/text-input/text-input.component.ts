@@ -3,10 +3,12 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { assertInputsAreProvided } from '@setgo/core';
 
 @Component({
   selector: 'uikit-forms-input-text',
@@ -14,7 +16,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class TextInputComponent {
+export class TextInputComponent implements OnInit {
   @Input()
   inputId!: string;
 
@@ -32,4 +34,16 @@ export class TextInputComponent {
 
   @ViewChild('inputRef')
   nativeInputRef?: ElementRef<HTMLInputElement>;
+
+  ngOnInit(): void {
+    this._assertInputsAreProvided();
+  }
+
+  private _assertInputsAreProvided = () =>
+    assertInputsAreProvided({
+      inputId: this.inputId,
+      inputType: this.inputType,
+      inputSpellcheck: this.inputSpellcheck,
+      control: this.control,
+    });
 }

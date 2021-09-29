@@ -105,9 +105,8 @@ export class NotificationGroupComponent implements OnInit {
     this.deleteBtnRef.nativeElement.focus();
   }
 
-  private _assertInputsAreProvided() {
+  private _assertInputsAreProvided = () =>
     assertInputsAreProvided({
       notificationGroup: this.notificationGroup,
     });
-  }
 }

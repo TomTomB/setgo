@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   NOTIFICATION_GROUP_MOCK,
-  NOTIFICATION_MOCK,
+  NOTIFICATION_MESSAGE_MOCK,
 } from '@setgo/store/notifications';
 import { NotificationComponent } from '../../atoms';
 import { UikitCoreModule } from '@setgo/uikit/core';
@@ -23,7 +23,7 @@ describe('FloatNotificationComponent', () => {
     fixture = TestBed.createComponent(FloatNotificationComponent);
     component = fixture.componentInstance;
     component.notificationMessage = {
-      ...NOTIFICATION_MOCK,
+      ...NOTIFICATION_MESSAGE_MOCK,
       group: NOTIFICATION_GROUP_MOCK,
     };
     fixture.detectChanges();

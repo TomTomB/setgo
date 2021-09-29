@@ -1,2 +1,2 @@
-export * from './notification.mocks';
+export * from './notification-message.mocks';
 export * from './notification-group.mocks';

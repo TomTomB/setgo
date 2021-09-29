@@ -34,9 +34,8 @@ export class FloatNotificationComponent implements OnInit {
     }, 5000);
   }
 
-  private _assertInputsAreProvided() {
+  private _assertInputsAreProvided = () =>
     assertInputsAreProvided({
       notificationMessage: this.notificationMessage,
     });
-  }
 }

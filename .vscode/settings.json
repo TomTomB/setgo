@@ -1,11 +1,4 @@
 {
-  "cSpell.words": [
-    "Serializability",
-    "Uikit",
-    "firestore",
-    "ngrx",
-    "setgo",
-    "tomtomb"
-  ],
+  "cSpell.words": ["setgo", "Uikit"],
   "angular.view-engine": false
 }

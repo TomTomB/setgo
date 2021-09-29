@@ -13,16 +13,16 @@ export const entitySelectors = createEntitySelectors({
   reducerAdapters: fromReducer.reducerAdapters,
 });
 
-export const getNotifications = createSelector(
+export const getNotificationGroups = createSelector(
   getState,
-  (state) => state.notifications,
+  (state) => state.notificationGroups,
 );
 
 export const getFloatingNotificationMessages = createSelector(
-  getNotifications,
-  (notifications) => {
+  getNotificationGroups,
+  (notificationGroups) => {
     const floatingNotificationMessages: NotificationMessageWithGroup[] = [];
-    for (const group of notifications) {
+    for (const group of notificationGroups) {
       floatingNotificationMessages.push(
         ...group.messages
           .filter((m) => m.isFloating)
