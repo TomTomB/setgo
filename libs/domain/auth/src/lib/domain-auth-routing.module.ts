@@ -5,7 +5,7 @@ import { Views } from './components';
 const routes: Routes = [
   {
     path: '',
-    component: Views.AuthHostViewComponent,
+    component: Views.AuthHostComponent,
     children: [
       {
         path: '',
@@ -13,7 +13,19 @@ const routes: Routes = [
       },
       {
         path: 'identifier',
-        component: Views.IdentifierViewComponent,
+        component: Views.IdentifierComponent,
+      },
+      {
+        path: 'challenge/password',
+        component: Views.ChallengePasswordComponent,
+      },
+      {
+        path: 'reset-password',
+        component: Views.ResetPasswordComponent,
+      },
+      {
+        path: 'register',
+        component: Views.RegisterComponent,
       },
     ],
   },
