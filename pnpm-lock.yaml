@@ -34,6 +34,7 @@ importers:
   packages/client:
     specifiers:
       '@myapp/counter': 0.0.0
+      '@setgo/core': 0.0.0
       '@types/react': ^17.0.26
       '@types/react-dom': ^17.0.9
       '@vitejs/plugin-react': ^1.0.1
@@ -43,6 +44,7 @@ importers:
       vite: ^2.6.2
     dependencies:
       '@myapp/counter': link:../counter
+      '@setgo/core': link:../core
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     devDependencies:
@@ -61,6 +63,7 @@ importers:
       react-dom: ^17.0.2
       typescript: ^4.4.3
       vite: ^2.6.2
+      vite-plugin-dts: ^0.8.2
     dependencies:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -70,6 +73,7 @@ importers:
       '@vitejs/plugin-react': 1.0.1
       typescript: 4.4.3
       vite: 2.6.2
+      vite-plugin-dts: 0.8.2_vite@2.6.2
 
   packages/counter:
     specifiers:
@@ -1668,6 +1672,18 @@ packages:
     engines: { node: '>= 6' }
     dev: true
 
+  /@ts-morph/common/0.10.1:
+    resolution:
+      {
+        integrity: sha512-rKN/VtZUUlW4M+6vjLFSaFc1Z9sK+1hh0832ucPtPkXqOw/mSWE80Lau4z2zTPNTqtxAjfZbvKpQcEwJy0KIEg==,
+      }
+    dependencies:
+      fast-glob: 3.2.7
+      minimatch: 3.0.4
+      mkdirp: 1.0.4
+      path-browserify: 1.0.1
+    dev: true
+
   /@types/json-schema/7.0.9:
     resolution:
       {
@@ -2504,6 +2520,13 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       mkdirp-infer-owner: 2.0.0
+    dev: true
+
+  /code-block-writer/10.1.1:
+    resolution:
+      {
+        integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==,
+      }
     dev: true
 
   /code-point-at/1.1.0:
@@ -3795,6 +3818,18 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.33
+    dev: true
+
+  /fs-extra/10.0.0:
+    resolution:
+      {
+        integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==,
+      }
+    engines: { node: '>=12' }
+    dependencies:
+      graceful-fs: 4.2.8
+      jsonfile: 6.1.0
+      universalify: 2.0.0
     dev: true
 
   /fs-extra/9.1.0:
@@ -6036,6 +6071,13 @@ packages:
       protocols: 1.4.8
     dev: true
 
+  /path-browserify/1.0.1:
+    resolution:
+      {
+        integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==,
+      }
+    dev: true
+
   /path-exists/3.0.0:
     resolution: { integrity: sha1-zg6+ql94yxiSXqfYENe1mwEP1RU= }
     engines: { node: '>=4' }
@@ -7353,6 +7395,16 @@ packages:
     engines: { node: '>=8' }
     dev: true
 
+  /ts-morph/11.0.3:
+    resolution:
+      {
+        integrity: sha512-ymuPkndv9rzqTLiHWMkVrFXWcN4nBiBGhRP/kTC9F5amAAl7BNLfyrsTzMD1o9A0zishKoF1KQT/0yyFhJnPgA==,
+      }
+    dependencies:
+      '@ts-morph/common': 0.10.1
+      code-block-writer: 10.1.1
+    dev: true
+
   /tsconfig-paths/3.11.0:
     resolution:
       {
@@ -7604,6 +7656,21 @@ packages:
       assert-plus: 1.0.0
       core-util-is: 1.0.2
       extsprintf: 1.3.0
+    dev: true
+
+  /vite-plugin-dts/0.8.2_vite@2.6.2:
+    resolution:
+      {
+        integrity: sha512-tMTd+95804yL58/uYE2IAfC6Hk7tXl6j6fAIUTXhUBf3ZR5l+vNWoEUFnOSxU+fi5yDzm/SIzc3NrqUPLbMSow==,
+      }
+    engines: { node: '>=12.0.0' }
+    peerDependencies:
+      vite: '>=2.4.4'
+    dependencies:
+      fast-glob: 3.2.7
+      fs-extra: 10.0.0
+      ts-morph: 11.0.3
+      vite: 2.6.2
     dev: true
 
   /vite/2.6.2:
