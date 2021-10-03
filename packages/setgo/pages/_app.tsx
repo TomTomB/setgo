@@ -16,6 +16,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         <GlobalStyle />
 
         <Head>
+          <meta name="robots" content="noindex, nofollow, nosnippet" />
+
+          <meta
+            key="theme-light"
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            content="#f5f5f5"
+          />
+          <meta
+            key="theme-dark"
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#212121"
+          />
+
           <link
             rel="preload"
             href="/fonts/raleway/variable/WOFF2/Raleway-VF.woff2"
