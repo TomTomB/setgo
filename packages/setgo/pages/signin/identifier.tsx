@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 const Heading = styled.h1`
-  color: red;
+  color: ${({ theme }) => theme.color.primary.default};
 `;
 
 const Identifier: NextPage = () => {
