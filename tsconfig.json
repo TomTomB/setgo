@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
+      "@setgo/core": ["core/src"],
       "@myapp/counter": ["counter/src"],
       "@myapp/*": ["*/src"]
     }
