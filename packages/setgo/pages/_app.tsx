@@ -1,27 +1,38 @@
 import type { AppProps } from 'next/app';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-};
+import Head from 'next/head';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { Layout } from '../components/layout.component';
+import { darkTheme, GlobalStyle } from '../styles';
+import { FontFaces } from '../styles/global/font-faces.global';
+import { Preflight } from '../styles/global/preflight.global';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      <Preflight />
+      <FontFaces />
+      <ThemeProvider theme={darkTheme}>
+        <GlobalStyle />
 
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Head>
+          <link
+            rel="preload"
+            href="/fonts/raleway/variable/WOFF2/Raleway-VF.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/raleway/variable/WOFF2/Raleway-Italic-VF.woff2"
+            as="font"
+            crossOrigin=""
+          />
+        </Head>
+
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );
