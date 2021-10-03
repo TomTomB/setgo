@@ -8,30 +8,19 @@
   "private": true,
   "scripts": {
     "commit": "pnpm dlx git-cz",
-    "start": "lerna run --scope client dev --stream",
+    "start": "lerna run --scope setgo dev --stream",
     "build": "lerna run --scope client build",
     "tsc": "lerna run tsc",
-    "eslint": "lerna run eslint",
-    "prettier-format": "prettier --write .",
-    "prettier-format:watch": "onchange '**/*.(tsx|ts|js)' -- prettier --write {{changed}}",
+    "lint": "lerna run lint",
+    "format": "prettier --write .",
     "postinstall": "husky install"
   },
   "workspaces": [
     "packages/**"
   ],
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-react": "^7.26.1",
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
-    "onchange": "^7.1.0",
     "prettier": "^2.4.1"
   },
   "husky": {
@@ -40,6 +29,6 @@
     }
   },
   "lint-staged": {
-    "**/*": "yarn eslint && yarn prettier-format"
+    "**/*": "pnpm lint && pnpm format"
   }
 }
