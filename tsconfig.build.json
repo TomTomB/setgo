@@ -13,6 +13,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@setgo/hooks": ["setgo/hooks/index.ts"]
+    }
   }
 }
