@@ -13,7 +13,7 @@
   "scripts": {
     "commit": "pnpm dlx git-cz",
     "start": "lerna run --scope setgo dev --stream",
-    "build": "lerna run --scope client build",
+    "build": "lerna run --scope setgo build",
     "tsc": "lerna run tsc",
     "lint": "lerna run lint",
     "format": "prettier --write .",
