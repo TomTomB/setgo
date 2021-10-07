@@ -3,16 +3,19 @@ import Head from 'next/head';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Layout } from '../components/layout.component';
-import { darkTheme, GlobalStyle } from '../styles';
+import { useTheme } from '@setgo/hooks';
+import { darkTheme, GlobalStyle, lightTheme } from '../styles';
 import { FontFaces } from '../styles/global/font-faces.global';
 import { Preflight } from '../styles/global/preflight.global';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const theme = useTheme();
+
   return (
     <>
       <Preflight />
       <FontFaces />
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <GlobalStyle />
 
         <Head>
