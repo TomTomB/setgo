@@ -31,7 +31,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.lock') }}
 
       - name: Setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -41,26 +41,29 @@ jobs:
       - name: Install firebase tools
         run: npm i -g firebase-tools
 
+      - name: Install pnpm
+        run: npm i -g pnpm
+
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: pnpm i --frozen-lockfile
 
       - name: Build version file
-        run: yarn build:version
+        run: pnpm build:version
 
       - name: Build service worker config
-        run: yarn build:sw-config
+        run: pnpm build:sw-config
 
       - name: Check format
-        run: yarn format:check
+        run: pnpm format:check
 
       - name: Lint
-        run: yarn affected:lint
+        run: pnpm affected:lint
 
       - name: Build all affected apps
-        run: yarn affected:build
+        run: pnpm affected:build
 
       - name: Test
-        run: firebase emulators:exec 'yarn affected:test'
+        run: firebase emulators:exec 'pnpm affected:test'
 
       - name: Deploy preview
         uses: FirebaseExtended/action-hosting-deploy@v0

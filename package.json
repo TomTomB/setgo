@@ -8,10 +8,10 @@
   },
   "license": "GPLV3",
   "scripts": {
-    "commit": "npx git-cz",
+    "commit": "pnpm dlx git-cz",
     "ng": "nx",
     "prepare": "husky install",
-    "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && yarn build:version",
+    "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && pnpm build:version",
     "nx": "nx",
     "start": "ng serve",
     "start:public": "ng serve --host=0.0.0.0 --disable-host-check",
@@ -43,7 +43,6 @@
     "build:ssr:client": "nx build",
     "build:ssr:server": "nx run setgo:server",
     "prerender": "nx run setgo:prerender",
-    "git-format-staged": "git-format-staged",
     "jest": "jest"
   },
   "dependencies": {
