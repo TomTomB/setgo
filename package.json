@@ -1,10 +1,14 @@
 {
-  "name": "vite-react-wasm-appisms",
+  "name": "setgo",
   "version": "1.0.0",
-  "description": "yarn lerna monorepo for all of the popular isms.",
-  "main": "index.js",
-  "author": "alejandro quesada",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TomTomB/setgo.git"
+  },
+  "license": "GPLV3",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "private": true,
   "scripts": {
     "commit": "pnpm dlx git-cz",
@@ -23,13 +27,5 @@
     "husky": "^7.0.2",
     "lerna": "^4.0.0",
     "prettier": "^2.4.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "**/*": "pnpm lint && pnpm format"
   }
 }
