@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn lint
-yarn git-format-staged --formatter "prettier --stdin-filepath "{}""  "*.ts" "*.js" "*.json" "*.html" "*.md" "*.yml" "*.yaml" "*.css" "*.scss"
+pnpm lint
+pnpm git-format-staged --formatter "prettier --stdin-filepath "{}""  "*.ts" "*.js" "*.json" "*.html" "*.md" "*.yml" "*.yaml" "*.css" "*.scss"
