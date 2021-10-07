@@ -1,2 +1,0 @@
-export const MIN_SWIPE_TO_CLOSE_LENGTH = 250;
-export const MIN_VELOCITY_TO_CLOSE = 50;

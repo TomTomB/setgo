@@ -1,6 +1,0 @@
-.overflow-overlay {
-  overflow: auto;
-  @supports (overflow: overlay) {
-    overflow: overlay;
-  }
-}
