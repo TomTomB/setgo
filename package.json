@@ -17,6 +17,7 @@
     "tsc": "lerna run tsc",
     "lint": "lerna run lint",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "postinstall": "husky install"
   },
   "workspaces": [
