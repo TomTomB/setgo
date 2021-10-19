@@ -461,7 +461,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "allowedCommonJsDependencies": ["@firebase/app-check"],
+            "allowedCommonJsDependencies": ["@firebase/app-check", "qs"],
             "outputPath": "dist/apps/setgo/browser",
             "index": "apps/setgo/src/index.html",
             "main": "apps/setgo/src/main.ts",
